@@ -24,3 +24,36 @@ h1 {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+
+body {
+  background-color: #f5c2d6; /* Fondo rosado */
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 20px;
+  color: #333;
+}
+
+.contenedor {
+  margin-top: 50px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f79ac0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e57fa3;
+}
+
+.lua {
+  max-width: 150px;
+  margin-bottom: 20px;
+}

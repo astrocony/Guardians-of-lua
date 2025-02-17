@@ -1,8 +1,8 @@
 /* ==== Fondo y cuerpo principal ==== */
 body {
-  overflow: hidden; /* Evita que la página se desplace */
-  position: relative;
-  height: 100vh;
+  overflow-y: auto; /* Permite scroll vertical */
+  height: auto; /* Ajusta la altura segun el contenido */
+  min-height: 100vh; /* Asegura que ocupe al menos la pantalla completa*/
   font-family: 'Arial', sans-serif;
   text-align: center;
   padding: 20px;

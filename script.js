@@ -24,4 +24,31 @@ function cambiarMensaje(){
 }
 
 
+
+const lua = document.getElementById('lua');
+let posicionX = window.innerWidth / 2 - 60; // Posición inicial centrada
+const velocidad = 10;
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') {
+    // Mueve a Lua a la derecha
+    posicionX += velocidad;
+    lua.src = 'img/lua_step.png';
+    lua.style.transform = 'scaleX(1)'; // Mirando derecha
+  } else if (e.key === 'ArrowLeft') {
+    // Mueve a Lua a la izquierda
+    posicionX -= velocidad;
+    lua.src = 'img/lua_step.png';
+    lua.style.transform = 'scaleX(-1)'; // Mirando izquierda
+  }
+
+  // Aplica el movimiento
+  lua.style.left = `${posicionX}px`;
+
+  // Vuelve al estado "quieto" después de un momento
+  setTimeout(() => {
+    lua.src = 'img/lua_idle.png';
+  }, 150);
+});
+
   

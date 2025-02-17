@@ -68,3 +68,23 @@ h1 {
     transform: translateY(0); 
   }
 }
+
+
+
+
+.lua {
+  position: absolute;
+  bottom: 100px; /* Ajusta según tu página */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: auto;
+  transition: all 0.1s linear;
+}
+
+body {
+  overflow: hidden; /* Evita que la página se desplace */
+  position: relative;
+  height: 100vh;
+  background-color: #ffc0cb; /* Fondo rosa */
+}

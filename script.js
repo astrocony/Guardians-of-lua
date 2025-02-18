@@ -65,4 +65,15 @@ function moverLua() {
 moverLua(); // Inicia animación
 
 
+// === Control táctil para móviles === //
+const btnIzquierda = document.getElementById('btnIzquierda');
+const btnDerecha = document.getElementById('btnDerecha');
+
+// Cuando tocan los botones (touchstart), se mueve
+btnIzquierda.addEventListener('touchstart', () => keys['ArrowLeft'] = true);
+btnDerecha.addEventListener('touchstart', () => keys['ArrowRight'] = true);
+
+// Cuando sueltan el botón (touchend), se detiene
+btnIzquierda.addEventListener('touchend', () => keys['ArrowLeft'] = false);
+btnDerecha.addEventListener('touchend', () => keys['ArrowRight'] = false);
 

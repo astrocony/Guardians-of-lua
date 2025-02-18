@@ -85,3 +85,28 @@ h1 {
   }
 }
 
+/* ==== Controles móviles ==== */
+#controles {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+
+#controles button {
+  padding: 15px;
+  font-size: 20px;
+  background-color: #f79ac0;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s;
+}
+
+#controles button:hover {
+  background-color: #e57fa3;
+}

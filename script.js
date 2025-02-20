@@ -85,7 +85,7 @@ function saltar() {
       lua.src = 'img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = suelo - 80; // Define la altura máxima del salto
+    let alturaMaxima = suelo - 120; // Define la altura máxima del salto
     let velocidad = 10; // Controla la velocidad del salto
 
     let subida = setInterval(() => {

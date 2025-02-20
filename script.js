@@ -69,9 +69,12 @@ function moverLua() {
 moverLua(); 
 
 
+// === Definir la posición inicial de Lua en el suelo === //
+window.onload = function() {
+  lua.style.top = "300px"; 
+};
 
-// === Función de salto corregida === //
-const suelo = 300; // Posición fija del suelo (ajústala según tu página)
+const suelo = 300; // Posición fija del suelo
 
 function saltar() {
   if (!enElAire) {
@@ -82,25 +85,38 @@ function saltar() {
       lua.src = 'img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = suelo - 80; // Altura del salto
+    let alturaMaxima = suelo - 80; // Define la altura máxima del salto
+    let velocidad = 10; // Controla la velocidad del salto
 
     let subida = setInterval(() => {
-      if (parseInt(lua.style.top) > alturaMaxima) {
-        lua.style.top = `${parseInt(lua.style.top) - 15}px`;
+      let posicionActual = parseInt(lua.style.top) || suelo;
+
+      if (posicionActual > alturaMaxima) {
+        lua.style.top = `${posicionActual - velocidad}px`;
       } else {
         clearInterval(subida);
         lua.src = 'img/lua_post_jump.png';
 
         let bajada = setInterval(() => {
-          if (parseInt(lua.style.top) < suelo) {
-            lua.style.top = `${parseInt(lua.style.top) + 15}px`;
+          let posicionActual = parseInt(lua.style.top) || suelo;
+
+          if (posicionActual < suelo) {
+            lua.style.top = `${posicionActual + velocidad}px`;
           } else {
             clearInterval(bajada);
             enElAire = false;
             lua.src = 'img/lua_idle.png';
           }
-        }, 20);
+        }, 10); // Baja más rápido
       }
-    }, 20);
+    }, 10); // Sube más rápido
   }
 }
+
+// === Agregar eventos de teclado y táctiles para salto === //
+document.addEventListener('keydown', (e) => {
+  if (e.key === "ArrowUp") saltar();
+});
+
+document.getElementById('btnSalto').addEventListener('touchstart', saltar);
+

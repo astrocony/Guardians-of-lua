@@ -110,3 +110,24 @@ h1 {
 #controles button:hover {
   background-color: #e57fa3;
 }
+
+.botones {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+button#saltarBtn {
+  padding: 10px 15px;
+  font-size: 18px;
+  background-color: #f79ac0;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button#saltarBtn:hover {
+  background-color: #e57fa3;
+}

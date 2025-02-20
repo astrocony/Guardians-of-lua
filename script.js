@@ -77,3 +77,49 @@ btnDerecha.addEventListener('touchstart', () => keys['ArrowRight'] = true);
 btnIzquierda.addEventListener('touchend', () => keys['ArrowLeft'] = false);
 btnDerecha.addEventListener('touchend', () => keys['ArrowRight'] = false);
 
+
+
+
+
+
+const saltarBtn = document.getElementById('saltarBtn');
+let enElAire = false; // Variable para evitar doble salto
+
+function saltar() {
+  if (!enElAire) {  // Si no está en el aire, permite el salto
+    enElAire = true;
+    lua.src = 'lua_salto.png'; // Cambia a sprite de salto
+
+    let alturaInicial = posY;
+    let alturaMaxima = alturaInicial - 80; // Define la altura del salto
+
+    // Subir
+    let subida = setInterval(() => {
+      if (posY > alturaMaxima) {
+        posY -= 5;
+        lua.style.top = `${posY}px`;
+      } else {
+        clearInterval(subida);
+        
+        // Bajar
+        let bajada = setInterval(() => {
+          if (posY < alturaInicial) {
+            posY += 5;
+            lua.style.top = `${posY}px`;
+          } else {
+            clearInterval(bajada);
+            enElAire = false;
+            lua.src = 'lua_idle.png'; // Vuelve al sprite original
+          }
+        }, 20);
+      }
+    }, 20);
+  }
+}
+
+// Eventos para activar el salto
+saltarBtn.addEventListener('click', saltar);
+document.addEventListener('keydown', (e) => {
+  if (e.key === "ArrowUp") saltar();
+});
+

@@ -68,7 +68,11 @@ function moverLua() {
 
 moverLua(); 
 
-// === Función de salto con sprites === //
+
+
+// === Función de salto corregida === //
+const suelo = 300; // Posición fija del suelo (ajústala según tu página)
+
 function saltar() {
   if (!enElAire) {
     enElAire = true;
@@ -76,40 +80,27 @@ function saltar() {
 
     setTimeout(() => {
       lua.src = 'img/lua_jump.png';
-    }, 100); 
+    }, 100);
 
-    let alturaInicial = lua.offsetTop;
-    let alturaMaxima = alturaInicial - 80;
+    let alturaMaxima = suelo - 80; // Altura del salto
 
     let subida = setInterval(() => {
-      if (lua.offsetTop > alturaMaxima) {
-        lua.style.top = `${lua.offsetTop - 15}px`;
+      if (parseInt(lua.style.top) > alturaMaxima) {
+        lua.style.top = `${parseInt(lua.style.top) - 15}px`;
       } else {
         clearInterval(subida);
         lua.src = 'img/lua_post_jump.png';
 
         let bajada = setInterval(() => {
-          if (lua.offsetTop < alturaInicial) {
-            lua.style.top = `${lua.offsetTop + 15}px`;
+          if (parseInt(lua.style.top) < suelo) {
+            lua.style.top = `${parseInt(lua.style.top) + 15}px`;
           } else {
             clearInterval(bajada);
             enElAire = false;
-            lua.src = 'img/lua_idle.png'; 
+            lua.src = 'img/lua_idle.png';
           }
         }, 20);
       }
     }, 20);
   }
 }
-
-// === Controles táctiles === //
-document.getElementById('btnIzquierda').addEventListener('touchstart', () => keys['ArrowLeft'] = true);
-document.getElementById('btnDerecha').addEventListener('touchstart', () => keys['ArrowRight'] = true);
-document.getElementById('btnSalto').addEventListener('touchstart', () => saltar());
-
-document.getElementById('btnIzquierda').addEventListener('touchend', () => keys['ArrowLeft'] = false);
-document.getElementById('btnDerecha').addEventListener('touchend', () => keys['ArrowRight'] = false);
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === "ArrowUp") saltar();
-});

@@ -1,3 +1,10 @@
+document.addEventListener("keydown", (e) => {
+  if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+    e.preventDefault(); // Evita el desplazamiento de la página
+  }
+});
+
+
 // === Función de Mensajes === //
 const mensajes = [
   "¿Estás perdido? Pronto encontrarás la Luz",
@@ -122,4 +129,5 @@ saltarBtn.addEventListener('click', saltar);
 document.addEventListener('keydown', (e) => {
   if (e.key === "ArrowUp") saltar();
 });
+
 

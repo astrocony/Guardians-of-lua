@@ -89,7 +89,7 @@ h1 {
 /* ==== Controles táctiles (alineados) ==== */
 #controles {
   position: absolute;
-  bottom: 10px; /* Bajamos los botones un poco */
+  bottom: -20px; /* Bajamos los botones un poco */
   left: 50%;
   transform: translateX(-50%);
   display: flex;

@@ -89,11 +89,12 @@ h1 {
 /* ==== Controles táctiles (alineados) ==== */
 #controles {
   position: absolute;
-  bottom: -50px; /* Bajamos los botones un poco */
+  bottom: 5px; /* Bajamos los botones un poco */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
+  z-index:3;
 }
 
 /* ==== Botones de los controles táctiles ==== */

@@ -83,14 +83,14 @@ function saltar() {
 
     let subida = setInterval(() => {
       if (lua.offsetTop > alturaMaxima) {
-        lua.style.top = `${lua.offsetTop - 5}px`;
+        lua.style.top = `${lua.offsetTop - 15}px`;
       } else {
         clearInterval(subida);
         lua.src = 'img/lua_post_jump.png';
 
         let bajada = setInterval(() => {
           if (lua.offsetTop < alturaInicial) {
-            lua.style.top = `${lua.offsetTop + 5}px`;
+            lua.style.top = `${lua.offsetTop + 15}px`;
           } else {
             clearInterval(bajada);
             enElAire = false;

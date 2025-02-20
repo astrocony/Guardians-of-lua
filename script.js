@@ -4,7 +4,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-
 // === Función de Mensajes === //
 const mensajes = [
   "¿Estás perdido? Pronto encontrarás la Luz",
@@ -14,7 +13,6 @@ const mensajes = [
   "¡Una estrella te encontrará!"
 ];
 
-// Índice para recorrer los mensajes
 let indiceMensaje = 0;
 
 function cambiarMensaje() {
@@ -25,98 +23,78 @@ function cambiarMensaje() {
   indiceMensaje = (indiceMensaje + 1) % mensajes.length;
 }
 
-// === Función de Movimiento de Lua (Con tus sprites) === //
+// === Movimiento de Lua === //
 const lua = document.getElementById('luaSprite');
 let posX = 100;
 const step = 5;
-let keys = {}; // Teclas presionadas
+let keys = {}; 
+let enElAire = false; 
 
-// Evento para presionar tecla
 document.addEventListener('keydown', (e) => {
   keys[e.key] = true;
 });
 
-// Evento para soltar tecla
 document.addEventListener('keyup', (e) => {
   keys[e.key] = false;
-  lua.src = 'img/lua_idle.png'; // Sprite de reposo
+  if (!enElAire) lua.src = 'img/lua_idle.png';
 });
 
-// === Bucle de Movimiento Continuo === //
+// === Movimiento continuo === //
 function moverLua() {
   let moviendo = false;
 
   if (keys['ArrowRight'] && posX < 730) {
     posX += step;
     lua.style.left = `${posX}px`;
-    lua.src = 'img/lua_step.png'; // Sprite caminando
-    lua.style.transform = 'scaleX(1)'; // Mirando a la derecha
+    lua.src = 'img/lua_step.png'; 
+    lua.style.transform = 'scaleX(1)'; 
     moviendo = true;
   }
 
   if (keys['ArrowLeft'] && posX > 0) {
     posX -= step;
     lua.style.left = `${posX}px`;
-    lua.src = 'img/lua_step.png'; // Sprite caminando
-    lua.style.transform = 'scaleX(-1)'; // Mirando a la izquierda
+    lua.src = 'img/lua_step.png';
+    lua.style.transform = 'scaleX(-1)';
     moviendo = true;
   }
 
-  if (!moviendo) {
-    lua.src = 'img/lua_idle.png'; // Quieto si no hay movimiento
+  if (!moviendo && !enElAire) {
+    lua.src = 'img/lua_idle.png';
   }
 
   requestAnimationFrame(moverLua);
 }
 
-moverLua(); // Inicia animación
+moverLua(); 
 
-
-// === Control táctil para móviles === //
-const btnIzquierda = document.getElementById('btnIzquierda');
-const btnDerecha = document.getElementById('btnDerecha');
-
-// Cuando tocan los botones (touchstart), se mueve
-btnIzquierda.addEventListener('touchstart', () => keys['ArrowLeft'] = true);
-btnDerecha.addEventListener('touchstart', () => keys['ArrowRight'] = true);
-
-// Cuando sueltan el botón (touchend), se detiene
-btnIzquierda.addEventListener('touchend', () => keys['ArrowLeft'] = false);
-btnDerecha.addEventListener('touchend', () => keys['ArrowRight'] = false);
-
-
-
-
-
-
-const saltarBtn = document.getElementById('saltarBtn');
-let enElAire = false; // Variable para evitar doble salto
-
+// === Función de salto con sprites === //
 function saltar() {
-  if (!enElAire) {  // Si no está en el aire, permite el salto
+  if (!enElAire) {
     enElAire = true;
-    lua.src = 'lua_salto.png'; // Cambia a sprite de salto
+    lua.src = 'img/lua_pre_jump.png';
 
-    let alturaInicial = posY;
-    let alturaMaxima = alturaInicial - 80; // Define la altura del salto
+    setTimeout(() => {
+      lua.src = 'img/lua_jump.png';
+    }, 100); 
 
-    // Subir
+    let alturaInicial = lua.offsetTop;
+    let alturaMaxima = alturaInicial - 80;
+
     let subida = setInterval(() => {
-      if (posY > alturaMaxima) {
-        posY -= 5;
-        lua.style.top = `${posY}px`;
+      if (lua.offsetTop > alturaMaxima) {
+        lua.style.top = `${lua.offsetTop - 5}px`;
       } else {
         clearInterval(subida);
-        
-        // Bajar
+        lua.src = 'img/lua_post_jump.png';
+
         let bajada = setInterval(() => {
-          if (posY < alturaInicial) {
-            posY += 5;
-            lua.style.top = `${posY}px`;
+          if (lua.offsetTop < alturaInicial) {
+            lua.style.top = `${lua.offsetTop + 5}px`;
           } else {
             clearInterval(bajada);
             enElAire = false;
-            lua.src = 'lua_idle.png'; // Vuelve al sprite original
+            lua.src = 'img/lua_idle.png'; 
           }
         }, 20);
       }
@@ -124,10 +102,14 @@ function saltar() {
   }
 }
 
-// Eventos para activar el salto
-saltarBtn.addEventListener('click', saltar);
+// === Controles táctiles === //
+document.getElementById('btnIzquierda').addEventListener('touchstart', () => keys['ArrowLeft'] = true);
+document.getElementById('btnDerecha').addEventListener('touchstart', () => keys['ArrowRight'] = true);
+document.getElementById('btnSalto').addEventListener('touchstart', () => saltar());
+
+document.getElementById('btnIzquierda').addEventListener('touchend', () => keys['ArrowLeft'] = false);
+document.getElementById('btnDerecha').addEventListener('touchend', () => keys['ArrowRight'] = false);
+
 document.addEventListener('keydown', (e) => {
   if (e.key === "ArrowUp") saltar();
 });
-
-

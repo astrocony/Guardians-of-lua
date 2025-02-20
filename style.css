@@ -1,8 +1,9 @@
 /* ==== Fondo y cuerpo principal ==== */
 body {
   overflow-y: auto; /* Permite scroll vertical */
-  height: auto; /* Ajusta la altura segun el contenido */
-  min-height: 100vh; /* Asegura que ocupe al menos la pantalla completa*/
+  overflow-x: hidden; /* Evita el desplazamiento lateral */
+  height: auto; /* Ajusta la altura según el contenido */
+  min-height: 100vh; /* Asegura que ocupe al menos la pantalla completa */
   font-family: 'Arial', sans-serif;
   text-align: center;
   padding: 20px;
@@ -28,7 +29,7 @@ body {
 /* ==== Imagen de Lua (animada) ==== */
 #luaSprite {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px; /* Ajustado para que no quede muy pegado abajo */
   left: 50%;
   transform: translateX(-50%);
   width: 64px;
@@ -85,49 +86,30 @@ h1 {
   }
 }
 
-/* ==== Controles móviles ==== */
+/* ==== Controles táctiles (alineados) ==== */
 #controles {
-  position: fixed;
-  bottom: 20px;
+  position: absolute;
+  bottom: -50px; /* Bajamos los botones un poco */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
 
+/* ==== Botones de los controles táctiles ==== */
 #controles button {
   padding: 15px;
   font-size: 20px;
+  border: none;
   background-color: #f79ac0;
   color: white;
-  border: none;
-  border-radius: 50%;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 #controles button:hover {
   background-color: #e57fa3;
+  transform: translateY(-3px);
 }
 
-.botones {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-button#saltarBtn {
-  padding: 10px 15px;
-  font-size: 18px;
-  background-color: #f79ac0;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-button#saltarBtn:hover {
-  background-color: #e57fa3;
-}

@@ -29,6 +29,7 @@ let posX = 100;
 const step = 5;
 let keys = {}; 
 let enElAire = false; 
+let velocidad = 10; // 🔹 Agregado fuera de la función para modificarlo más fácilmente
 
 document.addEventListener('keydown', (e) => {
   keys[e.key] = true;
@@ -69,10 +70,8 @@ function moverLua() {
 moverLua(); 
 
 
-// === Definir la posición inicial de Lua en el suelo === //
-window.onload = function() {
-  lua.style.top = "300px"; 
-};
+// === Asegurar que Lua empieza en la posición correcta === //
+lua.style.top = "300px"; // Define la posición inicial en el suelo
 
 const suelo = 300; // Posición fija del suelo
 
@@ -85,38 +84,55 @@ function saltar() {
       lua.src = 'img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = suelo - 120; // Define la altura máxima del salto
-    let velocidad = 10; // Controla la velocidad del salto
+    let alturaMaxima = suelo - 120; // 🔹 Aumenté la altura del salto a -120 (antes era -80)
 
     let subida = setInterval(() => {
       let posicionActual = parseInt(lua.style.top) || suelo;
 
       if (posicionActual > alturaMaxima) {
-        lua.style.top = `${posicionActual - velocidad}px`;
+        lua.style.top = `${posicionActual - velocidad}px`; // 🔹 Ahora usa la variable velocidad
       } else {
         clearInterval(subida);
         lua.src = 'img/lua_post_jump.png';
 
         let bajada = setInterval(() => {
           let posicionActual = parseInt(lua.style.top) || suelo;
-
+          
           if (posicionActual < suelo) {
-            lua.style.top = `${posicionActual + velocidad}px`;
+            lua.style.top = `${posicionActual + velocidad}px`; // 🔹 Ahora usa la variable velocidad
+
+            // Permitir movimiento mientras baja
+            if (keys['ArrowRight'] && posX < 730) {
+              posX += step;
+              lua.style.left = `${posX}px`;
+              lua.style.transform = 'scaleX(1)';
+            }
+
+            if (keys['ArrowLeft'] && posX > 0) {
+              posX -= step;
+              lua.style.left = `${posX}px`;
+              lua.style.transform = 'scaleX(-1)';
+            }
+
           } else {
             clearInterval(bajada);
             enElAire = false;
             lua.src = 'img/lua_idle.png';
           }
-        }, 10); // Baja más rápido
+        }, 20);
       }
-    }, 10); // Sube más rápido
+    }, 20);
   }
 }
 
-// === Agregar eventos de teclado y táctiles para salto === //
+// === Controles táctiles === //
+document.getElementById('btnIzquierda').addEventListener('touchstart', () => keys['ArrowLeft'] = true);
+document.getElementById('btnDerecha').addEventListener('touchstart', () => keys['ArrowRight'] = true);
+document.getElementById('btnSalto').addEventListener('touchstart', () => saltar());
+
+document.getElementById('btnIzquierda').addEventListener('touchend', () => keys['ArrowLeft'] = false);
+document.getElementById('btnDerecha').addEventListener('touchend', () => keys['ArrowRight'] = false);
+
 document.addEventListener('keydown', (e) => {
   if (e.key === "ArrowUp") saltar();
 });
-
-document.getElementById('btnSalto').addEventListener('touchstart', saltar);
-

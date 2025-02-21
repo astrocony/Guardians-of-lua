@@ -12,18 +12,19 @@ let posY = 690; // Posición vertical inicial
 const step = 5; // Cantidad de píxeles que Lua se mueve lateralmente
 let keys = {}; // Almacena las teclas presionadas
 let enElAire = false; // Estado de si Lua está en el aire
+let dobleSaltoDisponible = true; // Permite un segundo salto en el aire
 let velocidadSalto = 10; // Velocidad del salto
 const gravedad = 5; // Intensidad de la gravedad
 const suelo = 725; // Coordenada del suelo
 
 // === 🚀 EVENTOS PARA DETECTAR CUÁNDO SE PRESIONAN Y SUELTAN TECLAS === //
 document.addEventListener('keydown', (e) => {
-  keys[e.key] = true; // Registra la tecla como presionada
+  keys[e.key] = true;
 });
 
 document.addEventListener('keyup', (e) => {
-  keys[e.key] = false; // Registra la tecla como liberada
-  if (!enElAire) lua.src = 'img/lua_idle.png'; // Si no está en el aire, vuelve a su sprite normal
+  keys[e.key] = false;
+  if (!enElAire) lua.src = 'img/lua_idle.png';
 });
 
 // === 🔄 MOVIMIENTO LATERAL === //
@@ -34,7 +35,7 @@ function moverLua() {
     posX += step;
     lua.style.left = `${posX}px`;
     lua.src = 'img/lua_step.png';
-    lua.style.transform = 'scaleX(1)'; // Orientación a la derecha
+    lua.style.transform = 'scaleX(1)';
     moviendo = true;
   }
 
@@ -42,15 +43,15 @@ function moverLua() {
     posX -= step;
     lua.style.left = `${posX}px`;
     lua.src = 'img/lua_step.png';
-    lua.style.transform = 'scaleX(-1)'; // Orientación a la izquierda
+    lua.style.transform = 'scaleX(-1)';
     moviendo = true;
   }
 
-  if (!moviendo && !enElAire) { // Si no se mueve y no está en el aire, vuelve a su sprite normal
+  if (!moviendo && !enElAire) {
     lua.src = 'img/lua_idle.png';
   }
 
-  requestAnimationFrame(moverLua); // Llama a la función en cada frame
+  requestAnimationFrame(moverLua);
 }
 
 moverLua();
@@ -59,12 +60,13 @@ moverLua();
 function aplicarGravedad() {
   let plataformaDetectada = detectarColisionPlataforma();
   
-  if (!plataformaDetectada && posY < suelo) { // Si no hay plataforma, cae
+  if (!plataformaDetectada && posY < suelo) {
     enElAire = true;
     posY += gravedad;
     lua.style.top = `${posY}px`;
-  } else if (plataformaDetectada !== null) { // Si encuentra plataforma, se detiene sobre ella
+  } else if (plataformaDetectada !== null) {
     enElAire = false;
+    dobleSaltoDisponible = true; // Restablece el doble salto al aterrizar
     posY = plataformaDetectada - lua.offsetHeight;
     lua.style.top = `${posY}px`;
   }
@@ -94,9 +96,12 @@ function detectarColisionPlataforma() {
   return null;
 }
 
-// === 🔼 SALTO === //
+// === 🔼 SALTO CON DOBLE SALTO === //
 function saltar() {
-  if (!enElAire) {
+  if (!enElAire || dobleSaltoDisponible) {
+    if (enElAire) {
+      dobleSaltoDisponible = false; // Si ya está en el aire, usa el doble salto
+    }
     enElAire = true;
     lua.src = 'img/lua_jump.png';
     let alturaMaxima = posY - 120;
@@ -114,6 +119,7 @@ function saltar() {
             posY = plataformaDetectada - lua.offsetHeight;
             lua.style.top = `${posY}px`;
             enElAire = false;
+            dobleSaltoDisponible = true; // Restablece el doble salto al aterrizar
             clearInterval(bajada);
             lua.src = 'img/lua_idle.png';
           } else if (posY < suelo) {

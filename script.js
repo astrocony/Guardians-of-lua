@@ -99,6 +99,7 @@ function detectarColisionPlataforma() {
 
 // === 🔼 SALTO CON DOBLE SALTO === //
 function saltar() {
+  console.log("Lua intenta saltar..."); // 🔹 Esto nos dirá si la función se ejecuta
   if (!enElAire || dobleSaltoDisponible) {
     if (enElAire) {
       dobleSaltoDisponible = false; // Si ya está en el aire, usa el doble salto

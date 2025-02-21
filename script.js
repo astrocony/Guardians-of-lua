@@ -1,70 +1,74 @@
-// Evita el desplazamiento del navegador al presionar teclas
+// === Evita el desplazamiento del navegador cuando usas las teclas de flecha === //
 document.addEventListener("keydown", (e) => {
   if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-    e.preventDefault();
+    e.preventDefault(); // 🔹 Evita que la página se mueva cuando presionas estas teclas
   }
 });
 
-// === Variables principales === //
-const lua = document.getElementById('luaSprite');
-let posX = 100;
-let posY = 690; // 🔹 Ajustamos para que inicie bien
-const step = 5;
-let keys = {}; 
-let enElAire = false; 
-let velocidad = 7; // 🔹 Ajustamos velocidad de salto
-const gravedad = 5;
-const suelo = 725; // 🔹 Nivel del suelo
+// === 🔥 VARIABLES PRINCIPALES === //
+const lua = document.getElementById('luaSprite'); // 🔹 Obtiene el personaje de Lua en el HTML
+let posX = 100; // 🔹 Posición inicial en X
+let posY = 690; // 🔹 Posición inicial en Y (en el suelo)
+const step = 5; // 🔹 Velocidad al moverse lateralmente
+let keys = {}; // 🔹 Objeto para detectar qué teclas están presionadas
+let enElAire = false; // 🔹 Indica si Lua está en el aire o en una plataforma
+let velocidad = 7; // 🔹 Velocidad del salto
+const gravedad = 5; // 🔹 Intensidad de la gravedad (hace que Lua caiga)
+const suelo = 725; // 🔹 Nivel del suelo (la parte más baja donde Lua puede pararse)
 
+// === 🚀 EVENTOS PARA DETECTAR CUÁNDO SE PRESIONAN Y SUELTAN TECLAS === //
 document.addEventListener('keydown', (e) => {
-  keys[e.key] = true;
+  keys[e.key] = true; // 🔹 Marca la tecla como presionada
 });
 
 document.addEventListener('keyup', (e) => {
-  keys[e.key] = false;
-  if (!enElAire) lua.src = 'img/lua_idle.png';
+  keys[e.key] = false; // 🔹 Marca la tecla como liberada
+  if (!enElAire) lua.src = 'img/lua_idle.png'; // 🔹 Si no está en el aire, Lua vuelve a su sprite normal
 });
 
-// === Movimiento lateral === //
+// === 🔄 MOVIMIENTO LATERAL === //
 function moverLua() {
-  let moviendo = false;
+  let moviendo = false; // 🔹 Para saber si Lua se está moviendo o no
 
+  // 🔹 Mover hacia la derecha
   if (keys['ArrowRight'] && posX < 730) {
     posX += step;
-    lua.style.left = `${posX}px`;
-    lua.src = 'img/lua_step.png';
-    lua.style.transform = 'scaleX(1)';
+    lua.style.left = `${posX}px`; // 🔹 Cambia la posición X de Lua en la pantalla
+    lua.src = 'img/lua_step.png'; // 🔹 Cambia al sprite de caminar
+    lua.style.transform = 'scaleX(1)'; // 🔹 Asegura que Lua mire a la derecha
     moviendo = true;
   }
 
+  // 🔹 Mover hacia la izquierda
   if (keys['ArrowLeft'] && posX > 0) {
     posX -= step;
-    lua.style.left = `${posX}px`;
-    lua.src = 'img/lua_step.png';
-    lua.style.transform = 'scaleX(-1)';
+    lua.style.left = `${posX}px`; // 🔹 Cambia la posición X de Lua
+    lua.src = 'img/lua_step.png'; // 🔹 Cambia al sprite de caminar
+    lua.style.transform = 'scaleX(-1)'; // 🔹 Hace que Lua mire a la izquierda
     moviendo = true;
   }
 
+  // 🔹 Si no se mueve y no está en el aire, Lua vuelve a su sprite normal
   if (!moviendo && !enElAire) {
     lua.src = 'img/lua_idle.png';
   }
 
-  requestAnimationFrame(moverLua);
+  requestAnimationFrame(moverLua); // 🔹 Repite la función para actualizar el movimiento
 }
 
 moverLua(); 
 
-// === Gravedad aplicada === //
+// === 🛑 GRAVEDAD (HACE QUE LUA CAIGA CUANDO NO ESTÁ EN UNA PLATAFORMA) === //
 function aplicarGravedad() {
-  let plataformaDetectada = detectarColisionPlataforma();
+  let plataformaDetectada = detectarColisionPlataforma(); // 🔹 Revisa si Lua está en una plataforma
   
   if (!plataformaDetectada && posY < suelo) {
-    // 🔹 Si no hay plataforma debajo, sigue cayendo
+    // 🔹 Si no hay plataforma debajo, Lua sigue cayendo
     enElAire = true;
-    posY += gravedad;
+    posY += gravedad; // 🔹 Aumenta la posición Y para hacerla bajar
     lua.style.top = `${posY}px`;
   } else if (plataformaDetectada) {
-    // 🔹 Lua aterriza sobre la plataforma
+    // 🔹 Lua aterriza sobre la plataforma y deja de caer
     enElAire = false;
     posY = plataformaDetectada - lua.offsetHeight;
     lua.style.top = `${posY}px`;
@@ -75,13 +79,13 @@ function aplicarGravedad() {
     lua.style.top = `${posY}px`;
   }
 
-  requestAnimationFrame(aplicarGravedad);
+  requestAnimationFrame(aplicarGravedad); // 🔹 Repite la función para mantener la gravedad
 }
 
 aplicarGravedad();
 
-// === Detección de colisión con plataformas === //
-const plataformas = document.querySelectorAll(".plataforma");
+// === 🔍 DETECCIÓN DE COLISIÓN CON PLATAFORMAS === //
+const plataformas = document.querySelectorAll(".plataforma"); // 🔹 Obtiene todas las plataformas
 
 function detectarColisionPlataforma() {
   for (let plataforma of plataformas) {
@@ -89,22 +93,22 @@ function detectarColisionPlataforma() {
     let platLeft = plataforma.offsetLeft;
     let platRight = platLeft + plataforma.offsetWidth;
 
-    let luaBottom = lua.offsetTop + lua.offsetHeight;
-    let luaCenterX = lua.offsetLeft + (lua.offsetWidth / 2);
+    let luaBottom = lua.offsetTop + lua.offsetHeight; // 🔹 Calcula la parte baja de Lua
+    let luaCenterX = lua.offsetLeft + (lua.offsetWidth / 2); // 🔹 Calcula el centro de Lua en X
 
-    // 🔹 Detecta colisión solo si Lua está cayendo
+    // 🔹 Detecta colisión SOLO si Lua está cayendo y aterriza sobre la plataforma
     if (luaBottom >= platTop && luaBottom <= platTop + 5 && 
         luaCenterX >= platLeft && luaCenterX <= platRight) {
         
-        return platTop; // 🔹 Devuelve la posición exacta de la plataforma
+        return platTop; // 🔹 Devuelve la altura de la plataforma
     }
   }
-  return null;
+  return null; // 🔹 Devuelve null si no hay plataforma debajo
 }
 
-// === Función de salto === //
+// === 🔼 SALTO DE LUA === //
 function saltar() {
-  if (!enElAire) {
+  if (!enElAire) { // 🔹 Solo puede saltar si no está en el aire
     enElAire = true;
     lua.src = 'img/lua_pre_jump.png';
 
@@ -112,11 +116,11 @@ function saltar() {
       lua.src = 'img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = posY - 80; // 🔹 Ajustamos la altura del salto
+    let alturaMaxima = posY - 80; // 🔹 Define cuánto subirá Lua
 
     let subida = setInterval(() => {
       if (posY > alturaMaxima) {
-        posY -= velocidad;
+        posY -= velocidad; // 🔹 Hace que Lua suba
         lua.style.top = `${posY}px`;
       } else {
         clearInterval(subida);
@@ -126,7 +130,7 @@ function saltar() {
           let plataformaDetectada = detectarColisionPlataforma();
 
           if (plataformaDetectada) {
-            // 🔹 Lua aterriza correctamente sobre la plataforma
+            // 🔹 Si hay una plataforma, Lua aterriza sobre ella
             posY = plataformaDetectada - lua.offsetHeight;
             lua.style.top = `${posY}px`;
             enElAire = false;
@@ -147,7 +151,7 @@ function saltar() {
   }
 }
 
-// === Controles táctiles === //
+// === 🎮 CONTROLES TÁCTILES === //
 document.getElementById('btnIzquierda').addEventListener('touchstart', () => keys['ArrowLeft'] = true);
 document.getElementById('btnDerecha').addEventListener('touchstart', () => keys['ArrowRight'] = true);
 document.getElementById('btnSalto').addEventListener('touchstart', () => saltar());

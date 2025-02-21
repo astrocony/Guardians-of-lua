@@ -119,8 +119,8 @@ h1 {
   position: absolute;
   width: 100px; /* Ancho de la plataforma */
   height: 20px; /* Altura de la plataforma */
-  background-color: rgba(43, 223, 255, 0.96); /* Temporalmente roja y transparente */
-  border-radius: 5px;
+  background-color: rgba(43, 255, 107, 0.96); /* Temporalmente roja y transparente */
+  border-radius: 5px; 
 }
 
 

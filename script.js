@@ -72,19 +72,7 @@ function moverLua() {
 
 moverLua(); 
 
-// === Gravedad === //
-function aplicarGravedad() {
-  if (enElAire) {
-    posY += gravedad;
-    lua.style.top = `${posY}px`;
-    detectarColisionPlataforma();
-  }
-  requestAnimationFrame(aplicarGravedad);
-}
-
-aplicarGravedad();
-
-// === Detección de colisión con plataformas SOLO si cae sobre ellas === //
+// === Detección de colisión con plataformas === //
 const plataformas = document.querySelectorAll(".plataforma");
 
 function detectarColisionPlataforma() {
@@ -97,15 +85,35 @@ function detectarColisionPlataforma() {
       let luaBottom = lua.offsetTop + lua.offsetHeight;
       let luaCenterX = lua.offsetLeft + (lua.offsetWidth / 2);
 
-      if (velocidad > 0 && luaBottom >= platTop && luaBottom <= platBottom && luaCenterX >= platLeft && luaCenterX <= platRight) {
-          enElAire = false;
-          velocidad = 0;
-          posY = platTop - lua.offsetHeight;
-          lua.style.top = `${posY}px`;
-          return;
+      // Detectar colisión SOLO si Lua está cayendo y está justo sobre la plataforma
+      if (enElAire && luaBottom >= platTop && luaBottom <= platBottom && 
+          luaCenterX >= platLeft && luaCenterX <= platRight) {
+          
+          // **Detenemos la caída**
+          enElAire = false; 
+          velocidad = 0; 
+          lua.style.top = `${platTop - lua.offsetHeight}px`; // Ajustar Lua exactamente sobre la plataforma
+          return true; // Indica que Lua ha aterrizado en una plataforma
       }
   }
+  return false; // No aterrizó en ninguna plataforma
 }
+
+// === Gravedad === //
+function aplicarGravedad() {
+  if (enElAire) {
+    posY += gravedad;
+    lua.style.top = `${posY}px`;
+
+    // Si Lua aterriza en una plataforma, detenemos la gravedad
+    if (detectarColisionPlataforma()) {
+      return;
+    }
+  }
+  requestAnimationFrame(aplicarGravedad);
+}
+
+aplicarGravedad();
 
 // === Función de salto === //
 function saltar() {
@@ -128,12 +136,18 @@ function saltar() {
         lua.src = 'img/lua_post_jump.png';
 
         let bajada = setInterval(() => {
-          posY += velocidad;
-          lua.style.top = `${posY}px`;
-          detectarColisionPlataforma();
+          let posicionActual = parseInt(lua.style.top) || posY;
 
-          if (!enElAire) {
+          if (detectarColisionPlataforma()) {
             clearInterval(bajada);
+            enElAire = false;
+            lua.src = 'img/lua_idle.png';
+          } else if (posicionActual < 725) { // Ajusta para que caiga hasta el suelo
+            posY += gravedad;
+            lua.style.top = `${posY}px`;
+          } else {
+            clearInterval(bajada);
+            enElAire = false;
             lua.src = 'img/lua_idle.png';
           }
         }, 20);

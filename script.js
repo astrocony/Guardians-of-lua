@@ -18,11 +18,6 @@ const suelo = 725; // 🔹 Nivel del suelo
 
 document.addEventListener('keydown', (e) => {
   keys[e.key] = true;
-
-  // Activar el salto cuando se presiona ArrowUp
-  if (e.key === "ArrowUp") {
-    saltar();
-  }
 });
 
 document.addEventListener('keyup', (e) => {
@@ -62,16 +57,19 @@ moverLua();
 // === Gravedad aplicada === //
 function aplicarGravedad() {
   let plataformaDetectada = detectarColisionPlataforma();
-
+  
   if (!plataformaDetectada && posY < suelo) {
+    // 🔹 Si no hay plataforma debajo, sigue cayendo
     enElAire = true;
     posY += gravedad;
     lua.style.top = `${posY}px`;
   } else if (plataformaDetectada) {
+    // 🔹 Lua aterriza sobre la plataforma
     enElAire = false;
-    posY = plataformaDetectada - lua.offsetHeight; // 🔹 Ajusta Lua sobre la plataforma
+    posY = plataformaDetectada - lua.offsetHeight;
     lua.style.top = `${posY}px`;
   } else if (posY >= suelo) {
+    // 🔹 Lua toca el suelo y se detiene
     enElAire = false;
     posY = suelo;
     lua.style.top = `${posY}px`;
@@ -95,7 +93,7 @@ function detectarColisionPlataforma() {
     let luaCenterX = lua.offsetLeft + (lua.offsetWidth / 2);
 
     // 🔹 Detecta colisión solo si Lua está cayendo
-    if (enElAire && luaBottom >= platTop && luaBottom <= platTop + 5 && 
+    if (luaBottom >= platTop && luaBottom <= platTop + 5 && 
         luaCenterX >= platLeft && luaCenterX <= platRight) {
         
         return platTop; // 🔹 Devuelve la posición exacta de la plataforma
@@ -114,7 +112,7 @@ function saltar() {
       lua.src = 'img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = posY - 90; // 🔹 Ajustamos la altura del salto
+    let alturaMaxima = posY - 80; // 🔹 Ajustamos la altura del salto
 
     let subida = setInterval(() => {
       if (posY > alturaMaxima) {
@@ -128,12 +126,14 @@ function saltar() {
           let plataformaDetectada = detectarColisionPlataforma();
 
           if (plataformaDetectada) {
+            // 🔹 Lua aterriza correctamente sobre la plataforma
             posY = plataformaDetectada - lua.offsetHeight;
             lua.style.top = `${posY}px`;
             enElAire = false;
             clearInterval(bajada);
             lua.src = 'img/lua_idle.png';
           } else if (posY < suelo) {
+            // 🔹 Si no hay plataforma, sigue cayendo hasta tocar el suelo
             posY += velocidad;
             lua.style.top = `${posY}px`;
           } else {

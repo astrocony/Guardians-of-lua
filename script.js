@@ -1,6 +1,7 @@
+// Evita el desplazamiento del navegador al presionar teclas
 document.addEventListener("keydown", (e) => {
   if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-    e.preventDefault(); // Evita el desplazamiento de la página
+    e.preventDefault();
   }
 });
 
@@ -26,10 +27,12 @@ function cambiarMensaje() {
 // === Movimiento de Lua === //
 const lua = document.getElementById('luaSprite');
 let posX = 100;
+let posY = 725; // Posición inicial en el suelo
 const step = 5;
 let keys = {}; 
 let enElAire = false; 
-let velocidad = 10; // 🔹 Agregado fuera de la función para modificarlo más fácilmente
+let velocidad = 10;
+const gravedad = 5; 
 
 document.addEventListener('keydown', (e) => {
   keys[e.key] = true;
@@ -47,8 +50,8 @@ function moverLua() {
   if (keys['ArrowRight'] && posX < 730) {
     posX += step;
     lua.style.left = `${posX}px`;
-    lua.src = 'img/lua_step.png'; 
-    lua.style.transform = 'scaleX(1)'; 
+    lua.src = 'img/lua_step.png';
+    lua.style.transform = 'scaleX(1)';
     moviendo = true;
   }
 
@@ -60,11 +63,6 @@ function moverLua() {
     moviendo = true;
   }
 
-  //limitar bordes del escenario
-
-  if (posX < 0) posX = 0;
-  if (posX > 730) posx = 730; // ajusta el valor segun el escenario
-
   if (!moviendo && !enElAire) {
     lua.src = 'img/lua_idle.png';
   }
@@ -74,13 +72,42 @@ function moverLua() {
 
 moverLua(); 
 
+// === Gravedad === //
+function aplicarGravedad() {
+  if (enElAire) {
+    posY += gravedad;
+    lua.style.top = `${posY}px`;
+    detectarColisionPlataforma();
+  }
+  requestAnimationFrame(aplicarGravedad);
+}
 
-// === Asegurar que Lua empieza en la posición correcta === //
+aplicarGravedad();
 
+// === Detección de colisión con plataformas SOLO si cae sobre ellas === //
+const plataformas = document.querySelectorAll(".plataforma");
 
-const suelo = 725; // Posición fija del suelo
-lua.style.top = `${suelo}px`; // Define la posición inicial en el suelo
+function detectarColisionPlataforma() {
+  for (let plataforma of plataformas) {
+      let platTop = plataforma.offsetTop;
+      let platBottom = platTop + plataforma.offsetHeight;
+      let platLeft = plataforma.offsetLeft;
+      let platRight = platLeft + plataforma.offsetWidth;
 
+      let luaBottom = lua.offsetTop + lua.offsetHeight;
+      let luaCenterX = lua.offsetLeft + (lua.offsetWidth / 2);
+
+      if (velocidad > 0 && luaBottom >= platTop && luaBottom <= platBottom && luaCenterX >= platLeft && luaCenterX <= platRight) {
+          enElAire = false;
+          velocidad = 0;
+          posY = platTop - lua.offsetHeight;
+          lua.style.top = `${posY}px`;
+          return;
+      }
+  }
+}
+
+// === Función de salto === //
 function saltar() {
   if (!enElAire) {
     enElAire = true;
@@ -90,39 +117,23 @@ function saltar() {
       lua.src = 'img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = suelo - 120; // 🔹 Aumenté la altura del salto a -120 (antes era -80)
+    let alturaMaxima = posY - 120;
 
     let subida = setInterval(() => {
-      let posicionActual = parseInt(lua.style.top) || suelo;
-
-      if (posicionActual > alturaMaxima) {
-        lua.style.top = `${posicionActual - velocidad}px`; // 🔹 Ahora usa la variable velocidad
+      if (posY > alturaMaxima) {
+        posY -= velocidad;
+        lua.style.top = `${posY}px`;
       } else {
         clearInterval(subida);
         lua.src = 'img/lua_post_jump.png';
 
         let bajada = setInterval(() => {
-          let posicionActual = parseInt(lua.style.top) || suelo;
-          
-          if (posicionActual < suelo) {
-            lua.style.top = `${posicionActual + velocidad}px`; // 🔹 Ahora usa la variable velocidad
+          posY += velocidad;
+          lua.style.top = `${posY}px`;
+          detectarColisionPlataforma();
 
-            // Permitir movimiento mientras baja
-            if (keys['ArrowRight'] && posX < 730) {
-              posX += step;
-              lua.style.left = `${posX}px`;
-              lua.style.transform = 'scaleX(1)';
-            }
-
-            if (keys['ArrowLeft'] && posX > 0) {
-              posX -= step;
-              lua.style.left = `${posX}px`;
-              lua.style.transform = 'scaleX(-1)';
-            }
-
-          } else {
+          if (!enElAire) {
             clearInterval(bajada);
-            enElAire = false;
             lua.src = 'img/lua_idle.png';
           }
         }, 20);
@@ -142,3 +153,4 @@ document.getElementById('btnDerecha').addEventListener('touchend', () => keys['A
 document.addEventListener('keydown', (e) => {
   if (e.key === "ArrowUp") saltar();
 });
+

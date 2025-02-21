@@ -115,4 +115,12 @@ h1 {
   transform: translateY(-3px);
 } 
 
+.plataforma {
+  position: absolute;
+  width: 100px; /* Ancho de la plataforma */
+  height: 20px; /* Altura de la plataforma */
+  background-color: rgba(103, 215, 215, 0.3); /* Temporalmente roja y transparente */
+  border-radius: 5px;
+}
+
 

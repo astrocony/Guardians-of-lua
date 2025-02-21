@@ -15,11 +15,11 @@ body {
 #escenario {
   position: relative;
   width: 800px;
-  height: 400px;
+  height: 800px;
   background-image: url('img/fondo.png');
-  background-size: cover;
+  background-size: contain; 
   background-position: center;
-  border: 2px solid #000;
+  border: 8px solid #fc84f0;
   overflow: hidden;
   margin: 20px auto;
   border-radius: 15px;

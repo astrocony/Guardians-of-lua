@@ -60,6 +60,11 @@ function moverLua() {
     moviendo = true;
   }
 
+  //limitar bordes del escenario
+
+  if (posX < 0) posX = 0;
+  if (posX > 730) posx = 730; // ajusta el valor segun el escenario
+
   if (!moviendo && !enElAire) {
     lua.src = 'img/lua_idle.png';
   }
@@ -71,9 +76,10 @@ moverLua();
 
 
 // === Asegurar que Lua empieza en la posición correcta === //
-lua.style.top = "300px"; // Define la posición inicial en el suelo
 
-const suelo = 300; // Posición fija del suelo
+
+const suelo = 750; // Posición fija del suelo
+lua.style.top = `${suelo}px`; // Define la posición inicial en el suelo
 
 function saltar() {
   if (!enElAire) {

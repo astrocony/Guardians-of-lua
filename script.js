@@ -23,6 +23,10 @@ function cambiarMensaje() {
   indiceMensaje = (indiceMensaje + 1) % mensajes.length;
 }
 
+
+
+
+
 // === Movimiento de Lua === //
 const lua = document.getElementById('luaSprite');
 let posX = 100;
@@ -39,6 +43,48 @@ document.addEventListener('keyup', (e) => {
   keys[e.key] = false;
   if (!enElAire) lua.src = 'img/lua_idle.png';
 });
+
+
+
+
+const plataformas = document.querySelectorAll(".plataforma"); // 🔹 Obtiene todas las plataformas
+
+function detectarColisionPlataforma() {
+  for (let plataforma of plataformas) {
+    let platTop = plataforma.offsetTop;
+    let platLeft = plataforma.offsetLeft;
+    let platRight = platLeft + plataforma.offsetWidth;
+
+    let luaBottom = parseInt(lua.style.top) + lua.offsetHeight;
+    let luaCenterX = parseInt(lua.style.left) + (lua.offsetWidth / 2);
+
+    if (luaBottom >= platTop && luaBottom <= platTop + 5 &&
+        luaCenterX >= platLeft && luaCenterX <= platRight) {
+      return platTop; // 🔹 Devuelve la altura de la plataforma
+    }
+  }
+  return null; // 🔹 Devuelve `null` si no hay plataforma debajo
+}
+
+function aplicarGravedad() {
+  let plataformaDetectada = detectarColisionPlataforma();
+
+  if (plataformaDetectada !== null) {
+    posY = plataformaDetectada - lua.offsetHeight; // 🔹 Lua aterriza sobre la plataforma
+    lua.style.top = `${posY}px`;
+    enElAire = false; // 🔹 Ya no está en el aire
+  } else if (posY < suelo) {
+    posY += 5; // 🔹 Hace que Lua caiga con gravedad
+    lua.style.top = `${posY}px`;
+  } else {
+    enElAire = false; // 🔹 Si llega al suelo, se detiene ahí
+  }
+
+  requestAnimationFrame(aplicarGravedad); // 🔹 Se repite para mantener la gravedad funcionando
+}
+
+aplicarGravedad();
+
 
 // === Movimiento continuo === //
 function moverLua() {
@@ -78,9 +124,10 @@ moverLua();
 // === Asegurar que Lua empieza en la posición correcta === //
 
 
-const suelo = 680; // Posición fija del suelo
+const suelo = 720; // Posición fija del suelo
 lua.style.top = `${suelo}px`; // Define la posición inicial en el suelo
 
+/*  ----ANTIGUA------
 function saltar() {
   if (!enElAire) {
     enElAire = true;
@@ -130,6 +177,54 @@ function saltar() {
     }, 20);
   }
 }
+
+
+*/
+
+function saltar() {
+  if (!enElAire) {
+    enElAire = true;
+    lua.src = 'img/lua_pre_jump.png';
+
+    setTimeout(() => {
+      lua.src = 'img/lua_jump.png';
+    }, 100);
+
+    let alturaMaxima = posY - 120;
+
+    let subida = setInterval(() => {
+      if (posY > alturaMaxima) {
+        posY -= velocidad;
+        lua.style.top = `${posY}px`;
+      } else {
+        clearInterval(subida);
+        let bajada = setInterval(() => {
+          let plataformaDetectada = detectarColisionPlataforma();
+          if (plataformaDetectada !== null) {
+            posY = plataformaDetectada - lua.offsetHeight;
+            lua.style.top = `${posY}px`;
+            enElAire = false;
+            clearInterval(bajada);
+            lua.src = 'img/lua_idle.png';
+          } else if (posY < suelo) {
+            posY += velocidad;
+            lua.style.top = `${posY}px`;
+          } else {
+            clearInterval(bajada);
+            enElAire = false;
+            lua.src = 'img/lua_idle.png';
+          }
+        }, 20);
+      }
+    }, 20);
+  }
+}
+
+
+
+
+
+
 
 // === Controles táctiles === //
 document.getElementById('btnIzquierda').addEventListener('touchstart', () => keys['ArrowLeft'] = true);

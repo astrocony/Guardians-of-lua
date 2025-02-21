@@ -18,6 +18,11 @@ const suelo = 725; // 🔹 Nivel del suelo
 
 document.addEventListener('keydown', (e) => {
   keys[e.key] = true;
+
+  // Activar el salto cuando se presiona ArrowUp
+  if (e.key === "ArrowUp") {
+    saltar();
+  }
 });
 
 document.addEventListener('keyup', (e) => {

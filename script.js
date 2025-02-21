@@ -8,14 +8,13 @@ document.addEventListener("keydown", (e) => {
 // === Variables principales === //
 const lua = document.getElementById('luaSprite');
 let posX = 100;
-let posY = 740; // 🔹 Lua empieza más arriba (justo sobre la plataforma baja)
+let posY = 690; // 🔹 Subimos un poco la posición inicial para que no quede atrapada
 const step = 5;
 let keys = {}; 
 let enElAire = false; 
 let velocidad = 10;
 const gravedad = 5;
 const suelo = 725; // Nivel del suelo
-lua.style.top = `${posY}px`; // 🔹 Forzar la posición inicial correctamente
 
 document.addEventListener('keydown', (e) => {
   keys[e.key] = true;
@@ -57,13 +56,23 @@ moverLua();
 
 // === Gravedad aplicada === //
 function aplicarGravedad() {
-  if (!detectandoPlataforma() && posY < suelo) {
-    enElAire = true;
+  if (enElAire) {
     posY += gravedad;
     lua.style.top = `${posY}px`;
-  } else {
-    enElAire = false;
   }
+
+  // 🔹 Asegurar que solo detecte plataformas cuando cae
+  if (posY < suelo && enElAire) {
+    if (detectandoPlataforma()) {
+      enElAire = false;
+    }
+  } 
+  else if (posY >= suelo) {
+    enElAire = false;
+    posY = suelo;
+    lua.style.top = `${posY}px`;
+  }
+
   requestAnimationFrame(aplicarGravedad);
 }
 
@@ -74,21 +83,20 @@ const plataformas = document.querySelectorAll(".plataforma");
 
 function detectandoPlataforma() {
   for (let plataforma of plataformas) {
-    let platTop = plataforma.offsetTop;
-    let platLeft = plataforma.offsetLeft;
-    let platRight = platLeft + plataforma.offsetWidth;
+      let platTop = plataforma.offsetTop;
+      let platLeft = plataforma.offsetLeft;
+      let platRight = platLeft + plataforma.offsetWidth;
 
-    let luaBottom = lua.offsetTop + lua.offsetHeight;
-    let luaCenterX = lua.offsetLeft + (lua.offsetWidth / 2);
+      let luaBottom = lua.offsetTop + lua.offsetHeight;
+      let luaCenterX = lua.offsetLeft + (lua.offsetWidth / 2);
 
-    // 🔹 Solo detecta la plataforma si Lua está cayendo sobre ella
-    if (luaBottom >= platTop && luaBottom <= platTop + 10 && 
-        luaCenterX >= platLeft && luaCenterX <= platRight) {
-        
-        lua.style.top = `${platTop - lua.offsetHeight}px`;
-        enElAire = false;
-        return true; 
-    }
+      // 🔹 Solo detecta si Lua está cayendo
+      if (luaBottom >= platTop && luaBottom <= platTop + 10 && 
+          luaCenterX >= platLeft && luaCenterX <= platRight) {
+
+          lua.style.top = `${platTop - lua.offsetHeight}px`;
+          return true; 
+      }
   }
   return false;
 }
@@ -114,7 +122,7 @@ function saltar() {
         lua.src = 'img/lua_post_jump.png';
 
         let bajada = setInterval(() => {
-          if (!detectandoPlataforma() && posY < suelo) {
+          if (posY < suelo && !detectandoPlataforma()) {
             posY += velocidad;
             lua.style.top = `${posY}px`;
           } else {

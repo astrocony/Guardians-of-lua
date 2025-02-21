@@ -78,7 +78,7 @@ moverLua();
 // === Asegurar que Lua empieza en la posición correcta === //
 
 
-const suelo = 700; // Posición fija del suelo
+const suelo = 680; // Posición fija del suelo
 lua.style.top = `${suelo}px`; // Define la posición inicial en el suelo
 
 function saltar() {

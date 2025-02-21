@@ -8,11 +8,11 @@ document.addEventListener("keydown", (e) => {
 // === Variables principales === //
 const lua = document.getElementById('luaSprite');
 let posX = 100;
-let posY = 690; // 🔹 Subimos un poco la posición inicial para que no quede atrapada
+let posY = 690; // 🔹 Ajustamos la posición inicial
 const step = 5;
 let keys = {}; 
 let enElAire = false; 
-let velocidad = 10;
+let velocidad = 8; // 🔹 Reducimos la velocidad del salto para que no suba tanto
 const gravedad = 5;
 const suelo = 725; // Nivel del suelo
 
@@ -64,7 +64,7 @@ function aplicarGravedad() {
   // 🔹 Asegurar que solo detecte plataformas cuando cae
   if (posY < suelo && enElAire) {
     if (detectandoPlataforma()) {
-      enElAire = false;
+      enElAire = false; // 🔹 Ahora se asegura de que se resetee
     }
   } 
   else if (posY >= suelo) {
@@ -95,6 +95,7 @@ function detectandoPlataforma() {
           luaCenterX >= platLeft && luaCenterX <= platRight) {
 
           lua.style.top = `${platTop - lua.offsetHeight}px`;
+          enElAire = false; // 🔹 Asegura que solo se active una vez
           return true; 
       }
   }
@@ -111,7 +112,7 @@ function saltar() {
       lua.src = 'img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = posY - 120;
+    let alturaMaxima = posY - 100; // 🔹 Ajustamos la altura del salto para que no sea tan alto
 
     let subida = setInterval(() => {
       if (posY > alturaMaxima) {

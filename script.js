@@ -8,7 +8,7 @@ document.addEventListener("keydown", (e) => {
 // === Variables principales === //
 const lua = document.getElementById('luaSprite');
 let posX = 100;
-let posY = 725; // Posición inicial en el suelo
+let posY = 750; // Posición inicial en el suelo
 const step = 5;
 let keys = {}; 
 let enElAire = false; 
@@ -66,7 +66,7 @@ function aplicarGravedad() {
   } else if (posY >= suelo) {
     enElAire = false;
     posY = suelo;
-    lua.style.top = `${suelo}px`;
+    lua.style.top = `${posY}px`;
   }
 
   requestAnimationFrame(aplicarGravedad);

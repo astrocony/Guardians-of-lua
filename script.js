@@ -19,6 +19,7 @@ const suelo = 725; // Coordenada del suelo
 
 // === 🚀 EVENTOS PARA DETECTAR CUÁNDO SE PRESIONAN Y SUELTAN TECLAS === //
 document.addEventListener('keydown', (e) => {
+  console.log(`Tecla presionada: ${e.key}`); // 🔹 Esto mostrará en la consola qué tecla presionaste
   keys[e.key] = true;
 });
 

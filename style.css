@@ -163,7 +163,7 @@ body {
 
 .input-box {
   position: absolute;
-  top: 55%; /* Ajustamos más abajo */
+  top: 50%; /* Ajustamos más abajo */
   left: 50%;
   transform: translate(-50%, -50%);
   background: none;
@@ -184,7 +184,7 @@ body {
   margin-top: 15px;
   font-size: 20px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 8px; 
   font-family: 'PixelFont', sans-serif;
 }
 
@@ -197,7 +197,7 @@ body {
 .social-buttons img {
   width: 120px; /* Ajusta este tamaño si quieres más grande */
   height: auto;
-  display: block; /* Asegura que respete el tamaño */
+  display: inline-block; /* Asegura que respete el tamaño */
 }
 
 

@@ -145,7 +145,7 @@ body {
 
 /* ✨ Lua arriba (Aumentamos el tamaño) */
 .lua-image {
-  width: 120px; /* Aumentamos el tamaño */
+  width: 200px; /* Aumentamos el tamaño */
   height: auto;
   margin-bottom: 10px; /* Espaciado entre Lua y la caja */
 }
@@ -163,7 +163,7 @@ body {
 
 .input-box {
   position: absolute;
-  top: 50%; /* Ajustamos más abajo */
+  top: 65%; /* Ajustamos más abajo */
   left: 50%;
   transform: translate(-50%, -50%);
   background: none;
@@ -202,7 +202,7 @@ body {
 
 
 .social-buttons a img {
-  width: 50px; /* Tamaño de los botones */
+  width: 120px; /* Tamaño de los botones */
   height: auto;
   transition: transform 0.2s;
 }

@@ -1,8 +1,11 @@
-/*document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e) => {
   if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
     e.preventDefault(); // Evita el desplazamiento de la página
   }
 });
+
+
+/*
 
 // === Función de Mensajes === //
 const mensajes = [
@@ -26,13 +29,6 @@ function cambiarMensaje() {
 
 */
 
-
-document.addEventListener("keydown", (e) => {
-  if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-    e.preventDefault(); // Evita el desplazamiento de la página
-  }
-});
-
 // === Movimiento de Lua === //
 const lua = document.getElementById('luaSprite');
 let posX = 100;
@@ -52,6 +48,8 @@ document.addEventListener('keyup', (e) => {
   keys[e.key] = false;
   if (!enElAire) lua.src = 'img/lua_idle.png';
 });
+
+/*
 
 function detectarColisionPlataforma() {
   for (let plataforma of plataformas) {
@@ -83,6 +81,8 @@ function aplicarGravedad() {
   requestAnimationFrame(aplicarGravedad);
 }
 
+*/ 
+
 function moverLua() {
   let moviendo = false;
   if (keys['ArrowRight'] && posX < 730) {
@@ -104,6 +104,8 @@ function moverLua() {
   }
   requestAnimationFrame(moverLua);
 }
+
+/*
 
 function saltar() {
   if (!enElAire) {
@@ -140,6 +142,57 @@ function saltar() {
     }, 20);
   }
 }
+
+
+*/
+
+function saltar() {
+  if (!enElAire) {
+    enElAire = true;
+    lua.src = 'img/lua_pre_jump.png';
+
+    setTimeout(() => {
+      lua.src = 'img/lua_jump.png';
+    }, 100);
+
+    let alturaMaxima = suelo - 120;
+
+    let subida = setInterval(() => {
+      let posicionActual = parseInt(lua.style.top) || suelo;
+
+      if (posicionActual > alturaMaxima) {
+        lua.style.top = `${posicionActual - velocidad}px`;
+      } else {
+        clearInterval(subida);
+        lua.src = 'img/lua_post_jump.png';
+
+        let bajada = setInterval(() => {
+          let posicionActual = parseInt(lua.style.top) || suelo;
+          
+          if (posicionActual < suelo) {
+            lua.style.top = `${posicionActual + velocidad}px`;
+            if (keys['ArrowRight'] && posX < 730) {
+              posX += step;
+              lua.style.left = `${posX}px`;
+              lua.style.transform = 'scaleX(1)';
+            }
+            if (keys['ArrowLeft'] && posX > 0) {
+              posX -= step;
+              lua.style.left = `${posX}px`;
+              lua.style.transform = 'scaleX(-1)';
+            }
+          } else {
+            clearInterval(bajada);
+            enElAire = false;
+            lua.src = 'img/lua_idle.png';
+          }
+        }, 20);
+      }
+    }, 20);
+  }
+}
+
+
 
 document.getElementById('btnIzquierda').addEventListener('touchstart', () => keys['ArrowLeft'] = true);
 document.getElementById('btnDerecha').addEventListener('touchstart', () => keys['ArrowRight'] = true);

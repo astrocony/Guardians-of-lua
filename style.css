@@ -124,7 +124,13 @@ h1 {
 }
 
 
-/* PAGINA LOGIN */
+/* --------------------PAGINA LOGIN---------------------------- */
+
+
+
+
+
+
 
 /* 🌸 Estilos generales */
 body {
@@ -141,11 +147,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Centrar en toda la pantalla */
+  width: 50px;
 }
 
 /* ✨ Lua arriba */
 .lua-image {
-  width: 100px;
+  width: 50px;
+  height: auto;
 }
 
 /* 🖼️ Caja de usuario con imagen */
@@ -161,18 +169,18 @@ body {
 
 .input-box {
   position: absolute;
-  top: 50%;
+  top: 60%; /* Ajusta esto según lo necesites */
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
-  height: 40px;
-  background: transparent;
+  background: none;
   border: none;
-  text-align: center;
   font-size: 20px;
-  color: white;
-  outline: none;
+  text-align: center;
+  color: rgb(255, 188, 249);
+  width: 150px;
+  height: 30px;
 }
+
 
 /* 🌟 Botón de entrada */
 .login-btn {

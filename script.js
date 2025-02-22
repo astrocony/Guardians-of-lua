@@ -215,7 +215,7 @@ aplicarGravedad();
 function verificarUsuario() {
   let usuario = document.getElementById('username').value.trim().toLowerCase();
 
-  let usuariosPermitidos = ["astrocony", "Guardian Poto"]; // Agrega más usuarios aquí
+  let usuariosPermitidos = ["astrocony", "guardian_poto"]; // Agrega más usuarios aquí
 
   if (usuariosPermitidos.includes(usuario)) {
       window.location.href = "juego.html"; // Redirige al juego

@@ -193,13 +193,13 @@ body {
 }
 
 /* 📎 Botones de redes sociales */
-.social-buttons {
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
-  gap: 15px; /* Espacio entre botones */
-  height:auto;
+
+.social-buttons img {
+  width: 120px; /* Ajusta este tamaño si quieres más grande */
+  height: auto;
+  display: block; /* Asegura que respete el tamaño */
 }
+
 
 .social-buttons a img {
   width: 50px; /* Tamaño de los botones */

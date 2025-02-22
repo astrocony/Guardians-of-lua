@@ -213,11 +213,14 @@ aplicarGravedad();
 
 
 function verificarUsuario() {
-  let usuario = document.getElementById('username').value;
+  let usuario = document.getElementById('username').value.trim().toLowerCase();
 
-  if (usuario === "AstroCony") { // Cambia esto por tu usuario
+  let usuariosPermitidos = ["astrocony", "Guardian Poto"]; // Agrega más usuarios aquí
+
+  if (usuariosPermitidos.includes(usuario)) {
       window.location.href = "juego.html"; // Redirige al juego
   } else {
       alert("Usuario incorrecto, intenta de nuevo");
   }
 }
+

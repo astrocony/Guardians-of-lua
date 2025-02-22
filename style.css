@@ -126,12 +126,6 @@ h1 {
 
 /* --------------------PAGINA LOGIN---------------------------- */
 
-
-
-
-
-
-
 /* 🌸 Estilos generales */
 body {
   background-color: #ff91c1; /* Fondo rosita */
@@ -147,13 +141,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Centrar en toda la pantalla */
-  width: 50px;
 }
 
-/* ✨ Lua arriba */
+/* ✨ Lua arriba (Aumentamos el tamaño) */
 .lua-image {
-  width: 50px;
+  width: 120px; /* Aumentamos el tamaño */
   height: auto;
+  margin-bottom: 10px; /* Espaciado entre Lua y la caja */
 }
 
 /* 🖼️ Caja de usuario con imagen */
@@ -169,7 +163,7 @@ body {
 
 .input-box {
   position: absolute;
-  top: 60%; /* Ajusta esto según lo necesites */
+  top: 55%; /* Ajustamos más abajo */
   left: 50%;
   transform: translate(-50%, -50%);
   background: none;
@@ -180,7 +174,6 @@ body {
   width: 150px;
   height: 30px;
 }
-
 
 /* 🌟 Botón de entrada */
 .login-btn {
@@ -201,21 +194,24 @@ body {
 
 /* 📎 Botones de redes sociales */
 .social-buttons {
-  margin-top: 15px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Espacio entre botones */
 }
 
-.social-link {
-  text-decoration: none;
-  font-size: 18px;
-  padding: 8px 15px;
-  border: 2px solid white;
-  color: white;
-  border-radius: 5px;
-  margin: 5px;
-  display: inline-block;
+.social-buttons a img {
+  width: 50px; /* Tamaño de los botones */
+  height: auto;
+  transition: transform 0.2s;
 }
 
-.social-link:hover {
-  background-color: white;
-  color: #A64AC9;
+.social-buttons a img:hover {
+  transform: scale(1.1); /* Efecto al pasar el mouse */
 }
+
+
+
+
+
+

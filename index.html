@@ -1,63 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guardianes de Lua</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardianes de Lua - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
 
- 
-  
-  <!-- Contenedor del mensaje 
-  <div class="contenedor">
-    <img src="lua.png" alt="Lua en Pixel Art" class="lua">
-    <h1 id="mensaje">¡Empieza tu aventura como Guardián!</h1>
-    <button onclick="cambiarMensaje()">Haz clic para recibir un mensaje de Lua</button>
-  </div> -->
+    <div class="login-container">
+        <img src="img/lua.png" alt="Lua" class="lua-image">
+        
+        <div class="input-container">
+            <img src="img/box.png" alt="Caja de login" class="box-image">
+            <input type="text" id="username" class="input-box" placeholder="User">
+        </div>
 
+        <button class="login-btn" onclick="verificarUsuario()">Entrar</button>
 
-  <!-- Contenedor del escenario y Lua animada -->
-  <div id="escenario">
-
-
-    <img id="luaSprite" src="img/lua_idle.png" alt="Lua">
-    <!--<div class="plataforma" style="left: 120px; top: 680px; width: 150px; height: 10px;"></div>
-    <div class="plataforma" style="left: 350px; top: 650px; width: 200px; height: 10px;"></div>
-    <div class="plataforma" style="left: 50px; top: 500px; width: 180px; height: 10px;"></div>
-    <div class="plataforma" style="left: 330px; top: 450px; width: 250px; height: 10px;"></div>
-    <div class="plataforma" style="left: 90px; top: 340px; width: 180px; height: 10px;"></div>
-    <div class="plataforma" style="left: 400px; top: 310px; width: 220px; height: 10px;"></div>
-    <div class="plataforma" style="left: 250px; top: 210px; width: 150px; height: 10px;"></div>
-    <div class="plataforma" style="left: 100px; top: 120px; width: 100px; height: 10px;"></div>
-    <div class="plataforma" style="left: 350px; top: 100px; width: 150px; height: 10px;"></div>
-    <div class="plataforma" style="left: 50px; top: 750px; width: 80px; height: 10px;"></div>
-    <div class="plataforma" style="left: 500px; top: 750px; width: 80px; height: 10px;"></div>
-     <div class="plataforma" style="left: 0px; top:792px; width: 800px; height:10px;"></div> -->
-
-  </div> 
-
-  <!-- Controles táctiles -->
-  <div id="controles">
-    <button id="btnIzquierda">⬅</button>
-    <button id="btnSalto">⬆</button>
-    <button id="btnDerecha">➡</button>
-  </div>
+        <div class="social-buttons">
+            <a href="https://instagram.com/astrocony" target="_blank" class="social-link">INSTA</a>
+            <a href="https://ko-fi.com/astrocony" target="_blank" class="social-link">KO-FI</a>
+        </div>
+    </div>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-

@@ -207,3 +207,17 @@ document.addEventListener('keydown', (e) => {
 
 moverLua();
 aplicarGravedad();
+
+
+/* --------- usuario ------- */
+
+
+function verificarUsuario() {
+  let usuario = document.getElementById('username').value;
+
+  if (usuario === "AstroCony") { // Cambia esto por tu usuario
+      window.location.href = "juego.html"; // Redirige al juego
+  } else {
+      alert("Usuario incorrecto, intenta de nuevo");
+  }
+}

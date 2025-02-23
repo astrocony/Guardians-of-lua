@@ -195,20 +195,20 @@ body {
 /* 📎 Botones de redes sociales */
 
 .social-buttons img {
-  width: 120px; /* Ajusta este tamaño si quieres más grande */
+  width: 250px; /* Ajusta este tamaño si quieres más grande */
   height: auto;
   display: inline-block; /* Asegura que respete el tamaño */
 }
 
 
 .social-buttons a img {
-  width: 120px; /* Tamaño de los botones */
+  width: 250px; /* Tamaño de los botones */
   height: auto;
   transition: transform 0.2s;
 }
 
 .social-buttons a img:hover {
-  transform: scale(1.1); /* Efecto al pasar el mouse */
+  transform: scale(1.2); /* Efecto al pasar el mouse */
 }
 
 

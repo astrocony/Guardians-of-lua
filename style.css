@@ -14,12 +14,13 @@ body {
 
 /* ==== Escenario ==== */
 
+/* 🎮 Contenedor del juego */
 #escenario {
   position: relative;
   width: 800px;
   height: 800px;
   background-image: url('img/fondo.png');
-  background-size: contain; 
+  background-size: contain;
   background-position: center;
   border: 8px solid #fc84f0;
   overflow: hidden;
@@ -28,18 +29,16 @@ body {
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* 📱 Ajustar tamaño en móviles sin deformar */
-@media (max-width: 900px) { 
+/* 📱 Ajustes en móviles */
+@media (max-width: 800px) { 
   #escenario {
-    width: 90vw;  /* Usa el 90% del ancho del viewport */
-    height: auto; /* Mantiene la proporción original */
-    max-height: 90vh; /* Evita que se haga demasiado grande */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: scale(0.9); /* Ajusta el tamaño del contenido */
+      width: 100vw;
+      height: 100vh;
+      background-size: cover; /* Ajusta el fondo correctamente */
+      background-position: center;
   }
 }
+
 
 
 

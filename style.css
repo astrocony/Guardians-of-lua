@@ -13,6 +13,7 @@ body {
 }
 
 /* ==== Escenario ==== */
+
 #escenario {
   position: relative;
   width: 800px;
@@ -27,13 +28,20 @@ body {
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* 📱 Ajustar tamaño en móviles */
-@media (max-width: 800px) { 
+/* 📱 Ajustar tamaño en móviles sin deformar */
+@media (max-width: 900px) { 
   #escenario {
-      width: 100vw;
-      height: 100vh;
+    width: 90vw;  /* Usa el 90% del ancho del viewport */
+    height: auto; /* Mantiene la proporción original */
+    max-height: 90vh; /* Evita que se haga demasiado grande */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.9); /* Ajusta el tamaño del contenido */
   }
 }
+
+
 
 
 /* ==== Imagen de Lua (animada) ==== */
@@ -101,7 +109,7 @@ h1 {
 /* 🎮 Controles táctiles (alineados) */
 #controles {
   position: absolute;
-  bottom: 10px; /* Bajamos los botones */
+  bottom: 20px; /* Bajamos los botones un poco más */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -111,7 +119,7 @@ h1 {
 
 /* 🕹️ Botones de los controles táctiles */
 #controles button {
-  width: 60px; /* Tamaño uniforme */
+  width: 60px; /* Tamaño base */
   height: 60px;
   font-size: 20px;
   border: none;
@@ -124,24 +132,37 @@ h1 {
 
 /* 🌟 Efecto al tocar los botones */
 #controles button:active {
-  transform: scale(0.9); /* Hace que el botón se encoja un poco */
+  transform: scale(0.95); /* Pequeño efecto de presión */
   background-color: #ff6496; /* Color más oscuro al tocar */
 }
 
-/* 📱 Ajustar botones en móvil */
+/* 🎨 Efecto al pasar el mouse en PC */
+#controles button:hover {
+  background-color: #e57fa3;
+  transform: translateY(-3px);
+}
+
+/* 📱 Ajustes específicos en móviles */
 @media (max-width: 768px) { 
+  #controles {
+      bottom: 15px; /* Ajustamos la posición */
+      gap: 12px; /* Separación entre botones */
+  }
+
   #controles button {
-      width: 50px; /* Más pequeños en móvil */
-      height: 50px;
+      width: 55px; /* Ligeramente más pequeños en móviles */
+      height: 55px;
       font-size: 18px;
   }
 }
 
+/* 🛑 Bloquear zoom en doble tap en móviles */
+@media (max-width: 768px) {
+  html, body {
+      touch-action: manipulation;
+  }
+}
 
-#controles button:hover {
-  background-color: #e57fa3;
-  transform: translateY(-3px);
-} 
 
 .plataforma {
   position: absolute;

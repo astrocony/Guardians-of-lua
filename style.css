@@ -9,6 +9,7 @@ body {
   padding: 20px;
   color: #333;
   background-color: #f5c2d6; /* Fondo rosado */
+  touch-action: manipulation; /* Evita zoom con gestos */
 }
 
 /* ==== Escenario ==== */
@@ -25,6 +26,15 @@ body {
   border-radius: 15px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* 📱 Ajustar tamaño en móviles */
+@media (max-width: 800px) { 
+  #escenario {
+      width: 100vw;
+      height: 100vh;
+  }
+}
+
 
 /* ==== Imagen de Lua (animada) ==== */
 #luaSprite {
@@ -87,28 +97,46 @@ h1 {
 }
 
 /* ==== Controles táctiles (alineados) ==== */
+
+/* 🎮 Controles táctiles (alineados) */
 #controles {
   position: absolute;
-  top: calc(100%+10px);
-  /*bottom: -100px; /* Bajamos los botones un poco */
+  bottom: 10px; /* Bajamos los botones */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
-  z-index:3;
+  gap: 15px; /* Separación entre botones */
+  z-index: 3;
 }
 
-/* ==== Botones de los controles táctiles ==== */
+/* 🕹️ Botones de los controles táctiles */
 #controles button {
-  padding: 15px;
+  width: 60px; /* Tamaño uniforme */
+  height: 60px;
   font-size: 20px;
   border: none;
-  background-color: #f79ac0;
+  background-color: #f79ac0; /* Color rosado */
   color: white;
-  border-radius: 5px; 
+  border-radius: 10px; 
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
+
+/* 🌟 Efecto al tocar los botones */
+#controles button:active {
+  transform: scale(0.9); /* Hace que el botón se encoja un poco */
+  background-color: #ff6496; /* Color más oscuro al tocar */
+}
+
+/* 📱 Ajustar botones en móvil */
+@media (max-width: 768px) { 
+  #controles button {
+      width: 50px; /* Más pequeños en móvil */
+      height: 50px;
+      font-size: 18px;
+  }
+}
+
 
 #controles button:hover {
   background-color: #e57fa3;

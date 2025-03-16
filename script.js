@@ -1,8 +1,3 @@
-document.addEventListener("keydown", (e) => {
-  if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-    e.preventDefault(); // Evita el desplazamiento de la página
-  }
-});
 
 
 /*
@@ -39,6 +34,15 @@ let velocidad = 10;
 const suelo = 720;
 lua.style.top = `${suelo}px`;
 const plataformas = document.querySelectorAll(".plataforma");
+
+
+
+
+document.addEventListener("keydown", (e) => {
+  if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+    e.preventDefault(); // Evita el desplazamiento de la página
+  }
+});
 
 document.addEventListener('keydown', (e) => {
   keys[e.key] = true;

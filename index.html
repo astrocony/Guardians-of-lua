@@ -2,33 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guardianes de Lua - Login</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <title>Guardianes de Lua</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffb9e5;
+        }
+        h1 {
+            color: #6b46c1;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-size: 18px;
+            background: #6b46c1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <img src="img/lua.png" alt="Lua" class="lua-image">
-        
-        <div class="input-container">
-            <img src="img/box.png" alt="Caja de login" class="box-image">
-            <input type="text" id="username" class="input-box" placeholder="User">
-        </div>
+    <h1>¡Bienvenido a Guardianes de Lua!</h1>
+    <p>Explora el mundo de los Guardianes y descubre tu propia historia.</p>
+    
+    <img src="imagenes/lua.png" alt="Lua, personaje de la historia"> <!-- Asegúrate de tener esta imagen en la carpeta correcta -->
 
-        <button class="login-btn" onclick="verificarUsuario()">Entrar</button>
+    <br>
 
-        <div class="social-buttons">
-            <a href="https://instagram.com/astrocony" target="_blank">
-                <img src="img/boton_instagram.png" alt="Instagram" class="social-icon">
-            </a>
-            <a href="https://ko-fi.com/astrocony" target="_blank">
-                <img src="img/boton_kofi.png" alt="Ko-fi" class="social-icon">
-            </a>
-        </div>
-    </div>
+    <a href="pagina-secundaria.html">Explorar</a> <!-- Cambia esto al enlace de tu página interna -->
 
 </body>
 </html>

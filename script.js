@@ -232,19 +232,22 @@ function verificarUsuario() {
 
 // ------- MAIN PAGE ------------
 
-// Obtener todos los banners dentro del contenedor
-let banners = document.querySelectorAll(".carousel a");
-let index = 0;
+document.addEventListener("DOMContentLoaded", function() {
+  let banners = document.querySelectorAll(".carousel a");
+  let index = 0;
 
-// Mostrar el primer banner al inicio
-banners[index].classList.add("active");
+  // Asegurar que haya banners
+  if (banners.length > 0) {
+      banners[index].classList.add("active"); // Activar el primero
+  }
 
-function cambiarBanner() {
-    banners[index].classList.remove("active"); // Oculta el actual
-    index = (index + 1) % banners.length; // Mueve al siguiente
-    banners[index].classList.add("active"); // Muestra el nuevo
-}
+  function cambiarBanner() {
+      banners[index].classList.remove("active"); // Ocultar el actual
+      index = (index + 1) % banners.length; // Pasar al siguiente
+      banners[index].classList.add("active"); // Mostrar el nuevo
+  }
 
-setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
+  setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
+});
 
 

@@ -232,24 +232,24 @@ function verificarUsuario() {
 
 // ------- MAIN PAGE ------------
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   let banners = document.querySelectorAll(".carousel a");
   let index = 0;
 
-  // Asegurar que al menos un banner se muestre al inicio
   if (banners.length > 0) {
-      banners.forEach(b => b.style.display = "none"); // Ocultar todos
-      banners[index].classList.add("active"); // Activar el primero
-      banners[index].style.display = "block"; // Asegurar que se vea
+      banners.forEach((b, i) => {
+          b.style.display = (i === 0) ? "block" : "none"; // Solo mostrar el primero
+      });
   }
 
   function cambiarBanner() {
-      banners[index].classList.remove("active");
       banners[index].style.display = "none"; // Ocultar actual
       index = (index + 1) % banners.length; // Pasar al siguiente
-      banners[index].classList.add("active");
       banners[index].style.display = "block"; // Mostrar nuevo
   }
 
-  setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
+  // Espera 1 segundo antes de iniciar para asegurar que todo está cargado
+  setTimeout(() => {
+      setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
+  }, 1000);
 });

@@ -243,13 +243,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function cambiarBanner() {
+      console.log("Cambiando banner..."); // <-- ¡Este mensaje debe aparecer en consola cada 3s!
       banners[index].style.display = "none"; // Ocultar actual
       index = (index + 1) % banners.length; // Pasar al siguiente
       banners[index].style.display = "block"; // Mostrar nuevo
   }
 
-  // Espera 1 segundo antes de iniciar para asegurar que todo está cargado
-  setTimeout(() => {
-      setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
-  }, 1000);
+  setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
 });
+
+
+

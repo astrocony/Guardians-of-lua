@@ -239,19 +239,27 @@ document.addEventListener("DOMContentLoaded", function () {
   if (banners.length > 0) {
       banners.forEach((b, i) => {
           b.style.opacity = (i === 0) ? "1" : "0"; // Solo el primero visible
-          b.style.zIndex = (i === 0) ? "1" : "0"; // Asegura que el primero esté arriba
-          b.style.position = "absolute"; // Superpone los banners
-          b.style.transition = "opacity 1s ease-in-out"; // Transición suave
+          b.style.zIndex = (i === 0) ? "1" : "0";
+          b.style.position = "absolute";
+          b.style.transition = "opacity 1s ease-in-out";
       });
+
+      banners[index].classList.add("active"); // Forzar que el primero esté activo
   }
 
   function cambiarBanner() {
-      banners[index].style.opacity = "0"; // Ocultar actual
-      banners[index].style.zIndex = "0"; // Mandar hacia atrás
+      banners[index].classList.remove("active");
+      banners[index].style.opacity = "0";
+      banners[index].style.zIndex = "0";
+
       index = (index + 1) % banners.length; // Pasar al siguiente
-      banners[index].style.opacity = "1"; // Mostrar nuevo
-      banners[index].style.zIndex = "1"; // Traerlo al frente
+
+      banners[index].classList.add("active");
+      banners[index].style.opacity = "1";
+      banners[index].style.zIndex = "1";
   }
 
-  setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
+  setTimeout(() => {
+      setInterval(cambiarBanner, 3000);
+  }, 1000);
 });

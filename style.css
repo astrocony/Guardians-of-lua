@@ -269,27 +269,32 @@ body {
 }
 
 /* Estilo del carrusel */
+
 .carousel {
   position: relative;
-  width: 80%;
-  max-width: 600px;
+  width: 100%; /* Asegurar que el carrusel ocupe todo el ancho */
+  max-width: 800px; /* Puedes ajustar el tamaño según necesites */
   margin: auto;
   overflow: hidden;
 }
 
 .carousel a {
-  display: none;
+  display: none; /* Ocultar todos los banners por defecto */
   width: 100%;
 }
 
 .carousel img {
   width: 100%;
+  height: auto;
   transition: opacity 0.5s ease-in-out;
 }
 
 .carousel a.active {
-  display: block;
+  display: block; /* Solo el banner activo será visible */
 }
+
+
+
 
 
 /* Estilo de los botones */

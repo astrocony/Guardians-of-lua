@@ -239,17 +239,16 @@ document.addEventListener("DOMContentLoaded", function() {
   // Asegurar que haya banners
   if (banners.length > 0) {
       banners.forEach(b => b.style.display = "none"); // Ocultar todos
-      banners[index].style.display = "block"; // Mostrar el primero
+      banners[index].classList.add("active"); // Activar el primero correctamente
   }
 
   function cambiarBanner() {
-      banners[index].style.display = "none"; // Ocultar actual
+      banners[index].classList.remove("active"); // Ocultar actual
+      banners[index].style.display = "none"; // Ocultar actual (compatibilidad extra)
       index = (index + 1) % banners.length; // Pasar al siguiente
-      banners[index].style.display = "block"; // Mostrar el nuevo
+      banners[index].classList.add("active"); // Mostrar nuevo
+      banners[index].style.display = "block"; // Mostrar nuevo (compatibilidad extra)
   }
 
   setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
 });
-
-
-

@@ -238,19 +238,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (banners.length > 0) {
       banners.forEach((b, i) => {
-          b.style.display = (i === 0) ? "block" : "none"; // Solo mostrar el primero
+          b.style.opacity = (i === 0) ? "1" : "0"; // Solo el primero visible
+          b.style.zIndex = (i === 0) ? "1" : "0"; // Asegura que el primero esté arriba
+          b.style.position = "absolute"; // Superpone los banners
+          b.style.transition = "opacity 1s ease-in-out"; // Transición suave
       });
   }
 
   function cambiarBanner() {
-      console.log("Cambiando banner..."); // <-- ¡Este mensaje debe aparecer en consola cada 3s!
-      banners[index].style.display = "none"; // Ocultar actual
+      banners[index].style.opacity = "0"; // Ocultar actual
+      banners[index].style.zIndex = "0"; // Mandar hacia atrás
       index = (index + 1) % banners.length; // Pasar al siguiente
-      banners[index].style.display = "block"; // Mostrar nuevo
+      banners[index].style.opacity = "1"; // Mostrar nuevo
+      banners[index].style.zIndex = "1"; // Traerlo al frente
   }
 
   setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
 });
-
-
-

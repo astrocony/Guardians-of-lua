@@ -279,14 +279,15 @@ body {
 }
 
 .carousel a {
-  display: none; /* Ocultar todos los banners por defecto */
+  display: block !important;
   width: 100%;
 }
 
 .carousel img {
-  width: 100%;
+  display: block !important; /* Asegurar que las imágenes no estén ocultas */
+  width: 100%; /* Ajusta el tamaño */
+  max-width: 800px; /* O el tamaño que prefieras */
   height: auto;
-  transition: opacity 0.5s ease-in-out;
 }
 
 .carousel a.active {

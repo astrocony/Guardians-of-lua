@@ -277,7 +277,6 @@ body {
   height: 400px;
   margin: auto;
   overflow: hidden;
-  background-color: rgba(255, 0, 0, 0.1); /* Temporal para ver el carrusel */
 }
 
 /* Ocultar todos los banners y asegurarse de que el primero sea visible */
@@ -289,7 +288,7 @@ body {
   transition: opacity 1s ease-in-out;
 }
 
-/* Solo el primer banner visible al inicio */
+/* Asegurar que el primer banner se vea al inicio */
 .carousel a:first-child {
   opacity: 1;
 }
@@ -300,6 +299,7 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
 
 
 
@@ -336,6 +336,18 @@ body {
 .button:active img {
   transform: scale(0.9);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -387,6 +399,16 @@ body {
   font-family: 'Georgia', serif; /* O cualquier fuente que quieras */
 }
 
+
+
+
+
+
+
+
+
+
+
 /* ------- POST 1 ------- */
 
 
@@ -432,6 +454,16 @@ body {
   font-size: 22px; /* Cambia el tamaño del texto */
   line-height: 1.6; /* Espaciado entre líneas */
 }
+
+
+
+
+
+
+
+
+
+
 
 
 /* ------- FONT ------------- */

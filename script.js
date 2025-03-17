@@ -240,14 +240,15 @@ document.addEventListener("DOMContentLoaded", function() {
   if (banners.length > 0) {
       banners.forEach(b => b.style.display = "none"); // Ocultar todos
       banners[index].classList.add("active"); // Activar el primero correctamente
+      banners[index].style.display = "block"; // Asegurar que se vea
   }
 
   function cambiarBanner() {
-      banners[index].classList.remove("active"); // Ocultar actual
-      banners[index].style.display = "none"; // Ocultar actual (compatibilidad extra)
+      banners[index].classList.remove("active");
+      banners[index].style.display = "none"; // Ocultar actual
       index = (index + 1) % banners.length; // Pasar al siguiente
-      banners[index].classList.add("active"); // Mostrar nuevo
-      banners[index].style.display = "block"; // Mostrar nuevo (compatibilidad extra)
+      banners[index].classList.add("active");
+      banners[index].style.display = "block"; // Mostrar nuevo
   }
 
   setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos

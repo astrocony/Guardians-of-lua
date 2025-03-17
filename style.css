@@ -255,4 +255,61 @@ body {
 
 
 
+/* ---------------Main page------------- */ 
+
+
+
+
+
+
+/* Fondo y alineación */
+body {
+  background-color: #e6b8f2;
+  text-align: center;
+}
+
+/* Estilo del carrusel */
+.carousel {
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel a {
+  display: none;
+  width: 100%;
+}
+
+.carousel img {
+  width: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel a.active {
+  display: block;
+}
+
+
+/* Estilo de los botones */
+.button-container {
+  position: absolute;
+  left: 20px; /* Ajusta la distancia desde el borde izquierdo */
+  top: 50px; /* Ajusta la distancia desde arriba */
+  display: flex;
+  flex-direction: column; /* Apila los botones verticalmente */
+  gap: 10px; /* Espacio entre botones */
+}
+
+
+.button img {
+  width: 200px;
+  transition: transform 0.1s ease;
+}
+
+/* Efecto de presión */
+.button:active img {
+  transform: scale(0.9);
+}
 

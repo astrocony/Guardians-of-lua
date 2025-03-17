@@ -44,7 +44,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', (e) => {   //e.key es que tecla esta presionada
   keys[e.key] = true;
 });
 
@@ -151,7 +151,7 @@ function saltar() {
 */
 
 function saltar() {
-  if (!enElAire) {
+  if (!enElAire) {  /* OJO: Se define en el aire cuando NO esta en el suelo, no en una superficie  */
     enElAire = true;
     lua.src = 'img/lua_pre_jump.png';
 
@@ -159,9 +159,9 @@ function saltar() {
       lua.src = 'img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = suelo - 120;
+    let alturaMaxima = suelo - 120; /* la altura del salto esta con respecto al suelo, no una superficie */ 
 
-    let subida = setInterval(() => {
+    let subida = setInterval(() => {   /* setINTERVAL es como un while, pero lo repite cada 20ms */
       let posicionActual = parseInt(lua.style.top) || suelo;
 
       if (posicionActual > alturaMaxima) {
@@ -227,4 +227,21 @@ function verificarUsuario() {
       alert("Usuario incorrecto, intenta de nuevo");
   }
 }
+
+
+
+// ------- MAIN PAGE ------------
+
+// Carrusel de banners
+// Obtener todos los banners dentro de los enlaces
+let banners = document.querySelectorAll(".carousel a");
+let index = 0;
+
+function cambiarBanner() {
+    banners[index].classList.remove("active");
+    index = (index + 1) % banners.length;
+    banners[index].classList.add("active");
+}
+
+setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
 

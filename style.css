@@ -309,14 +309,16 @@ body {
 
 
 /* Estilo de los botones */
+
 .button-container {
-  position: absolute;
-  left: 20px; /* Ajusta la distancia desde el borde izquierdo */
-  top: 50px; /* Ajusta la distancia desde arriba */
+  position: relative; /* Cambiamos de absolute a relative */
+  margin-top: 20px; /* Ajusta la distancia desde el banner */
   display: flex;
-  flex-direction: column; /* Apila los botones verticalmente */
-  gap: 10px; /* Espacio entre botones */
+  flex-direction: column;
+  align-items: center; /* Para que se mantengan alineados */
+  gap: 10px; /* Espaciado entre botones */
 }
+
 
 
 .button img {

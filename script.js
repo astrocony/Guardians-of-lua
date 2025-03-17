@@ -236,10 +236,10 @@ document.addEventListener("DOMContentLoaded", function() {
   let banners = document.querySelectorAll(".carousel a");
   let index = 0;
 
-  // Asegurar que haya banners
+  // Asegurar que al menos un banner se muestre al inicio
   if (banners.length > 0) {
       banners.forEach(b => b.style.display = "none"); // Ocultar todos
-      banners[index].classList.add("active"); // Activar el primero correctamente
+      banners[index].classList.add("active"); // Activar el primero
       banners[index].style.display = "block"; // Asegurar que se vea
   }
 

@@ -272,31 +272,32 @@ body {
 
 .carousel {
   position: relative;
-  width: 100%; /* Asegurar que el carrusel ocupe todo el ancho */
-  max-width: 1600px; /* Puedes ajustar el tamaño según necesites */
+  width: 100%;
+  max-width: 1200px; /* Ajusta esto si quieres un carrusel más grande */
+  height: auto; /* Permitirá que la imagen mantenga su proporción */
   margin: auto;
   overflow: hidden;
 }
 
-/* Ocultar todos los banners menos el activo */
 .carousel a {
-  display: none; /* Ocultar todos por defecto */
-  position: absolute;
+  display: none;
   width: 100%;
 }
 
-/* Solo el banner activo será visible */
 .carousel a.active {
   display: block;
 }
 
 .carousel img {
-  width: 100%;
-  height: auto;
-  max-width: 1600px; /* Ajusta según el tamaño deseado */
-  display: block; /* Asegura que la imagen no tenga espacios vacíos */
-  margin: auto; /* Centrar la imagen */
+  width: 100%; /* Se ajustará al ancho del contenedor */
+  height: auto; /* Mantendrá la proporción original */
+  max-height: 500px; /* Puedes ajustar esto para que no sea demasiado alto */
+  object-fit: cover; /* Corta la imagen si es necesario para que se vea bien */
 }
+
+
+
+
 
 
 

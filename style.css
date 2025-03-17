@@ -311,13 +311,14 @@ body {
 /* Estilo de los botones */
 
 .button-container {
-  position: absolute; /* Vuelve a estar en posición absoluta */
-  left: 20px; /* Pegado a la izquierda */
-  top: 150px; /* Ajusta para que empiecen debajo del banner */
+  position: relative; /* Cambiado de absolute a relative */
+  margin-top: 20px; /* Ajusta la distancia desde el banner */
+  left: 20px; /* Se mantiene alineado a la izquierda */
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 
 
 

@@ -427,3 +427,8 @@ body {
 .back-button:hover {
   background-color: #ff1493;
 }
+
+.blog-container p {
+  font-size: 18px; /* Cambia el tamaño del texto */
+  line-height: 1.6; /* Espaciado entre líneas */
+}

@@ -229,7 +229,7 @@ function verificarUsuario() {
 }
 
 
-
+/*
 // ------- MAIN PAGE ------------
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -264,4 +264,6 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
       setInterval(cambiarBanner, 3000); // Cambia cada 3 segundos
   }, 1000);
-});
+}); 
+
+*/

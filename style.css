@@ -310,7 +310,7 @@ body {
 .slider-box {
   width: 100%;
   max-width: 1500px;
-  height: 750px;
+  height: auto;
   margin: 50px auto 0;
   overflow: hidden;
 
@@ -320,7 +320,7 @@ body {
   display: flex;
   padding: 0;
   width: 400%;
-  animation: slide 9s infinite alternate ease-in-out;
+  animation: slide 22s infinite alternate ease-in-out;
 
 }
 
@@ -359,9 +359,9 @@ body {
 /* Estilo de los botones */
 
 .button-container {
-  position: relative; /* Cambiado de absolute a relative */
+  position: absolute; /* Cambiado de absolute a relative */
   margin-top: 20px; /* Ajusta la distancia desde el banner */
-  left: 20px; /* Se mantiene alineado a la izquierda */
+  left: 50px; /* Se mantiene alineado a la izquierda */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -369,9 +369,12 @@ body {
 
 
 
+.button img { 
 
-.button img {
-  width: 200px;
+  width: 50%;
+  min-width: none;
+  max-width: 200px;
+  height: auto;
   transition: transform 0.1s ease;
 }
 

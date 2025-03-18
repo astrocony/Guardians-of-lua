@@ -376,19 +376,21 @@ body {
   transition: transform 0.1s ease;
 }
 
-@media (max-width: 768px) { /* Ajustes para móviles */
+@media (max-width: 768px) {
   .button-container {
-    position: absolute; /* Asegura que los botones puedan moverse libremente */
-    top: calc(100% + 10px); /* Baja los botones para que no se superpongan con el banner */
-    left: 10px; /* Mantiene los botones alineados a la izquierda */
+    position: absolute;
+    top: 100%; /* Ahora los botones quedan justo debajo del banner */
+    left: 10px;
+    margin-top: 10px; /* Espacio pequeño entre el banner y los botones */
   }
 
   .button img {
-    width: 25vw; /* Hace que el ancho sea el 25% del ancho de la pantalla */
-    min-width: 60px; /* Evita que sean demasiado pequeños */
-    max-width: 120px; /* Evita que crezcan demasiado */
+    width: 25vw;
+    min-width: 60px;
+    max-width: 120px;
   }
 }
+
 
 
 

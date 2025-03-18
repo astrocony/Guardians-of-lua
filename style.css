@@ -378,8 +378,8 @@ body {
 
 @media (max-width: 768px) {
   .button-container {
-    position: absolute;
-    top: 100%; /* Ahora los botones quedan justo debajo del banner */
+    position: relative;
+    top: 0; /* Ahora los botones quedan justo debajo del banner */
     left: 10px;
     margin-top: 10px; /* Espacio pequeño entre el banner y los botones */
   }
@@ -390,7 +390,6 @@ body {
     max-width: 120px;
   }
 }
-
 
 
 

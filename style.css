@@ -376,10 +376,11 @@ body {
   transition: transform 0.1s ease;
 }
 
-@media (max-width: 768px) { /* Aplica cambios en pantallas pequeñas */
+@media (max-width: 768px) { /* Ajustes para móviles */
   .button-container {
-    left: 10px; /* Ajusta la posición a la izquierda */
-    top: 10px; /* Baja los botones para que no choquen con el banner */
+    position: absolute; /* Asegura que los botones puedan moverse libremente */
+    top: calc(100% + 10px); /* Baja los botones para que no se superpongan con el banner */
+    left: 10px; /* Mantiene los botones alineados a la izquierda */
   }
 
   .button img {
@@ -388,6 +389,7 @@ body {
     max-width: 120px; /* Evita que crezcan demasiado */
   }
 }
+
 
 
 

@@ -371,8 +371,7 @@ body {
 
 .button img { 
 
-  width: 50%;
-  min-width: none;
+  width: 100%;
   max-width: 200px;
   height: auto;
   transition: transform 0.1s ease;

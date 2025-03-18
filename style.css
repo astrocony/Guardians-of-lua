@@ -360,13 +360,12 @@ body {
 
 .button-container {
   position: absolute; /* Cambiado de absolute a relative */
-  margin-top: 20px; /* Ajusta la distancia desde el banner */
-  left: 50px; /* Se mantiene alineado a la izquierda */
+  margin-top: 50px; /* Ajusta la distancia desde el banner */
+  left: 120px; /* Se mantiene alineado a la izquierda */
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-
 
 
 .button img { 
@@ -376,6 +375,21 @@ body {
   height: auto;
   transition: transform 0.1s ease;
 }
+
+@media (max-width: 768px) { /* Aplica cambios en pantallas pequeñas */
+  .button-container {
+    left: 10px; /* Ajusta la posición a la izquierda */
+    top: 10px; /* Baja los botones para que no choquen con el banner */
+  }
+
+  .button img {
+    width: 25vw; /* Hace que el ancho sea el 25% del ancho de la pantalla */
+    min-width: 60px; /* Evita que sean demasiado pequeños */
+    max-width: 120px; /* Evita que crezcan demasiado */
+  }
+}
+
+
 
 /* Efecto de presión */
 .button:active img {

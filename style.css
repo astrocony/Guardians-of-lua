@@ -564,6 +564,7 @@ body {
 #haru {
   position: absolute;
   bottom: 20px;
+  left: 0;
   width: 100px;
   height: 100px;
   image-rendering: pixelated;

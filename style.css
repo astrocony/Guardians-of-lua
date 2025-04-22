@@ -549,3 +549,24 @@ h3 {
   font-size: 20px;
   font-style: italic;
 }
+
+
+
+
+/* ------ HARU --------- */
+
+body {
+  margin: 0;
+  background-color: #FFE5B4; /* naranja claro */
+  overflow: hidden;
+}
+
+#haru {
+  position: absolute;
+  bottom: 20px;
+  width: 100px;
+  height: 100px;
+  image-rendering: pixelated;
+}
+
+

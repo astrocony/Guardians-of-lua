@@ -267,3 +267,59 @@ document.addEventListener("DOMContentLoaded", function () {
 }); 
 
 */
+
+
+
+
+
+/* -------- HARU --------- */ 
+
+const haru = document.getElementById("haru");
+
+const walkFrames = ["/img/haru/haru_step1.png", "/img/haru/haru_step2.png"];
+const sitFrames = ["/img/haru/haru_sit1.png", "/img/haru/haru_sit2.png", "/img/haru/haru_sit3.png"];
+let frameIndex = 0;
+let posX = 0;
+let direction = 1; // 1: derecha, -1: izquierda
+let walking = true;
+
+function updateFrame() {
+  if (walking) {
+    haru.src = walkFrames[frameIndex % walkFrames.length];
+    frameIndex++;
+    posX += 2 * direction;
+    if (posX > window.innerWidth - 100 || posX < 0) {
+      direction *= -1;
+      haru.style.transform = `scaleX(${direction})`;
+    }
+    haru.style.left = posX + "px";
+  } else {
+    haru.src = sitFrames[frameIndex % sitFrames.length];
+    frameIndex++;
+  }
+}
+
+let interval = setInterval(updateFrame, 200);
+
+function toggleSit() {
+  walking = !walking;
+  frameIndex = 0;
+}
+
+// Para PC
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") toggleSit();
+});
+
+// Para móviles
+window.addEventListener("touchstart", () => {
+  toggleSit();
+});
+
+// Ajusta posición al cambiar tamaño ventana
+window.addEventListener("resize", () => {
+  if (posX > window.innerWidth - 100) {
+    posX = window.innerWidth - 100;
+  }
+});
+

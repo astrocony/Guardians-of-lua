@@ -276,8 +276,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const haru = document.getElementById("haru");
 
-const haruWalkFrames = ["/img/haru/haru_step1.png", "/img/haru/haru_step2.png"];
-const haruSitFrames = ["/img/haru/haru_sit1.png", "/img/haru/haru_sit2.png", "/img/haru/haru_sit3.png"];
+const haruWalkFrames = ["img/haru/haru_step1.png", "img/haru/haru_step2.png"];
+const haruSitFrames = ["img/haru/haru_sit1.png", "img/haru/haru_sit2.png", "img/haru/haru_sit3.png"];
 let haruFrameIndex = 0;
 let haruPosX = 0;
 let haruDirection = 1; // 1: derecha, -1: izquierda

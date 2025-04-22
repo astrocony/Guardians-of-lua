@@ -276,50 +276,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const haru = document.getElementById("haru");
 
-const walkFrames = ["/img/haru/haru_step1.png", "/img/haru/haru_step2.png"];
-const sitFrames = ["/img/haru/haru_sit1.png", "/img/haru/haru_sit2.png", "/img/haru/haru_sit3.png"];
-let frameIndex = 0;
-let posX = 0;
-let direction = 1; // 1: derecha, -1: izquierda
-let walking = true;
+const haruWalkFrames = ["haru_step1.png", "haru_step2.png"];
+const haruSitFrames = ["haru_sit1.png", "haru_sit2.png", "haru_sit3.png"];
+let haruFrameIndex = 0;
+let haruPosX = 0;
+let haruDirection = 1; // 1: derecha, -1: izquierda
+let haruWalking = true;
 
-function updateFrame() {
-  if (walking) {
-    haru.src = walkFrames[frameIndex % walkFrames.length];
-    frameIndex++;
-    posX += 2 * direction;
-    if (posX > window.innerWidth - 100 || posX < 0) {
-      direction *= -1;
-      haru.style.transform = `scaleX(${direction})`;
+function updateHaruFrame() {
+  if (haruWalking) {
+    haru.src = haruWalkFrames[haruFrameIndex % haruWalkFrames.length];
+    haruFrameIndex++;
+    haruPosX += 2 * haruDirection;
+    if (haruPosX > window.innerWidth - 100 || haruPosX < 0) {
+      haruDirection *= -1;
+      haru.style.transform = `scaleX(${haruDirection})`;
     }
-    haru.style.left = posX + "px";
+    haru.style.left = haruPosX + "px";
   } else {
-    haru.src = sitFrames[frameIndex % sitFrames.length];
-    frameIndex++;
+    haru.src = haruSitFrames[haruFrameIndex % haruSitFrames.length];
+    haruFrameIndex++;
   }
 }
 
-let interval = setInterval(updateFrame, 200);
+let haruInterval = setInterval(updateHaruFrame, 200);
 
-function toggleSit() {
-  walking = !walking;
-  frameIndex = 0;
+function toggleHaruSit() {
+  haruWalking = !haruWalking;
+  haruFrameIndex = 0;
 }
 
 // Para PC
 window.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") toggleSit();
+  if (e.key === "Enter") toggleHaruSit();
 });
 
 // Para móviles
 window.addEventListener("touchstart", () => {
-  toggleSit();
+  toggleHaruSit();
 });
 
-// Ajusta posición al cambiar tamaño ventana
+// Ajustar posición si la ventana cambia de tamaño
 window.addEventListener("resize", () => {
-  if (posX > window.innerWidth - 100) {
-    posX = window.innerWidth - 100;
+  if (haruPosX > window.innerWidth - 100) {
+    haruPosX = window.innerWidth - 100;
   }
 });
-

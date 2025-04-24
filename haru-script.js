@@ -60,13 +60,26 @@ window.addEventListener("keydown", (e) => {
   // Enter → Haru se sienta y llora
   if (e.key === "Enter") {
     haruWalking = false;
-    haruSitting = true;
     haruFrameIndex = 0;
-    haruSound.loop = true;
-    haruSound.currentTime = 0;
-    haruSound.play();
+  
+    // Alternar entre sentado y de pie
+    if (!haruSitting) {
+      haruSitting = true;
+      haruSound.loop = true;
+      haruSound.currentTime = 0;
+      haruSound.play();
+      haruSpeech.style.display = "block";
+    } else {
+      haruSitting = false;
+      haruWalking= true;
+      haruSound.pause();
+      haruSound.currentTime = 0;
+      haruSpeech.style.display = "none";
+    }
   }
+
 });
+  
 
 // Detener caminata al soltar teclas
 window.addEventListener("keyup", (e) => {
@@ -89,6 +102,8 @@ window.addEventListener("touchstart", () => {
   } else {
     haruSound.pause();
     haruSound.currentTime = 0;
+    haruSpeech.style.display = "none";
+    haruWalking = true;
   }
 });
 

@@ -8,6 +8,11 @@ const haruSound = document.getElementById("haruSound"); // <-- ojo: H en minúsc
 const haruWalkFrames = ["img/haru/haru_step1.png", "img/haru/haru_step2.png"];
 const haruSitFrames = ["img/haru/haru_sit1.png", "img/haru/haru_sit2.png", "img/haru/haru_sit3.png"];
 
+//globo
+
+const haruSpeech = document.getElementById("haru-speech");
+
+
 // Variables de estado
 let haruFrameIndex = 0;
 let haruPosX = 0;
@@ -90,26 +95,30 @@ window.addEventListener("keyup", (e) => {
 });
 
 // Pantalla táctil → alterna entre llorar o levantarse
+
 window.addEventListener("touchstart", () => {
-  haruSitting = !haruSitting;
-  haruWalking = false;
-  haruFrameIndex = 0;
+    haruSitting = !haruSitting;
+    haruWalking = false;
+    haruFrameIndex = 0;
+  
+    if (haruSitting) {
+      haruSound.loop = true;
+      haruSound.currentTime = 0;
+      haruSound.play();
+      haruSpeech.style.display = "block"; // 👈 Esta línea faltaba
+    } else {
+      haruSound.pause();
+      haruSound.currentTime = 0;
+      haruSpeech.style.display = "none";
+      haruWalking = true;
+    }
 
-  if (haruSitting) {
-    haruSound.loop = true;
-    haruSound.currentTime = 0;
-    haruSound.play();
-  } else {
-    haruSound.pause();
-    haruSound.currentTime = 0;
-    haruSpeech.style.display = "none";
-    haruWalking = true;
-  }
-});
+    // vibracion
 
-// Si se redimensiona la ventana
-window.addEventListener("resize", () => {
-  if (haruPosX > window.innerWidth - 100) {
-    haruPosX = window.innerWidth - 100;
-  }
-});
+    if ("vibrate" in navigator) {
+        navigator.vibrate(100);
+      }
+      
+
+  });
+  

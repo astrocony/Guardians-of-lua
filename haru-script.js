@@ -1,49 +1,98 @@
 /* -------- HARU --------- */ 
 
+// Referencias al gato Haru y al sonido
 const haru = document.getElementById("haru");
+const haruSound = document.getElementById("haruSound"); // <-- ojo: H en minúscula
 
+// Imágenes para caminar y sentarse
 const haruWalkFrames = ["img/haru/haru_step1.png", "img/haru/haru_step2.png"];
 const haruSitFrames = ["img/haru/haru_sit1.png", "img/haru/haru_sit2.png", "img/haru/haru_sit3.png"];
+
+// Variables de estado
 let haruFrameIndex = 0;
 let haruPosX = 0;
-let haruDirection = 1; // 1: derecha, -1: izquierda
+let haruDirection = 1;
 let haruWalking = true;
+let haruSitting = false;
 
+// Animación general
 function updateHaruFrame() {
-  if (haruWalking) {
+  if (haruSitting) {
+    haru.src = haruSitFrames[haruFrameIndex % haruSitFrames.length];
+  } else if (haruWalking) {
     haru.src = haruWalkFrames[haruFrameIndex % haruWalkFrames.length];
-    haruFrameIndex++;
-    haruPosX += 18
-     * haruDirection;
+    haruPosX += 6 * haruDirection;
     if (haruPosX > window.innerWidth - 100 || haruPosX < 0) {
       haruDirection *= -1;
       haru.style.transform = `scaleX(${haruDirection})`;
     }
     haru.style.left = haruPosX + "px";
-  } else {
-    haru.src = haruSitFrames[haruFrameIndex % haruSitFrames.length];
-    haruFrameIndex++;
   }
+  haruFrameIndex++;
 }
 
 let haruInterval = setInterval(updateHaruFrame, 200);
 
-function toggleHaruSit() {
-  haruWalking = !haruWalking;
-  haruFrameIndex = 0;
-}
-
-// Para PC
+// Teclado
 window.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") toggleHaruSit();
+  // Flecha derecha
+  if (e.key === "ArrowRight") {
+    haruDirection = 1;
+    haru.style.transform = "scaleX(1)";
+    haruPosX += 10;
+    haruWalking = true;
+    haruSitting = false;
+    haruSound.pause();
+    haruSound.currentTime = 0;
+  }
+
+  // Flecha izquierda
+  if (e.key === "ArrowLeft") {
+    haruDirection = -1;
+    haru.style.transform = "scaleX(-1)";
+    haruPosX -= 10;
+    haruWalking = true;
+    haruSitting = false;
+    haruSound.pause();
+    haruSound.currentTime = 0;
+  }
+
+  // Enter → Haru se sienta y llora
+  if (e.key === "Enter") {
+    haruWalking = false;
+    haruSitting = true;
+    haruFrameIndex = 0;
+    haruSound.loop = true;
+    haruSound.currentTime = 0;
+    haruSound.play();
+  }
 });
 
-// Para móviles
+// Detener caminata al soltar teclas
+window.addEventListener("keyup", (e) => {
+  if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+    haruWalking = false;
+    haruFrameIndex = 0;
+  }
+});
+
+// Pantalla táctil → alterna entre llorar o levantarse
 window.addEventListener("touchstart", () => {
-  toggleHaruSit();
+  haruSitting = !haruSitting;
+  haruWalking = false;
+  haruFrameIndex = 0;
+
+  if (haruSitting) {
+    haruSound.loop = true;
+    haruSound.currentTime = 0;
+    haruSound.play();
+  } else {
+    haruSound.pause();
+    haruSound.currentTime = 0;
+  }
 });
 
-// Ajustar posición si la ventana cambia de tamaño
+// Si se redimensiona la ventana
 window.addEventListener("resize", () => {
   if (haruPosX > window.innerWidth - 100) {
     haruPosX = window.innerWidth - 100;

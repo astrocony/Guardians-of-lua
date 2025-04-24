@@ -1,0 +1,17 @@
+/* ------ HARU --------- */
+
+body {
+    margin: 0;
+    background-color: #FFE5B4; /* naranja claro */
+    overflow: hidden;
+  }
+  
+  #haru {
+    position: absolute;
+    bottom: 500px;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    image-rendering: pixelated;
+  }
+  

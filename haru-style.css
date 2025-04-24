@@ -5,12 +5,19 @@ body {
     background-color: #FFE5B4; /* naranja claro */
     overflow: hidden;
   }
+
+  @font-face {
+    font-family: 'MiFuenteBonita';
+    src: url('fonts/PixelCony-Regular.ttf') format('truetype'); 
+  }
+  
   
   #haru-title {
+    font-family: 'MiFuenteBonita', sans-serif;
     text-align: center;
     font-size: 100px;
     color: #5c0433;
-    margin-top: 100px;
+    margin-top: 50px;
 
 
 
@@ -28,20 +35,22 @@ body {
   
 
   #haru-speech {
+    font-family: 'MiFuenteBonita', sans-serif;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     bottom: 750px;
-    font-size: 24px;
+    font-size: 50px;
     color: #333;
     background: #fff8dc;
     padding: 10px 20px;
     border-radius: 20px;
     border: 2px solid #d3a36b;
-    font-family: 'Comic Sans MS', cursive;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     display: none; /* Oculto por defecto */
     z-index: 10;
   }
   
+
+
   

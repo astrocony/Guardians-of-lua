@@ -6,6 +6,17 @@ body {
     overflow: hidden;
   }
   
+  #haru-title {
+    text-align: center;
+    font-size: 64;
+    color: #5c0433;
+    margin-top: 100px;
+    
+
+
+  }
+
+
   #haru {
     position: absolute;
     bottom: 500px;

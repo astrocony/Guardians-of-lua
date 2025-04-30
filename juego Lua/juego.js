@@ -185,3 +185,15 @@ document.addEventListener('keydown', (e) => {
 
 moverLua();
 aplicarGravedad();
+
+
+/* ------------ SONIDO ----------- */
+
+window.addEventListener('click', () => {
+  const music = document.getElementById('bg-music');
+  if (music.paused) {
+    music.play();
+  }
+});
+
+

@@ -190,6 +190,8 @@ moverLua();
 /* ------------ SONIDO ----------- */
 
 
+/* --- background -----*/
+
 let musicaIniciada = false;
 
 window.addEventListener('keydown', (e) => {
@@ -204,7 +206,32 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+/* ---- salto y caminata ---- */
 
+// === SONIDOS DE LUA === //
+const sonidoPaso = new Audio("/img/audios/paso_lua.mp3");
+const sonidoSalto = new Audio("/img/audios/salto_lua.mp3");
+
+function reproducirPaso() {
+  // Clonamos el audio para que pueda sonar aunque el anterior no haya terminado
+  const paso = sonidoPaso.cloneNode();
+  paso.play();
+}
+
+function reproducirSalto() {
+  const salto = sonidoSalto.cloneNode();
+  salto.play();
+}
+
+// Escuchar teclas
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+    reproducirPaso();
+  }
+  if (e.key === "ArrowUp") {
+    reproducirSalto();
+  }
+});
 
 
 

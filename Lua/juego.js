@@ -184,22 +184,32 @@ document.addEventListener('keydown', (e) => {
 });
 
 moverLua();
-aplicarGravedad();
+/*aplicarGravedad(); */
 
 
 /* ------------ SONIDO ----------- */
 
+
 let musicaIniciada = false;
 
 window.addEventListener('keydown', (e) => {
-  if (!musicaIniciada && ['ArrowLeft', 'ArrowRight', ' ', 'ArrowUp'].includes(e.key)) {
+  if (!musicaIniciada && ['ArrowLeft', 'ArrowRight', 'ArrowUp', ' '].includes(e.key)) {
     const music = document.getElementById('bg-music');
-    music.play().catch((err) => {
-      console.log('El navegador bloqueó el audio:', err);
+    music.play().then(() => {
+      console.log("🎵 Música iniciada con una tecla");
+    }).catch((err) => {
+      console.warn("🚫 Bloqueo de sonido:", err);
     });
     musicaIniciada = true;
   }
 });
+
+
+
+
+
+
+
 
 
 

@@ -189,11 +189,17 @@ aplicarGravedad();
 
 /* ------------ SONIDO ----------- */
 
-window.addEventListener('click', () => {
-  const music = document.getElementById('bg-music');
-  if (music.paused) {
-    music.play();
+let musicaIniciada = false;
+
+window.addEventListener('keydown', (e) => {
+  if (!musicaIniciada && ['ArrowLeft', 'ArrowRight', ' ', 'ArrowUp'].includes(e.key)) {
+    const music = document.getElementById('bg-music');
+    music.play().catch((err) => {
+      console.log('El navegador bloqueó el audio:', err);
+    });
+    musicaIniciada = true;
   }
 });
+
 
 

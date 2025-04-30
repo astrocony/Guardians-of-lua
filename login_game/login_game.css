@@ -1,0 +1,93 @@
+
+
+/* --------------------PAGINA LOGIN---------------------------- */
+
+/* 🌸 Estilos generales */
+body {
+    background-color: #ff91c1; /* Fondo rosita */
+    font-family: 'PixelFont', sans-serif; /* Usa tu font pixel art */
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* 🎀 Estilos de la caja de login */
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Centrar en toda la pantalla */
+  }
+  
+  /* ✨ Lua arriba (Aumentamos el tamaño) */
+  .lua-image {
+    width: 200px; /* Aumentamos el tamaño */
+    height: auto;
+    margin-bottom: 10px; /* Espaciado entre Lua y la caja */
+  }
+  
+  /* 🖼️ Caja de usuario con imagen */
+  .input-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .box-image {
+    display: block;
+    width: 300px;
+  }
+  
+  .input-box {
+    position: absolute;
+    top: 65%; /* Ajustamos más abajo */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    width: 150px;
+    height: 30px;
+  }
+  
+  /* 🌟 Botón de entrada */
+  .login-btn {
+    background-color: #A64AC9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 8px; 
+    font-family: 'PixelFont', sans-serif;
+  }
+  
+  .login-btn:hover {
+    background-color: #7D3C98;
+  }
+  
+  /* 📎 Botones de redes sociales */
+  
+  .social-buttons img {
+    width: 250px; /* Ajusta este tamaño si quieres más grande */
+    height: auto;
+    display: inline-block; /* Asegura que respete el tamaño */
+  }
+  
+  
+  .social-buttons a img {
+    width: 250px; /* Tamaño de los botones */
+    height: auto;
+    transition: transform 0.2s;
+  }
+  
+  .social-buttons a img:hover {
+    transform: scale(1.2); /* Efecto al pasar el mouse */
+  }
+  
+  
+  .input-box:focus {
+    outline: none; /* Quita el borde azul */
+  }

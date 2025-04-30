@@ -5,8 +5,8 @@ const haru = document.getElementById("haru");
 const haruSound = document.getElementById("haruSound"); // <-- ojo: H en minúscula
 
 // Imágenes para caminar y sentarse
-const haruWalkFrames = ["img/haru/haru_step1.png", "img/haru/haru_step2.png"];
-const haruSitFrames = ["img/haru/haru_sit1.png", "img/haru/haru_sit2.png", "img/haru/haru_sit3.png"];
+const haruWalkFrames = ["/img/haru/haru_step1.png", "/img/haru/haru_step2.png"];
+const haruSitFrames = ["/img/haru/haru_sit1.png", "/img/haru/haru_sit2.png", "/img/haru/haru_sit3.png"];
 
 //globo
 

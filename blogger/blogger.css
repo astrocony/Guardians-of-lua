@@ -1,0 +1,75 @@
+/*-------- BLOGG ----------*/
+
+body {
+    background-color: #ffb3f5;
+    text-align: center;
+  }
+
+/* Contenedor del blog */
+.blog-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  /* Estilos de cada post */
+  .blog-post {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+  }
+  
+  /* Fecha del post */
+  .post-date {
+    font-size: 0.9em;
+    color: gray;
+  }
+  
+  /* Botón de "Leer más" */
+  .read-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #ff69b4;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .read-more:hover {
+    background-color: #ff1493;
+  
+  }
+  
+  .blog-body {
+    font-family: 'Georgia', serif; /* O cualquier fuente que quieras */
+  }
+  
+  
+
+
+/* ------- FONT ------------- */
+
+h1 {
+    font-size: 36px; /* Tamaño más grande */
+    font-weight: bold; /* Negrita */
+    color: #ff1493; /* Color rosado */
+    text-align: center; /* Centrado */
+    text-transform: uppercase; /* Convierte todo en mayúsculas */
+    font-family: 'Georgia', serif; /* Cambia la fuente */
+  }
+  
+  
+  h2 {
+    font-size: 25px;
+    color: #ff69b4;
+  }
+  
+  h3 {
+    font-size: 20px;
+    font-style: italic;
+  }

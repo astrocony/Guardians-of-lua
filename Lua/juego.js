@@ -209,7 +209,7 @@ window.addEventListener('keydown', (e) => {
 /* ---- salto y caminata ---- */
 
 // === SONIDOS DE LUA === //
-const sonidoPaso = new Audio("/img/audios/paso_lua.mp3");
+const sonidoPaso = new Audio("/img/audios/paso_lua2.mp3");
 const sonidoSalto = new Audio("/img/audios/salto_lua.mp3");
 
 function reproducirPaso() {

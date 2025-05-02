@@ -38,8 +38,8 @@ body {
     bottom: 10px; /* Ajustado para que no quede muy pegado abajo */
     left: 50%;
     transform: translateX(-50%);
-    width: 64px;
-    height: 64px;
+    width: 91px;
+    height: 80px;
     image-rendering: pixelated;
     transition: all 0.1s linear;
     opacity: 1;

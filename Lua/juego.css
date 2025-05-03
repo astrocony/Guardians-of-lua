@@ -1,5 +1,16 @@
+/* ====== FONT PIXEL ====== */
+
+
+
+@font-face {
+  font-family: 'PixelCony';
+  src: url('/fonts/PixelCony-Regular.ttf') format('truetype');
+}
+
+
 /* ==== Fondo y cuerpo principal ==== */
 body {
+  background: url('/img/fondo1.jpg') repeat;
     overflow-y: auto; /* Permite scroll vertical */
     overflow-x: hidden; /* Evita el desplazamiento lateral */
     height: auto; /* Ajusta la altura según el contenido */
@@ -8,9 +19,24 @@ body {
     text-align: center;
     padding: 20px;
     color: #333;
-    background-color: #f5c2d6; /* Fondo rosado */
+    background-color: #30336d; /* Fondo rosado */
     touch-action: manipulation; /* Evita zoom con gestos */
   }
+
+ /* ======== TITULO ======= */
+
+
+ .titulo-pixel {
+  font-family: 'PixelCony', cursive;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 50px;  /* ajusta según tu fuente */
+}
+
+
+
+
   
   /* ==== Escenario ==== */
   
@@ -23,13 +49,31 @@ body {
     background-image: url('/img/fondo.png');
     background-size: contain;
     background-position: center;
-    border: 8px solid #fc84f0;
+    border: none;
     overflow: hidden;
-    margin: 20px auto;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    margin: none;
+    border-radius: none;
+    box-shadow: none;
+  }
+
+
+
+
+
+  /* ======== lugar reducido ====== */ 
+
+  #viewport {
+    width: 500px;
+    height: 800px;
+    overflow: hidden;
+    position: relative;
+    margin: 50px auto;   /* centrado horizontal + bajado 50px */
+    border: none;
+    background:none;   /* si quieres un color base */
   }
   
+  
+
   
   
   /* ==== Imagen de Lua (animada) ==== */
@@ -96,13 +140,8 @@ body {
   
   /* 🎮 Controles táctiles (alineados) */
   #controles {
-    position: absolute;
-    bottom: 20px; /* Bajamos los botones un poco más */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 15px; /* Separación entre botones */
-    z-index: 3;
+    display:none;
+
   }
   
   /* 🕹️ Botones de los controles táctiles */

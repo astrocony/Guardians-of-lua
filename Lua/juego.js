@@ -5,13 +5,19 @@ const step = 5;
 let keys = {}; 
 let enElAire = false; 
 let velocidad = 10;
-const suelo = 720;
+const suelo = 690;
 lua.style.top = `${suelo}px`;
+lua.style.left = `${posX}px`; // asegura la posición inicial
+
 const plataformas = document.querySelectorAll(".plataforma");
 
 let modoDefensa = false;
 let mirandoDerecha = true;  // para saber a qué lado mira Lua
 let ataqueEnProgreso = false;
+
+
+const sonidoAtaque = new Audio("/img/audios/espada_lua.mp3");
+
 
 
 
@@ -38,6 +44,8 @@ document.addEventListener('keydown', (e) => {
   }
 
   if ((e.key === 'a' || e.key === 'A') && !ataqueEnProgreso) {
+    sonidoAtaque.cloneNode().play();
+
     ataqueEnProgreso = true;
     let secuencia = [
       '/img/lua_ataque1.png',
@@ -70,7 +78,7 @@ document.addEventListener('keyup', (e) => {
 
 
 
-
+/* MOVER A LUA */
 
 
 function moverLua() {
@@ -78,13 +86,12 @@ function moverLua() {
 
   if (keys['ArrowRight'] && posX < 730) {
     if (modoDefensa || ataqueEnProgreso) {
-      // Si está en defensa o ataque, RETROCEDE mirando izquierda
+      // retrocede
       posX += step;
       lua.style.left = `${posX}px`;
-      lua.src = modoDefensa ? '/img/lua_defensa2.png' : lua.src; // opcional cambiar sprite
-      lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)'; // NO CAMBIA dirección
+      lua.src = modoDefensa ? '/img/lua_defensa2.png' : lua.src;
+      lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)';
     } else {
-      // Movimiento normal
       posX += step;
       lua.style.left = `${posX}px`;
       lua.src = '/img/lua_step.png';
@@ -93,16 +100,14 @@ function moverLua() {
     }
     moviendo = true;
   }
-  
+
   if (keys['ArrowLeft'] && posX > 0) {
     if (modoDefensa || ataqueEnProgreso) {
-      // Si está en defensa o ataque, RETROCEDE mirando derecha
       posX -= step;
       lua.style.left = `${posX}px`;
-      lua.src = modoDefensa ? '/img/lua_defensa2.png' : lua.src; // opcional cambiar sprite
-      lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)'; // NO CAMBIA dirección
+      lua.src = modoDefensa ? '/img/lua_defensa2.png' : lua.src;
+      lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)';
     } else {
-      // Movimiento normal
       posX -= step;
       lua.style.left = `${posX}px`;
       lua.src = '/img/lua_step.png';
@@ -111,24 +116,19 @@ function moverLua() {
     }
     moviendo = true;
   }
-  
 
-  
   if (!moviendo && !enElAire && !modoDefensa && !ataqueEnProgreso) {
     lua.src = '/img/lua_idle.png';
   }
 
   if (!moviendo && modoDefensa && !enElAire) {
-    lua.src = '/img/lua_defensa1.png'; // sprite defensa quieta
+    lua.src = '/img/lua_defensa1.png';
   }
 
-  // === Nueva parte: revisar si debería caer ===
   if (!enElAire) {
     let nuevaY = detectarColisionPlataforma();
     if (nuevaY === null && parseInt(lua.style.top) < suelo) {
-      // No está sobre ninguna plataforma → comienza a caer
       enElAire = true;
-
       let bajada = setInterval(() => {
         let posicionActual = parseInt(lua.style.top);
         let nuevaY = detectarColisionPlataforma();
@@ -137,29 +137,60 @@ function moverLua() {
           lua.style.top = `${nuevaY}px`;
           clearInterval(bajada);
           enElAire = false;
-          if (modoDefensa) {
-            lua.src = '/img/lua_defensa1.png';
-          } else {
-            lua.src = '/img/lua_idle.png';
-          }
+          lua.src = modoDefensa ? '/img/lua_defensa1.png' : '/img/lua_idle.png';
         } else if (posicionActual < suelo) {
           lua.style.top = `${posicionActual + velocidad}px`;
         } else {
           lua.style.top = `${suelo}px`;
           clearInterval(bajada);
           enElAire = false;
-          if (modoDefensa) {
-            lua.src = '/img/lua_defensa1.png';
-          } else {
-            lua.src = '/img/lua_idle.png';
-          }
+          lua.src = modoDefensa ? '/img/lua_defensa1.png' : '/img/lua_idle.png';
         }
       }, 20);
     }
   }
 
+  // ✅ ESTAS DOS LÍNEAS VAN AQUÍ, AL FINAL
+  actualizarCamara();
   requestAnimationFrame(moverLua);
 }
+
+
+
+
+
+/* ----- Seguir a lua con la camara ----- */
+
+const viewportWidth = 400;   // el tamaño visible de la pantalla
+const escenarioWidth = 800;  // el tamaño total del escenario
+
+
+let camaraX = 0;
+let camaraY = 0;
+
+function actualizarCamara() {
+  let objetivoX = posX - (viewportWidth / 2); // normal
+
+  // Definir los márgenes de la "zona muerta"
+  const margen = 200;
+  const limiteIzquierdo = camaraX + margen;
+  const limiteDerecho = camaraX + viewportWidth - margen;
+
+  if (posX < limiteIzquierdo) {
+    camaraX = Math.max(0, posX - margen);
+  } else if (posX > limiteDerecho) {
+    camaraX = Math.min(escenarioWidth - viewportWidth, posX - viewportWidth + margen);
+  }
+  
+  // Aplicar transform solo en X
+  document.getElementById('escenario').style.transform = `translate(${-camaraX}px, 0px)`;
+}
+
+
+
+
+
+
 
 
 

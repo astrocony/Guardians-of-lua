@@ -46,7 +46,7 @@ body {
     position: relative;
     width: 800px;
     height: 800px;
-    background-image: url('/img/fondo.png');
+    background-image: url('/img/fondo_real.png');
     background-size: contain;
     background-position: center;
     border: none;
@@ -197,5 +197,15 @@ body {
     height: 20px; /* Altura de la plataforma */
     background-color: none; /* Temporalmente roja y transparente */
     border-radius: none; 
+  }
+  
+
+
+
+  .item {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    image-rendering: pixelated;
   }
   

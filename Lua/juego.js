@@ -1,5 +1,6 @@
 // === Movimiento de Lua === //
 const lua = document.getElementById('luaSprite');
+const items = document.querySelectorAll(".item");
 let posX = 100;
 const step = 5;
 let keys = {}; 
@@ -151,8 +152,10 @@ function moverLua() {
   }
 
   // ✅ ESTAS DOS LÍNEAS VAN AQUÍ, AL FINAL
+
   actualizarCamara();
   requestAnimationFrame(moverLua);
+  detectarColisionItems();
 }
 
 
@@ -276,6 +279,70 @@ function detectarColisionPlataforma() {
   }
   return null;
 }
+
+
+/* -------- detectar colicion ITEM ------ 
+
+
+const items = document.querySelectorAll(".item");
+
+function detectarColisionItem() {
+  const luaRect = lua.getBoundingClientRect();
+
+  items.forEach((item) => {
+    const itemRect = item.getBoundingClientRect();
+    const overlap = !(luaRect.right < itemRect.left || 
+                      luaRect.left > itemRect.right || 
+                      luaRect.bottom < itemRect.top || 
+                      luaRect.top > itemRect.bottom);
+    if (overlap && item.style.display !== 'none') {
+      item.style.display = 'none'; // Desaparece el ítem
+      sumarItem(item.dataset.tipo); // Suma al contador
+    }
+  });
+} */
+
+
+
+/* --------- contador y detector de objetos ------- */
+
+let cuentaPajaros = 0;
+let cuentaCorazones = 0;
+
+function detectarColisionItems() {
+  const luaRect = lua.getBoundingClientRect();
+
+  items.forEach((item) => {
+    if (item.style.display === 'none') return;  // ✅ Ya desaparecido, no revisa
+
+    const itemRect = item.getBoundingClientRect();
+
+    const colision = !(luaRect.right < itemRect.left ||
+                       luaRect.left > itemRect.right ||
+                       luaRect.bottom < itemRect.top ||
+                       luaRect.top > itemRect.bottom);
+
+    if (colision) {
+      item.style.display = 'none'; // ✅ Desaparece al colisionar
+
+      if (item.dataset.tipo === 'pajaro') {
+        cuentaPajaros++;
+        document.getElementById('contadorPajaros').textContent = `🕊️ x ${cuentaPajaros}`;
+      } else if (item.dataset.tipo === 'corazon') {
+        cuentaCorazones++;
+        document.getElementById('contadorCorazones').textContent = `❤️ x ${cuentaCorazones}`;
+      }
+    }
+  });
+}
+
+
+
+
+
+
+
+
 
 
 /* -------touch botones (creo)------ */

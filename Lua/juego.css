@@ -216,12 +216,12 @@ body {
 
 
   #contadores {
-    position: absolute;
-    top: 50px;    /* ajusta este valor hacia arriba/abajo */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
+    position: relative;
+    top: 0px;    /* ajusta este valor hacia arriba/abajo */
+    left: 0px;
+    width: 100%;
     height: auto;
+    pointer-events: none;
   }
   
   
@@ -242,19 +242,19 @@ body {
   
   #contadorPajaros {
     position: absolute;
-    top: 50px;    /* ajusta según necesites */
-    left: 50x;   /* ajusta para ponerlo sobre el pájaro en la barra */
+    top: 45px;    /* ajusta según necesites */
+    left: 235px;   /* ajusta para ponerlo sobre el pájaro en la barra */
     font-family: 'PixelCony';  /* usa tu fuente */
-    font-size: 24px;
-    color: white;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
   }
  
   #contadorCorazones {
     position: absolute;
-    top: 20px;
-    right: 50px;  /* ajusta para ponerlo sobre el corazón en la barra */
+    top: 45px;
+    right: 350px;  /* ajusta para ponerlo sobre el corazón en la barra */
     font-family: 'PixelCony';
-    font-size: 24px;
-    color: white;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
   }
    

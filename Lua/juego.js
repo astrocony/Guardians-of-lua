@@ -327,10 +327,10 @@ function detectarColisionItems() {
 
       if (item.dataset.tipo === 'pajaro') {
         cuentaPajaros++;
-        document.getElementById('contadorPajaros').textContent = `🕊️ x ${cuentaPajaros}`;
+        document.getElementById('contadorPajaros').textContent = ` x ${cuentaPajaros}`;
       } else if (item.dataset.tipo === 'corazon') {
         cuentaCorazones++;
-        document.getElementById('contadorCorazones').textContent = `❤️ x ${cuentaCorazones}`;
+        document.getElementById('contadorCorazones').textContent = ` x ${cuentaCorazones}`;
       }
     }
   });

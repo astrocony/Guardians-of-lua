@@ -164,7 +164,7 @@ function moverLua() {
 
 /* ----- Seguir a lua con la camara ----- */
 
-const viewportWidth = 400;   // el tamaño visible de la pantalla
+const viewportWidth = 500;   // el tamaño visible de la pantalla
 const escenarioWidth = 800;  // el tamaño total del escenario
 
 
@@ -175,7 +175,7 @@ function actualizarCamara() {
   let objetivoX = posX - (viewportWidth / 2); // normal
 
   // Definir los márgenes de la "zona muerta"
-  const margen = 200;
+  const margen = 250;
   const limiteIzquierdo = camaraX + margen;
   const limiteDerecho = camaraX + viewportWidth - margen;
 

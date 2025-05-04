@@ -64,7 +64,7 @@ body {
 
   #viewport {
     width: 500px;
-    height: 800px;
+    height: 900px;
     overflow: hidden;
     position: relative;
     margin: 50px auto;   /* centrado horizontal + bajado 50px */
@@ -209,3 +209,52 @@ body {
     image-rendering: pixelated;
   }
   
+
+
+
+  /* barra conteo */
+
+
+  #contadores {
+    position: absolute;
+    top: 50px;    /* ajusta este valor hacia arriba/abajo */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: auto;
+  }
+  
+  
+  #barraContadores {
+    width: 500px;
+    height: auto;
+    display: block;
+  }
+  
+  #contadorPajaros, #contadorCorazones {
+    position: absolute;
+    top: 50%;  /* centrado vertical */
+    transform: translateY(-50%);  /* ajuste fino */
+    font-family: 'MiPixelFont', monospace;  /* usa tu font pixel */
+    font-size: 100px;  /* cambia según necesites */
+    color: white;  /* o el color que combine */
+  }
+  
+  #contadorPajaros {
+    position: absolute;
+    top: 50px;    /* ajusta según necesites */
+    left: 50x;   /* ajusta para ponerlo sobre el pájaro en la barra */
+    font-family: 'PixelCony';  /* usa tu fuente */
+    font-size: 24px;
+    color: white;
+  }
+ 
+  #contadorCorazones {
+    position: absolute;
+    top: 20px;
+    right: 50px;  /* ajusta para ponerlo sobre el corazón en la barra */
+    font-family: 'PixelCony';
+    font-size: 24px;
+    color: white;
+  }
+   

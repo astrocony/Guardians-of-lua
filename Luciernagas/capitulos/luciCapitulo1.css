@@ -31,3 +31,17 @@ a {
     text-decoration: none;
     color: #ff69b4;
 }
+
+
+.contador {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.contador img {
+    width: 40px; /* o el tamaño que prefieras */
+    vertical-align: middle;
+    margin-right: 5px;
+}

@@ -9,6 +9,16 @@
 <body>
     <div class="contenedor">
         <h1>Aura Lu I</h1>
+
+               <!-- 👁️ CONTADOR DE VISITAS -->
+            <div class="contador">
+                <img src="/img/pajarito_vistos.png" alt="vistas" width="40">
+                <span id="visitas"></span>
+            </div>
+
+
+
+
     
         <p>Ese día estaba muy acelerada, tenía muchas cosas en la cabeza, faltaba poco para graduarme de la academia de Luciérnagas y no iba a tener mucho tiempo de celebración, porque a los pocos días tendría la prueba de postulación a Guardiana de la Luz. ¡Tenía mucho por hacer!</p>
     
@@ -123,16 +133,30 @@
     
         <p>Suspiré.</p>
         <p>—Vamos —le dije decidida.</p>
-    </div>
-    
-        
 
-        <!-- SIGUES ASÍ CON EL RESTO DE LOS PÁRRAFOS -->
 
-        <div class="navegacion">
-            <a href="capitulo0.html">⟵ Anterior</a>
-            <a href="capitulo2.html">Siguiente ⟶</a>
-        </div>
+        <!-- todo tu texto aquí -->
+
+    <div class="navegacion">
+        <a href="capitulo0.html">⟵ Anterior</a>
+        <a href="capitulo2.html">Siguiente ⟶</a>
     </div>
+</div>
+
+<!-- 📝 SCRIPT del contador -->
+
+
+<script>
+fetch('https://api.countapi.xyz/hit/astrocony.luciernagas.capitulo1/counter')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('visitas').innerText = data.value;
+  });
+</script>
+
+
+
+
+
 </body>
 </html>

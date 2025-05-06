@@ -309,6 +309,9 @@ function detectarColisionItem() {
 let cuentaPajaros = 0;
 let cuentaCorazones = 0;
 
+let sonidoCorazon = new Audio("/img/audios/tum_tum_heart.mp3");
+let sonidoPajaro = new Audio("/img/audios/sonido_item_general.mp3");
+
 function detectarColisionItems() {
   const luaRect = lua.getBoundingClientRect();
 
@@ -328,13 +331,16 @@ function detectarColisionItems() {
       if (item.dataset.tipo === 'pajaro') {
         cuentaPajaros++;
         document.getElementById('contadorPajaros').textContent = ` x ${cuentaPajaros}`;
+        sonidoPajaro.cloneNode().play();  // 🔊 Reproducir sonido del pájaro
       } else if (item.dataset.tipo === 'corazon') {
         cuentaCorazones++;
         document.getElementById('contadorCorazones').textContent = ` x ${cuentaCorazones}`;
+        sonidoCorazon.cloneNode().play();  // 🔊 Reproducir sonido del corazón
       }
     }
   });
 }
+
 
 
 

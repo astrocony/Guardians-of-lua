@@ -6,6 +6,50 @@
     <title>Luciérnagas - Capítulo 1</title>
     <link rel="stylesheet" href="luciCapitulo1.css">
 </head>
+
+<!-- Firebase SDKs -->
+<script type="module">
+    // Importa lo necesario desde Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+  
+    // Tu configuración de Firebase (la cambiarás en el paso siguiente)
+    const firebaseConfig = {
+    apiKey: "AIzaSyC2QPIWXbBE7TQ5ynkzoI59y7JcggnitDI",
+    authDomain: "contadorluciernagas.firebaseapp.com",
+    projectId: "contadorluciernagas",
+    storageBucket: "contadorluciernagas.firebasestorage.app",
+    messagingSenderId: "791068600068",
+    appId: "1:791068600068:web:d85476abf504ef3a935251",
+    measurementId: "G-6SZZ3E3MS7"
+    };
+  
+    // Inicializar Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+  
+    // Acceder al documento y actualizar el contador
+    const docRef = doc(db, "contadores", "luciCapitulo1");
+  
+    // Sumar +1 a las visitas
+    await updateDoc(docRef, {
+      vistas: increment(1)
+    });
+  
+    // Leer el valor actualizado y mostrarlo
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      document.getElementById("visitas").innerText = docSnap.data().vistas;
+    } else {
+      document.getElementById("visitas").innerText = "0";
+    }
+  </script>
+  
+
+
+
+
+
 <body>
     <div class="contenedor">
         <h1>Aura Lu I</h1>
@@ -147,7 +191,7 @@
 
 
 <script>
-fetch('https://api.countapi.xyz/hit/astrocony.luciernagas.capitulo1/counter')
+fetch('https://api.countapi.xyz/hit/astrocony.com.Luciernagas.capitulo1/counter')
   .then(response => response.json())
   .then(data => {
     document.getElementById('visitas').innerText = data.value;

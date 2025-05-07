@@ -66,22 +66,6 @@ a {
     margin-bottom: 20px;
 }
 
-#cusdis_thread {
-    max-width: 800px;
-    margin: 40px auto 0 auto;
-    padding: 20px;
-    background-color: #fdfdfd;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border: 1px solid #e0e0e0;
-    box-sizing: border-box;
-}
-
-/* Opcional: para que los comentarios internos se ajusten */
-#cusdis_thread iframe {
-    border-radius: 10px;
-}
-
 #fullscreen-btn {
     background-color: #fff; /* fondo blanco */
     color: #333; /* texto gris oscuro */

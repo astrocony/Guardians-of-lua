@@ -81,3 +81,20 @@ a {
 #cusdis_thread iframe {
     border-radius: 10px;
 }
+
+#fullscreen-btn {
+    background-color: #fff; /* fondo blanco */
+    color: #333; /* texto gris oscuro */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+}
+
+#fullscreen-btn:hover {
+    background-color: #f0f0f0;
+}

@@ -20,3 +20,14 @@ document.getElementById('fullscreen-btn').addEventListener('click', function() {
         }
     }
 });
+
+
+window.addEventListener('message', function(event) {
+    if (event.origin !== 'https://cusdis.com') return;
+    if (event.data && event.data.type === 'cusdis_resize') {
+        const iframe = document.querySelector('iframe[src*="cusdis.com"]');
+        if (iframe) {
+            iframe.style.height = event.data.data + 'px';
+        }
+    }
+});

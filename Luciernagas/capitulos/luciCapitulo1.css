@@ -82,3 +82,25 @@ a {
 #fullscreen-btn:hover {
     background-color: #f0f0f0;
 }
+
+
+.nota-iphone {
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#cusdis_thread {
+    width: 100%;
+    max-width: 700px;
+    margin: 40px auto;
+    position: relative;
+}
+
+#cusdis_thread iframe {
+    display: block;
+    width: 100% !important;
+    height: 900px !important;  /* aquí lo ponemos ALTO, fijo */
+    border: none !important;
+}

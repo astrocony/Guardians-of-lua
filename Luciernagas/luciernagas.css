@@ -1,0 +1,71 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    scroll-behavior: smooth;
+}
+
+.seccion {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.portada {
+    background-image: url('/img/luciernagas_fondo1.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.capitulos {
+    background-image: url('/img/luciernagas_fondo2.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.personajes {
+    background-image: url('/img/luciernagas_fondo3.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.contenedor {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 90%;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-top: 20px;
+}
+
+a {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: rgba(255,255,255,0.5);
+}

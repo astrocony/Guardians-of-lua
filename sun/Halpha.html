@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H-alpha Simulator: Doppler Effect on the Sun</title>
+  <link rel="stylesheet" href="Halpha.css" />
+</head>
+<body>
+  <div class="header">
+    <h1>H-alpha Simulator: Doppler Effect on the Sun</h1>
+    <p>Click on different points of the Sun to observe the Doppler shift in the H-alpha line.</p>
+  </div>
+
+  <div class="main-container">
+    <div class="sun-panel">
+      <canvas id="sunCanvas" width="600" height="600"></canvas>
+    </div>
+
+    <div class="spectrum-panel">
+      <canvas id="spectrumChart" width="600" height="300"></canvas>
+      <div id="info">
+        <p><strong>Projected velocity:</strong> <span id="velocity">--</span> km/s</p>
+        <p><strong>Observed wavelength (Hα):</strong> <span id="wavelength">--</span> nm</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="Halpha.js"></script>
+</body>
+</html>

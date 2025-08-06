@@ -10,7 +10,7 @@
 
 /* ==== Fondo y cuerpo principal ==== */
 body {
-  background: url('/img/fondo1.jpg') repeat;
+    background-color: #a12e84;
     overflow-y: auto; /* Permite scroll vertical */
     overflow-x: hidden; /* Evita el desplazamiento lateral */
     height: auto; /* Ajusta la altura según el contenido */
@@ -19,7 +19,6 @@ body {
     text-align: center;
     padding: 20px;
     color: #333;
-    background-color: #30336d; /* Fondo rosado */
     touch-action: manipulation; /* Evita zoom con gestos */
   }
 
@@ -34,6 +33,25 @@ body {
   font-size: 50px;  /* ajusta según tu fuente */
 }
 
+/* ==== marco ==== */
+
+.marco-juego {
+  position: relative;
+  width: 1000px;
+  height: 1000px;
+  margin: 0 auto;
+}
+
+
+.marco-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
 
 
 
@@ -63,13 +81,15 @@ body {
   /* ======== lugar reducido ====== */ 
 
   #viewport {
-    width: 500px;
-    height: 900px;
+    
+    width:600px;
+    height:900px;
     overflow: hidden;
     position: relative;
     margin: 50px auto;   /* centrado horizontal + bajado 50px */
     border: none;
     background:none;   /* si quieres un color base */
+    z-index: 2;
   }
   
   
@@ -230,31 +250,46 @@ body {
     height: auto;
     display: block;
   }
-  
-  #contadorPajaros, #contadorCorazones {
+
+
+  #corazon-contador, #pajaro-contador {
     position: absolute;
-    top: 50%;  /* centrado vertical */
-    transform: translateY(-50%);  /* ajuste fino */
-    font-family: 'MiPixelFont', monospace;  /* usa tu font pixel */
-    font-size: 100px;  /* cambia según necesites */
-    color: white;  /* o el color que combine */
+    width: 50px;
+    height: 50px;
+    image-rendering: pixelated;
+    z-index: 3;
+
   }
+
+  #corazon-contador {
+    top:100px;
+    right: 500px;
+  }
+
+  #pajaro-contador {
+    top:100px;
+    right:370px;
+  }
+  
+ 
   
   #contadorPajaros {
     position: absolute;
-    top: 45px;    /* ajusta según necesites */
+    top: 100px;    /* ajusta según necesites */
     left: 235px;   /* ajusta para ponerlo sobre el pájaro en la barra */
     font-family: 'PixelCony';  /* usa tu fuente */
     font-size: 40px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    z-index: 3;
   }
  
   #contadorCorazones {
     position: absolute;
-    top: 45px;
-    right: 350px;  /* ajusta para ponerlo sobre el corazón en la barra */
+    top: 100px;
+    right: 445px;  /* ajusta para ponerlo sobre el corazón en la barra */
     font-family: 'PixelCony';
     font-size: 40px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    z-index: 3;
   }
    

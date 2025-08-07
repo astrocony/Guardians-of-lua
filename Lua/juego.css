@@ -10,7 +10,7 @@
 
 /* ==== Fondo y cuerpo principal ==== */
 body {
-    background-color: #a12e84;
+    background-image: url('/img/fondopantalla.png');
     overflow-y: auto; /* Permite scroll vertical */
     overflow-x: hidden; /* Evita el desplazamiento lateral */
     height: auto; /* Ajusta la altura según el contenido */

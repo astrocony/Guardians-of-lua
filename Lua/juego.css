@@ -59,7 +59,7 @@ body {
   /* ==== Escenario ==== */
   
   /* 🎮 Contenedor del juego */
-  /* 🎮 Contenedor del juego */
+
   #escenario {
     position: relative;
     width: 800px;
@@ -156,60 +156,9 @@ body {
     }
   }
   
-  /* ==== Controles táctiles (alineados) ==== */
   
-  /* 🎮 Controles táctiles (alineados) */
-  #controles {
-    display:none;
 
-  }
-  
-  /* 🕹️ Botones de los controles táctiles */
-  #controles button {
-    width: 60px; /* Tamaño base */
-    height: 60px;
-    font-size: 20px;
-    border: none;
-    background-color: #f79ac0; /* Color rosado */
-    color: white;
-    border-radius: 10px; 
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  /* 🌟 Efecto al tocar los botones */
-  #controles button:active {
-    transform: scale(0.95); /* Pequeño efecto de presión */
-    background-color: #ff6496; /* Color más oscuro al tocar */
-  }
-  
-  /* 🎨 Efecto al pasar el mouse en PC */
-  #controles button:hover {
-    background-color: #e57fa3;
-    transform: translateY(-3px);
-  }
-  
-  /* 📱 Ajustes específicos en móviles */
-  @media (max-width: 768px) { 
-    #controles {
-        bottom: 15px; /* Ajustamos la posición */
-        gap: 12px; /* Separación entre botones */
-    }
-  
-    #controles button {
-        width: 55px; /* Ligeramente más pequeños en móviles */
-        height: 55px;
-        font-size: 18px;
-    }
-  }
-  
-  /* 🛑 Bloquear zoom en doble tap en móviles */
-  @media (max-width: 768px) {
-    html, body {
-        touch-action: manipulation;
-    }
-  }
-  
+  /* === Plataforma ==== */
   
   .plataforma {
     position: absolute;
@@ -293,3 +242,83 @@ body {
     z-index: 3;
   }
    
+
+
+
+
+/* ==== Controles táctiles (alineados) ==== */
+  
+  /* 🎮 Controles táctiles (alineados) */
+  #controles {
+    position: absolute;               /* siempre visible */
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;        /* arriba y luego fila inferior */
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+  }
+  
+  /* Fila inferior con ← ↓ → */
+  #controles .fila-abajo {
+    display: flex;
+    gap: 10px;
+  }
+
+
+    /* Botones: sin estilos del sistema */
+  #controles button {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    /* importante para touch: que no intente hacer zoom/gestos */
+    touch-action: none;
+  }
+
+
+    /* Imágenes: que ocupen el botón entero */
+  #controles button img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    display: block;
+    /* clave para que el dedo “pegue” al botón y no a la imagen */
+    pointer-events: none;
+  }
+
+  /* Opcional: hacerlos un poco más chicos en móviles */
+  @media (max-width: 768px) {
+    #controles button { width: 56px; height: 56px; }
+  }
+
+
+
+
+
+  
+  /* 🌟 Efecto al tocar los botones */
+  #controles button:active {
+    transform: scale(0.95); /* Pequeño efecto de presión */
+    background-color: #ff6496; /* Color más oscuro al tocar */
+  }
+  
+  /* 🎨 Efecto al pasar el mouse en PC */
+  #controles button:hover {
+    background-color: #e57fa3;
+    transform: translateY(-3px);
+  }
+  
+
+  
+  /* 🛑 Bloquear zoom en doble tap en móviles */
+  @media (max-width: 768px) {
+    html, body {
+        touch-action: manipulation;
+    }
+  }
+  

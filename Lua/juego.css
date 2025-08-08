@@ -332,6 +332,34 @@ body {
     -webkit-touch-callout: none; /* Evita el menú de copiar/guardar en iOS */
     user-select: none; /* Otros navegadores */
   }
+
+
+  /* Evitar seleccionar/long-press/menú en todo el juego */
+#contenedor-principal {
+  user-select: none;
+  -webkit-user-select: none;      /* Safari/iOS */
+  -moz-user-select: none;         /* Firefox */
+  -ms-user-select: none;          /* IE/Edge antiguo */
+  -webkit-touch-callout: none;    /* Quita menú "copiar/guardar" en iOS */
+}
+
+/* Evitar arrastrar imágenes */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* En los botones, que el toque caiga en el <button>, no en la <img> */
+#controles img {
+  pointer-events: none;
+}
+
+/* Ayuda a reducir zooms/taps raros en móvil */
+html, body {
+  -webkit-tap-highlight-color: transparent;  /* sin flash azul en iOS */
+  touch-action: manipulation;                /* menos gestos no deseados */
+}
+
   
 
 

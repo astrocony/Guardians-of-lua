@@ -33,6 +33,35 @@ body {
   font-size: 50px;  /* ajusta según tu fuente */
 }
 
+.instrucciones {
+  color: white;
+  font-family: 'PixelCony';
+  font-size: 20px;
+}
+
+.mision-title{
+  color:#ff6496;
+  font-family:'PixelCony'
+
+}
+
+
+
+/*== contenedor principal === */
+
+#contenedor-principal {
+  display: flex; /* opcional, para centrar */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* uno encima del otro */
+  margin-top: 20px;
+  transform: scale(0.9);
+  transform-origin: top center;
+
+}
+
+
+
 /* ==== marco ==== */
 
 .marco-juego {
@@ -82,13 +111,14 @@ body {
 
   #viewport {
     
+    max-width: 100%;
     width:600px;
     height:900px;
     overflow: hidden;
     position: relative;
-    margin: 50px auto;   /* centrado horizontal + bajado 50px */
+    margin: 0px auto;   /* centrado horizontal + bajado 50px */
     border: none;
-    background:none;   /* si quieres un color base */
+    background-color: none;   /* si quieres un color base */
     z-index: 2;
   }
   
@@ -255,8 +285,8 @@ body {
   /* 🎮 Controles táctiles (alineados) */
   #controles {
     position: absolute;               /* siempre visible */
-    bottom: -50px;
-    left: 50%;
+    bottom: -100px;
+    left: 80%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;        /* arriba y luego fila inferior */
@@ -268,7 +298,7 @@ body {
   /* Fila inferior con ← ↓ → */
   #controles .fila-abajo {
     display: flex;
-    gap: 10px;
+    gap: 80px;
   }
 
 
@@ -277,8 +307,8 @@ body {
     background: none;
     border: none;
     padding: 0;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     /* importante para touch: que no intente hacer zoom/gestos */
     touch-action: none;
@@ -295,11 +325,6 @@ body {
     pointer-events: none;
   }
 
-  /* Opcional: hacerlos un poco más chicos en móviles */
-  @media (max-width: 768px) {
-    #controles button { width: 56px; height: 56px; }
-  }
-
 
 
   img, button {
@@ -308,9 +333,6 @@ body {
     user-select: none; /* Otros navegadores */
   }
   
-
-
-
 
 
   
@@ -334,4 +356,18 @@ body {
         touch-action: manipulation;
     }
   }
+  
+
+
+  /* CELULAR */
+
+    
+    @media (max-width: 768px) {
+      #controles button { width: 100px; height: 100px; }
+
+      #contenedor-principal { 
+        transform: scale(0.8);
+        transform-origin: top-center;
+      }
+    }
   

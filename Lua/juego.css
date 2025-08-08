@@ -246,6 +246,10 @@ body {
 
 
 
+
+
+
+
 /* ==== Controles táctiles (alineados) ==== */
   
   /* 🎮 Controles táctiles (alineados) */
@@ -273,8 +277,8 @@ body {
     background: none;
     border: none;
     padding: 0;
-    width: 64px;
-    height: 64px;
+    width: 100px;
+    height: 100px;
     cursor: pointer;
     /* importante para touch: que no intente hacer zoom/gestos */
     touch-action: none;
@@ -295,6 +299,15 @@ body {
   @media (max-width: 768px) {
     #controles button { width: 56px; height: 56px; }
   }
+
+
+
+  img, button {
+    -webkit-user-select: none; /* Safari */
+    -webkit-touch-callout: none; /* Evita el menú de copiar/guardar en iOS */
+    user-select: none; /* Otros navegadores */
+  }
+  
 
 
 

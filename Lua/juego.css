@@ -391,7 +391,7 @@ html, body {
   #controles {
     position: fixed;  /* fuera del scale del juego */
     right: 400px;
-    bottom: -85px; /* respeta barra iPhone */
+    bottom: -70px; /* respeta barra iPhone */
     left: auto;                      /* por si quedó algo de antes */
     transform: none;                 /* quita translateX(-50%) si existía */
     display: flex;

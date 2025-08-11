@@ -398,10 +398,18 @@ html, body {
     gap: 12px;
     z-index: 1000;
   }
-  #controles .fila-arriba,
+  #controles .fila-arriba {
+    display: flex;
+    gap: 5px;                       /* separa botones entre sí */
+    justify-content: center;
+
+
+  }
+
+
   #controles .fila-abajo {
     display: flex;
-    gap: 12px;                       /* separa botones entre sí */
+    gap: 20px;                       /* separa botones entre sí */
     justify-content: center;
   }
   #controles button {

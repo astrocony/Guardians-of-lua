@@ -425,7 +425,7 @@ function fitGameMobile() {
 
   // factor de escala (mantiene proporción)
   //const s = isMobile ? Math.min(availW / BASE, availH / BASE) : 1;
-  const s = isMobile ? 0.75 : 1;
+  const s = isMobile ? 0.60 : 1;
 
   root.style.transform = `scale(${s})`;
   root.style.transformOrigin = 'top left';

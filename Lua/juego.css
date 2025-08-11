@@ -383,13 +383,13 @@ html, body {
     top: 0;
     left: 0;
     transform-origin: top left;
-    transform: scale(1.7); /* ⇦ ajusta 1.2/1.4 según te guste */
+    transform: scale(1.5); /* ⇦ ajusta 1.2/1.4 según te guste */
   }
 
   /* FLECHAS: abajo-derecha, grandes, separadas */
   #controles {
     position: fixed;  /* fuera del scale del juego */
-    right: 16px;
+    right: 400px;
     bottom: -100px; /* respeta barra iPhone */
     left: auto;                      /* por si quedó algo de antes */
     transform: none;                 /* quita translateX(-50%) si existía */
@@ -406,15 +406,14 @@ html, body {
 
   }
 
-
   #controles .fila-abajo {
     display: flex;
-    gap: 20px;                       /* separa botones entre sí */
+    gap: 50px;                       /* separa botones entre sí */
     justify-content: center;
   }
   #controles button {
-    width: 96px;                     /* tamaño dedo; prueba 88–104 */
-    height: 96px;
+    width: 80px;                     /* tamaño dedo; prueba 88–104 */
+    height: 80px;
     padding: 0;
     border: 0;
     background: none;
@@ -427,6 +426,21 @@ html, body {
     image-rendering: pixelated;
     pointer-events: none;            /* toque al botón, no a la img */
   }
+}
+
+.marco-img{
+  display:none;
+}
+
+#viewport {
+    
+  max-width: 100%;
+  position: absolute;
+  width:600px;
+  height:1000px;
+  overflow: hidden;
+  left: 5px;
+
 }
 
  

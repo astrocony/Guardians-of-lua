@@ -17,7 +17,7 @@ body {
     min-height: 100vh; /* Asegura que ocupe al menos la pantalla completa */
     font-family: 'Arial', sans-serif;
     text-align: center;
-    padding: 20px;
+    padding: 0px;
     color: #333;
     touch-action: manipulation; /* Evita zoom con gestos */
   }
@@ -373,6 +373,7 @@ html, body {
   html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
     overflow: hidden;
   }
   body { display: block; }
@@ -390,7 +391,7 @@ html, body {
   #controles {
     position: fixed;  /* fuera del scale del juego */
     right: 400px;
-    bottom: -100px; /* respeta barra iPhone */
+    bottom: -85px; /* respeta barra iPhone */
     left: auto;                      /* por si quedó algo de antes */
     transform: none;                 /* quita translateX(-50%) si existía */
     display: flex;
@@ -439,7 +440,7 @@ html, body {
   width:600px;
   height:1000px;
   overflow: hidden;
-  left: 5px;
+  left: 10px;
 
 }
 

@@ -414,7 +414,7 @@ function fitGameMobile() {
   if (!root) return;
 
   // tamaño base de TU juego (tu marco es 1000x1000)
-  const BASE = 600;
+  const BASE = 1000;
 
   // reserva opcional para botones (ajústalo o pon 0 si no quieres reservar)
   const CONTROLS_H = 140;
@@ -425,7 +425,7 @@ function fitGameMobile() {
 
   // factor de escala (mantiene proporción)
   //const s = isMobile ? Math.min(availW / BASE, availH / BASE) : 1;
-  const s = isMobile ? 0.60 : 1;
+  const s = isMobile ? 0.62 : 1;
 
   root.style.transform = `scale(${s})`;
   root.style.transformOrigin = 'top left';

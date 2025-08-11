@@ -363,7 +363,7 @@ html, body {
   
 
 
-  /* CELULAR */
+  /* ----------CELLPHONE-------------- */
 
 
     /* 🛑 Bloquear zoom en doble tap en móviles */
@@ -401,4 +401,39 @@ html, body {
 
 
     }
+
+    
+
+    /* --disposition on screen-- */
+
+
+
+    @media (max-width: 768px) {
+      html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+    
+      /* deja de centrar en móvil */
+      body {
+        display: block;
+      }
+    
+      /* pega el juego arriba-izquierda y prepáralo para escalar */
+      #contenedor-principal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-origin: top left;
+        /* el scale lo pondremos con JS abajo */
+      }
+    }
+
+
+
+   
+
+
+    
   

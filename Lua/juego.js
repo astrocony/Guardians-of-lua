@@ -404,6 +404,37 @@ document.addEventListener("keydown", (e) => {
 });
 
 
+/* ---- hacer zoom pantalla automatico en celular ---- */
+
+
+function fitGameMobile() {
+  // ¿estamos en pantalla chica?
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const root = document.getElementById('contenedor-principal');
+  if (!root) return;
+
+  // tamaño base de TU juego (tu marco es 1000x1000)
+  const BASE = 1000;
+
+  // reserva opcional para botones (ajústalo o pon 0 si no quieres reservar)
+  const CONTROLS_H = 140;
+
+  // espacio disponible en pantalla (CSS px)
+  const availW = window.innerWidth;
+  const availH = Math.max(0, window.innerHeight - CONTROLS_H);
+
+  // factor de escala (mantiene proporción)
+  const s = isMobile ? Math.min(availW / BASE, availH / BASE) : 1;
+
+  root.style.transform = `scale(${s})`;
+  root.style.transformOrigin = 'top left';
+}
+
+// correr al cargar y cuando cambie tamaño/orientación
+window.addEventListener('load', fitGameMobile);
+window.addEventListener('resize', fitGameMobile);
+window.addEventListener('orientationchange', fitGameMobile);
+
 
 
 

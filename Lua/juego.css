@@ -367,21 +367,8 @@ html, body {
 
 
     /* 🛑 Bloquear zoom en doble tap en móviles */
-    @media (max-width: 768px) {
-      html, body {
-          touch-action: manipulation;
-      }
-    }
 
-    
-    @media (max-width: 768px) {
-      #controles button { width: 100px; height: 100px; }
 
-      #contenedor-principal { 
-        transform: scale(0.8);
-        transform-origin: top center;
-      }
-    }
 
 
     @media (max-width: 768px) {      
@@ -402,7 +389,7 @@ html, body {
 
     }
 
-    
+
 
     /* --disposition on screen-- */
 
@@ -430,6 +417,26 @@ html, body {
       }
     }
 
+    /*--escalar---*/
+
+
+    /* 📱 Ajustes para móviles */
+    @media (max-width: 768px) {
+      #contenedor-principal {
+        transform-origin: top left;
+        transform: scale(1.3); /* aumenta o baja este valor hasta que quede bien */
+      }
+   }
+
+
+   /*--- botones escalar ----*/
+
+
+    @media (max-width: 768px) {
+      #controles button { width: 100px; height: 100px; }
+
+
+ 
 
 
    

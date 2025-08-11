@@ -98,9 +98,6 @@ body {
     background-position: center;
     border: none;
     overflow: hidden;
-    margin: none;
-    border-radius: none;
-    box-shadow: none;
   }
 
 
@@ -139,23 +136,9 @@ body {
     opacity: 1;
   }
   
-  /* ==== Botón ==== */
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #f79ac0;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-  }
+ 
   
-  /* Efecto hover para el botón */
-  button:hover {
-    background-color: #e57fa3;
-    transform: translateY(-3px);
-  }
+
   
   /* ==== Texto principal (h1) ==== */
   h1 {
@@ -327,11 +310,7 @@ body {
 
 
 
-  img, button {
-    -webkit-user-select: none; /* Safari */
-    -webkit-touch-callout: none; /* Evita el menú de copiar/guardar en iOS */
-    user-select: none; /* Otros navegadores */
-  }
+
 
 
   /* Evitar seleccionar/long-press/menú en todo el juego */
@@ -378,16 +357,18 @@ html, body {
   
 
   
-  /* 🛑 Bloquear zoom en doble tap en móviles */
-  @media (max-width: 768px) {
-    html, body {
-        touch-action: manipulation;
-    }
-  }
   
 
 
   /* CELULAR */
+
+
+    /* 🛑 Bloquear zoom en doble tap en móviles */
+    @media (max-width: 768px) {
+      html, body {
+          touch-action: manipulation;
+      }
+    }
 
     
     @media (max-width: 768px) {
@@ -395,7 +376,26 @@ html, body {
 
       #contenedor-principal { 
         transform: scale(0.8);
-        transform-origin: top-center;
+        transform-origin: top center;
       }
+    }
+
+
+    @media (max-width: 768px) {      
+      
+      .titulo-pixel {
+      display: none;
+    }
+    
+    .instrucciones {
+      display: none;
+    }
+
+    .mision-title{
+      display: none;
+  
+  }
+
+
     }
   

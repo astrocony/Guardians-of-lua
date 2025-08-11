@@ -362,78 +362,66 @@ html, body {
   
   
 
+/* ---------- CELLPHONE (<=768px) ---------- */
+@media (max-width: 768px) {
+  /* Ocultar cabecera/textos en móvil */
+  .titulo-pixel,
+  .instrucciones,
+  .mision-title { display: none; }
 
-  /* ----------CELLPHONE-------------- */
+  /* Página sin scroll y pegada arriba-izquierda */
+  html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+  body { display: block; }
 
-
-    /* 🛑 Bloquear zoom en doble tap en móviles */
-
-
-
-
-    @media (max-width: 768px) {      
-      
-      .titulo-pixel {
-      display: none;
-    }
-    
-    .instrucciones {
-      display: none;
-    }
-
-    .mision-title{
-      display: none;
-  
+  /* El juego (marco+viewport) se pega a top-left y se escala */
+  #contenedor-principal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    transform: scale(1.3); /* ⇦ ajusta 1.2/1.4 según te guste */
   }
 
+  /* FLECHAS: abajo-derecha, grandes, separadas */
+  #controles {
+    position: fixed;  /* fuera del scale del juego */
+    right: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom)); /* respeta barra iPhone */
+    left: auto;                      /* por si quedó algo de antes */
+    transform: none;                 /* quita translateX(-50%) si existía */
+    display: flex;
+    flex-direction: column;          /* fila-arriba y fila-abajo en columna */
+    gap: 12px;
+    z-index: 1000;
+  }
+  #controles .fila-arriba,
+  #controles .fila-abajo {
+    display: flex;
+    gap: 12px;                       /* separa botones entre sí */
+    justify-content: center;
+  }
+  #controles button {
+    width: 96px;                     /* tamaño dedo; prueba 88–104 */
+    height: 96px;
+    padding: 0;
+    border: 0;
+    background: none;
+    touch-action: none;
+  }
+  #controles button img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+    pointer-events: none;            /* toque al botón, no a la img */
+  }
+}
 
-    }
-
-
-
-    /* --disposition on screen-- */
-
-
-
-    @media (max-width: 768px) {
-      html, body {
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-      }
-    
-      /* deja de centrar en móvil */
-      body {
-        display: block;
-      }
-    
-      /* pega el juego arriba-izquierda y prepáralo para escalar */
-      #contenedor-principal {
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform-origin: top left;
-        /* el scale lo pondremos con JS abajo */
-      }
-    }
-
-    /*--escalar---*/
-
-
-    /* 📱 Ajustes para móviles */
-    @media (max-width: 768px) {
-      #contenedor-principal {
-        transform-origin: top left;
-        transform: scale(1.3); /* aumenta o baja este valor hasta que quede bien */
-      }
-   }
-
-
-   /*--- botones escalar ----*/
-
-
-    @media (max-width: 768px) {
-      #controles button { width: 100px; height: 100px; }
+ 
 
 
  

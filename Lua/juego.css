@@ -109,18 +109,15 @@ body {
   #viewport {
     
     max-width: 100%;
+    position: absolute;
     width:600px;
-    height:900px;
+    height:1000px;
     overflow: hidden;
-    position: relative;
-    margin: 0px auto;   /* centrado horizontal + bajado 50px */
-    border: none;
-    background-color: none;   /* si quieres un color base */
-    z-index: 2;
+    left: 200px;
+
   }
   
   
-
   
   
   /* ==== Imagen de Lua (animada) ==== */
@@ -137,8 +134,6 @@ body {
   }
   
  
-  
-
   
   /* ==== Texto principal (h1) ==== */
   h1 {
@@ -278,6 +273,14 @@ body {
     z-index: 999;
   }
   
+  #controles .fila-arriba {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+
+  }
+
+
   /* Fila inferior con ← ↓ → */
   #controles .fila-abajo {
     display: flex;

@@ -164,7 +164,7 @@ function moverLua() {
 
 /* ----- Seguir a lua con la camara ----- */
 
-const viewportWidth = 500;   // el tamaño visible de la pantalla
+const viewportWidth = 600;   // el tamaño visible de la pantalla
 const escenarioWidth = 800;  // el tamaño total del escenario
 
 
@@ -281,26 +281,7 @@ function detectarColisionPlataforma() {
 }
 
 
-/* -------- detectar colicion ITEM ------ 
 
-
-const items = document.querySelectorAll(".item");
-
-function detectarColisionItem() {
-  const luaRect = lua.getBoundingClientRect();
-
-  items.forEach((item) => {
-    const itemRect = item.getBoundingClientRect();
-    const overlap = !(luaRect.right < itemRect.left || 
-                      luaRect.left > itemRect.right || 
-                      luaRect.bottom < itemRect.top || 
-                      luaRect.top > itemRect.bottom);
-    if (overlap && item.style.display !== 'none') {
-      item.style.display = 'none'; // Desaparece el ítem
-      sumarItem(item.dataset.tipo); // Suma al contador
-    }
-  });
-} */
 
 
 
@@ -359,8 +340,14 @@ document.getElementById('btnIzquierda').addEventListener('touchstart', () => key
 document.getElementById('btnDerecha').addEventListener('touchstart', () => keys['ArrowRight'] = true);
 document.getElementById('btnSalto').addEventListener('touchstart', () => saltar());
 
+document.getElementById('btnSalto_left').addEventListener('touchstart',() => {keys['ArrowLeft']=true; saltar();} );
+document.getElementById('btnSalto_right').addEventListener('touchstart',()=>{keys['ArrowRight']=true;saltar();});
+
 document.getElementById('btnIzquierda').addEventListener('touchend', () => keys['ArrowLeft'] = false);
 document.getElementById('btnDerecha').addEventListener('touchend', () => keys['ArrowRight'] = false);
+
+document.getElementById('btnSalto_left').addEventListener('touchend', () => keys['ArrowLeft'] = false);
+document.getElementById('btnSalto_right').addEventListener('touchend', () => keys['ArrowRight'] = false);
 
 document.addEventListener('keydown', (e) => {
   if (e.key === "ArrowUp") saltar();

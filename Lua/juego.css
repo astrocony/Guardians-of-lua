@@ -390,7 +390,7 @@ html, body {
   #controles {
     position: fixed;  /* fuera del scale del juego */
     right: 16px;
-    bottom: max(16px, env(safe-area-inset-bottom)); /* respeta barra iPhone */
+    bottom: max(50px, env(safe-area-inset-bottom)); /* respeta barra iPhone */
     left: auto;                      /* por si quedó algo de antes */
     transform: none;                 /* quita translateX(-50%) si existía */
     display: flex;

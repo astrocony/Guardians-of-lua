@@ -258,10 +258,12 @@ body {
 /* ==== Controles táctiles (alineados) ==== */
   
   /* 🎮 Controles táctiles (alineados) */
+
+
   #controles {
     position: absolute;               /* siempre visible */
     bottom: -100px;
-    left: 80%;
+    left: 70%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;        /* arriba y luego fila inferior */
@@ -307,6 +309,63 @@ body {
     /* clave para que el dedo “pegue” al botón y no a la imagen */
     pointer-events: none;
   }
+
+  /* controles izquierda */
+
+  #controles-2 {
+    position: absolute;               /* siempre visible */
+    bottom: -100px;
+    right: 45%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;        /* arriba y luego fila inferior */
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+  }
+  
+  #controles-2 .fila-arriba-2 {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+
+  }
+
+
+  /* Fila inferior con ← ↓ → */
+  #controles-2 .fila-abajo-2 {
+    display: flex;
+    gap: 5px;
+  }
+
+
+    /* Botones: sin estilos del sistema */
+  #controles-2 button {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    /* importante para touch: que no intente hacer zoom/gestos */
+    touch-action: none;
+  }
+
+
+    /* Imágenes: que ocupen el botón entero */
+  #controles-2 button img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    display: block;
+    /* clave para que el dedo “pegue” al botón y no a la imagen */
+    pointer-events: none;
+  }
+
+
+
+
+
 
 
 

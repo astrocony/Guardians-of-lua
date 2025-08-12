@@ -112,29 +112,35 @@ function setDefensa(activa) {
   }
 }
 
-function atacar() {
-  if (ataqueEnProgreso) return;
+function atacar(modo) {
+  if (modo== true) {
+    if (ataqueEnProgreso) return;
 
-  sonidoAtaque.cloneNode().play();
-  ataqueEnProgreso = true;
+    sonidoAtaque.cloneNode().play();
+    ataqueEnProgreso = true;
+  
+    const secuencia = [
+      '/img/lua_ataque1.png',
+      '/img/lua_ataque2.png',
+      '/img/lua_ataque3.png'
+    ];
+    let i = 0;
+  
+    const animarAtaque = setInterval(() => {
+      lua.src = secuencia[i];
+      lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)';
+      i++;
+      if (i >= secuencia.length) {
+        clearInterval(animarAtaque);
+        ataqueEnProgreso = false;
+        lua.src = modoDefensa ? '/img/lua_defensa1.png' : '/img/lua_idle.png';
+      }
+    }, 250);
+  } else if (modo== false){
+    clearInterval(ataqueInterval);
+    ataqueInterval= null;
+  }
 
-  const secuencia = [
-    '/img/lua_ataque1.png',
-    '/img/lua_ataque2.png',
-    '/img/lua_ataque3.png'
-  ];
-  let i = 0;
-
-  const animarAtaque = setInterval(() => {
-    lua.src = secuencia[i];
-    lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)';
-    i++;
-    if (i >= secuencia.length) {
-      clearInterval(animarAtaque);
-      ataqueEnProgreso = false;
-      lua.src = modoDefensa ? '/img/lua_defensa1.png' : '/img/lua_idle.png';
-    }
-  }, 250);
 }
 
 
@@ -323,7 +329,7 @@ document.addEventListener('keyup', (e) => {
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'w' || e.key === 'W') setDefensa(true);
-  if (e.key === 'a' || e.key === 'A') atacar();
+  if (e.key === 'a' || e.key === 'A') atacar(true);
 });
 
 document.addEventListener('keyup', (e) => {
@@ -345,7 +351,8 @@ document.getElementById('btnSalto').addEventListener('touchstart', () => saltar(
 document.getElementById('btnSalto_left').addEventListener('touchstart',() => {keys['ArrowLeft']=true; saltar();} );
 document.getElementById('btnSalto_right').addEventListener('touchstart',()=>{keys['ArrowRight']=true;saltar();});
 
-document.getElementById('btn_a').addEventListener('touchstart',() => atacar()); 
+document.getElementById('btn_a').addEventListener('touchstart',() => atacar(true)); 
+document.getElementById('btn_a').addEventListener('touchend', () => atacar(false));
 
 document.getElementById('btn_w').addEventListener('touchstart', () => setDefensa(true));
 document.getElementById('btn_w').addEventListener('touchend', () => setDefensa(false));

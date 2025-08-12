@@ -315,15 +315,15 @@ body {
   #controles-2 {
     position: absolute;               /* siempre visible */
     bottom: -100px;
-    right: 45%;
-    transform: translateX(-50%);
+    
+    
     display: flex;
     flex-direction: column;        /* arriba y luego fila inferior */
     align-items: center;
     gap: 10px;
     z-index: 999;
   }
-  
+
   #controles-2 .fila-arriba-2 {
     display: flex;
     gap: 5px;
@@ -338,8 +338,6 @@ body {
     gap: 5px;
   }
 
-
-    /* Botones: sin estilos del sistema */
   #controles-2 button {
     background: none;
     border: none;
@@ -351,8 +349,6 @@ body {
     touch-action: none;
   }
 
-
-    /* Imágenes: que ocupen el botón entero */
   #controles-2 button img {
     width: 100%;
     height: 100%;
@@ -361,6 +357,15 @@ body {
     /* clave para que el dedo “pegue” al botón y no a la imagen */
     pointer-events: none;
   }
+
+ 
+
+
+
+
+
+
+
 
 
 
@@ -502,7 +507,7 @@ html, body {
 
   #controles-2 {
     position: fixed;  /* fuera del scale del juego */
-    left: 400px;
+    left: 300px;
     bottom: -70px; /* respeta barra iPhone */
     left: auto;                      /* por si quedó algo de antes */
     transform: none;                 /* quita translateX(-50%) si existía */

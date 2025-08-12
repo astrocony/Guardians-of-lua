@@ -69,6 +69,7 @@ body {
   width: 1000px;
   height: 1000px;
   margin: 0 auto;
+  inset: 0px;
 }
 
 
@@ -90,7 +91,8 @@ body {
   /* 🎮 Contenedor del juego */
 
   #escenario {
-    position: relative;
+    position: absolute;
+    inset: none;
     width: 800px;
     height: 800px;
     background-image: url('/img/fondo_real.png');
@@ -201,12 +203,7 @@ body {
     pointer-events: none;
   }
   
-  
-  #barraContadores {
-    width: 500px;
-    height: auto;
-    display: block;
-  }
+
 
 
   #corazon-contador, #pajaro-contador {
@@ -358,6 +355,17 @@ html, body {
     transform: translateY(-3px);
   }
   
+  #controles-2 button:active {
+    transform: scale(0.95); /* Pequeño efecto de presión */
+    background-color: #ff6496; /* Color más oscuro al tocar */
+  }
+  
+  /* 🎨 Efecto al pasar el mouse en PC */
+  #controles-2 button:hover {
+    background-color: #e57fa3;
+    transform: translateY(-3px);
+  }
+  
 
   
   
@@ -387,7 +395,10 @@ html, body {
     transform: scale(1.5); /* ⇦ ajusta 1.2/1.4 según te guste */
   }
 
-  /* FLECHAS: abajo-derecha, grandes, separadas */
+  /* -----CONTROLES------ */
+
+  /*------- flechas-----*/
+
   #controles {
     position: fixed;  /* fuera del scale del juego */
     right: 400px;
@@ -427,24 +438,91 @@ html, body {
     image-rendering: pixelated;
     pointer-events: none;            /* toque al botón, no a la img */
   }
+
+  /*--- ataques ---*/
+
+  #controles-2 {
+    position: fixed;  /* fuera del scale del juego */
+    left: 400px;
+    bottom: -70px; /* respeta barra iPhone */
+    left: auto;                      /* por si quedó algo de antes */
+    transform: none;                 /* quita translateX(-50%) si existía */
+    display: flex;
+    flex-direction: column;          /* fila-arriba y fila-abajo en columna */
+    gap: 12px;
+    z-index: 1000;
+  }
+  #controles .fila-arriba-2 {
+    display: flex;
+    gap: 5px;                       /* separa botones entre sí */
+    justify-content: center;
+
+
+  }
+
+  #controles .fila-abajo-2 {
+    display: flex;
+    gap: 5px;                       /* separa botones entre sí */
+    justify-content: center;
+  }
+  #controles-2 button {
+    width: 80px;                     /* tamaño dedo; prueba 88–104 */
+    height: 80px;
+    padding: 0;
+    border: 0;
+    background: none;
+    touch-action: none;
+  }
+  #controles-2 button img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+    pointer-events: none;            /* toque al botón, no a la img */
+  }
+  
+
+
+
+  /*---- marco ----*/
+  
+
+  .marco-img{
+    display:none;
+  }
+
+  .marco-juego{
+    width: 1000px;
+    height: 900px;
+  }
+
+  #viewport {
+      
+    max-width: 100%;
+    position: relative;
+    top: 0px;
+    width:600px;
+    height:800px;
+    overflow: hidden;
+    left: 10px;
+
+  }
+
+  #escenario {
+    position: absolute;
+    inset: 0px;
+
+  }
+
+  #contadores {
+    position: absolute;
+    top:0;
+
+  }
+
+  
+
 }
-
-.marco-img{
-  display:none;
-}
-
-#viewport {
-    
-  max-width: 100%;
-  position: absolute;
-  width:600px;
-  height:1000px;
-  overflow: hidden;
-  left: 10px;
-
-}
-
- 
 
 
  

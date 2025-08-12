@@ -22,62 +22,6 @@ const sonidoAtaque = new Audio("/img/audios/espada_lua.mp3");
 
 
 
-document.addEventListener("keydown", (e) => {
-  if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-    e.preventDefault(); // Evita el desplazamiento de la página
-  }
-});
-
-document.addEventListener('keydown', (e) => {   //e.key es que tecla esta presionada
-  keys[e.key] = true;
-});
-
-document.addEventListener('keyup', (e) => {
-  keys[e.key] = false;
-  if (!enElAire) lua.src = '/img/lua_idle.png';
-});
-
-
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'w' || e.key === 'W') {
-    modoDefensa = true;
-  }
-
-  if ((e.key === 'a' || e.key === 'A') && !ataqueEnProgreso) {
-    sonidoAtaque.cloneNode().play();
-
-    ataqueEnProgreso = true;
-    let secuencia = [
-      '/img/lua_ataque1.png',
-      '/img/lua_ataque2.png',
-      '/img/lua_ataque3.png'
-    ];
-    let i = 0;
-    let animarAtaque = setInterval(() => {
-      lua.src = secuencia[i];
-      lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)';
-      i++;
-      if (i >= secuencia.length) {
-        clearInterval(animarAtaque);
-        ataqueEnProgreso = false;
-        if (modoDefensa) {
-          lua.src = '/img/lua_defensa1.png';
-        } else {
-          lua.src = '/img/lua_idle.png';
-        }
-      }
-    }, 250);
-  }
-});
-
-document.addEventListener('keyup', (e) => {
-  if (e.key === 'w' || e.key === 'W') {
-    modoDefensa = false;
-  }
-});
-
-
 
 /* MOVER A LUA */
 
@@ -156,6 +100,41 @@ function moverLua() {
   actualizarCamara();
   requestAnimationFrame(moverLua);
   detectarColisionItems();
+}
+
+
+/* -------  funcion atacar y defender -------*/
+
+function setDefensa(activa) {
+  modoDefensa = !!activa;
+  if (!enElAire && !ataqueEnProgreso) {
+    lua.src = activa ? '/img/lua_defensa1.png' : '/img/lua_idle.png';
+  }
+}
+
+function atacar() {
+  if (ataqueEnProgreso) return;
+
+  sonidoAtaque.cloneNode().play();
+  ataqueEnProgreso = true;
+
+  const secuencia = [
+    '/img/lua_ataque1.png',
+    '/img/lua_ataque2.png',
+    '/img/lua_ataque3.png'
+  ];
+  let i = 0;
+
+  const animarAtaque = setInterval(() => {
+    lua.src = secuencia[i];
+    lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)';
+    i++;
+    if (i >= secuencia.length) {
+      clearInterval(animarAtaque);
+      ataqueEnProgreso = false;
+      lua.src = modoDefensa ? '/img/lua_defensa1.png' : '/img/lua_idle.png';
+    }
+  }, 250);
 }
 
 
@@ -324,9 +303,32 @@ function detectarColisionItems() {
 
 
 
+/* ------ teclado ------*/
+
+document.addEventListener("keydown", (e) => {
+  if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+    e.preventDefault(); // Evita el desplazamiento de la página
+  }
+});
+
+document.addEventListener('keydown', (e) => {   //e.key es que tecla esta presionada
+  keys[e.key] = true;
+});
+
+document.addEventListener('keyup', (e) => {
+  keys[e.key] = false;
+  if (!enElAire) lua.src = '/img/lua_idle.png';
+});
 
 
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'w' || e.key === 'W') setDefensa(true);
+  if (e.key === 'a' || e.key === 'A') atacar();
+});
 
+document.addEventListener('keyup', (e) => {
+  if (e.key === 'w' || e.key === 'W') setDefensa(false);
+});
 
 
 
@@ -342,6 +344,11 @@ document.getElementById('btnSalto').addEventListener('touchstart', () => saltar(
 
 document.getElementById('btnSalto_left').addEventListener('touchstart',() => {keys['ArrowLeft']=true; saltar();} );
 document.getElementById('btnSalto_right').addEventListener('touchstart',()=>{keys['ArrowRight']=true;saltar();});
+
+document.getElementById('btn_a').addEventListener('touchstart',() => atacar()); 
+
+document.getElementById('btn_w').addEventListener('touchstart', () => setDefensa(true));
+document.getElementById('btn_w').addEventListener('touchend', () => setDefensa(false));
 
 document.getElementById('btnIzquierda').addEventListener('touchend', () => keys['ArrowLeft'] = false);
 document.getElementById('btnDerecha').addEventListener('touchend', () => keys['ArrowRight'] = false);

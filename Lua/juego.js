@@ -1,3 +1,6 @@
+// === Estado global / setup === //
+let gameStarted = false; // <<< nuevo: el juego parte bloqueado
+
 // === Movimiento de Lua === //
 const lua = document.getElementById('luaSprite');
 const items = document.querySelectorAll(".item");
@@ -8,7 +11,7 @@ let enElAire = false;
 let velocidad = 10;
 const suelo = 690;
 lua.style.top = `${suelo}px`;
-lua.style.left = `${posX}px`; // asegura la posición inicial
+lua.style.left = `${posX}px`;
 
 const plataformas = document.querySelectorAll(".plataforma");
 
@@ -16,22 +19,14 @@ let modoDefensa = false;
 let mirandoDerecha = true;  // para saber a qué lado mira Lua
 let ataqueEnProgreso = false;
 
-
 const sonidoAtaque = new Audio("/img/audios/espada_lua.mp3");
 
-
-
-
-
-/* MOVER A LUA */
-
-
+// === Loop principal === //
 function moverLua() {
   let moviendo = false;
 
   if (keys['ArrowRight'] && posX < 730) {
     if (modoDefensa || ataqueEnProgreso) {
-      // retrocede
       posX += step;
       lua.style.left = `${posX}px`;
       lua.src = modoDefensa ? '/img/lua_defensa2.png' : lua.src;
@@ -95,16 +90,12 @@ function moverLua() {
     }
   }
 
-  // ✅ ESTAS DOS LÍNEAS VAN AQUÍ, AL FINAL
-
   actualizarCamara();
-  requestAnimationFrame(moverLua);
   detectarColisionItems();
+  requestAnimationFrame(moverLua);
 }
 
-
-/* -------  funcion atacar y defender -------*/
-
+// -------  atacar y defender ------- //
 function setDefensa(activa) {
   modoDefensa = !!activa;
   if (!enElAire && !ataqueEnProgreso) {
@@ -113,19 +104,20 @@ function setDefensa(activa) {
 }
 
 function atacar(modo) {
-  if (modo== true) {
+  // versión simple: dispara una secuencia por toque/tecla
+  if (modo === true) {
     if (ataqueEnProgreso) return;
 
     sonidoAtaque.cloneNode().play();
     ataqueEnProgreso = true;
-  
+
     const secuencia = [
       '/img/lua_ataque1.png',
       '/img/lua_ataque2.png',
       '/img/lua_ataque3.png'
     ];
     let i = 0;
-  
+
     const animarAtaque = setInterval(() => {
       lua.src = secuencia[i];
       lua.style.transform = mirandoDerecha ? 'scaleX(1)' : 'scaleX(-1)';
@@ -136,30 +128,18 @@ function atacar(modo) {
         lua.src = modoDefensa ? '/img/lua_defensa1.png' : '/img/lua_idle.png';
       }
     }, 250);
-  } else if (modo== false){
-    clearInterval(ataqueInterval);
-    ataqueInterval= null;
   }
-
+  // si quieres ataque continuo al dejar presionado, después lo hacemos bien con interval
 }
 
-
-
-
-
-/* ----- Seguir a lua con la camara ----- */
-
+// ----- Cámara ----- //
 const viewportWidth = 600;   // el tamaño visible de la pantalla
 const escenarioWidth = 800;  // el tamaño total del escenario
 
-
 let camaraX = 0;
-let camaraY = 0;
 
 function actualizarCamara() {
   let objetivoX = posX - (viewportWidth / 2); // normal
-
-  // Definir los márgenes de la "zona muerta"
   const margen = 250;
   const limiteIzquierdo = camaraX + margen;
   const limiteDerecho = camaraX + viewportWidth - margen;
@@ -169,23 +149,12 @@ function actualizarCamara() {
   } else if (posX > limiteDerecho) {
     camaraX = Math.min(escenarioWidth - viewportWidth, posX - viewportWidth + margen);
   }
-  
-  // Aplicar transform solo en X
   document.getElementById('escenario').style.transform = `translate(${-camaraX}px, 0px)`;
 }
 
-
-
-
-
-
-
-
-
-/* ----- saltar ---- */ 
-
+// ----- Saltar ----- //
 function saltar() {
-  if (!enElAire) {  // Solo puede saltar si no está en el aire
+  if (!enElAire) {
     enElAire = true;
     lua.src = '/img/lua_pre_jump.png';
 
@@ -193,7 +162,7 @@ function saltar() {
       lua.src = '/img/lua_jump.png';
     }, 100);
 
-    let alturaMaxima = parseInt(lua.style.top) - 120;  // Salto relativo a la posición actual
+    let alturaMaxima = parseInt(lua.style.top) - 120;
     let subida = setInterval(() => {
       let posicionActual = parseInt(lua.style.top);
 
@@ -238,13 +207,7 @@ function saltar() {
   }
 }
 
-
-
-
-/* ------- Colisioones ------ */
-
-
-
+// ------- Colisiones plataforma ------ //
 function detectarColisionPlataforma() {
   const luaTop = parseInt(lua.style.top) || suelo;
   const luaBottom = luaTop + lua.offsetHeight;
@@ -265,13 +228,7 @@ function detectarColisionPlataforma() {
   return null;
 }
 
-
-
-
-
-
-/* --------- contador y detector de objetos ------- */
-
+// --------- Items ------- //
 let cuentaPajaros = 0;
 let cuentaCorazones = 0;
 
@@ -282,7 +239,7 @@ function detectarColisionItems() {
   const luaRect = lua.getBoundingClientRect();
 
   items.forEach((item) => {
-    if (item.style.display === 'none') return;  // ✅ Ya desaparecido, no revisa
+    if (item.style.display === 'none') return;
 
     const itemRect = item.getBoundingClientRect();
 
@@ -292,167 +249,171 @@ function detectarColisionItems() {
                        luaRect.top > itemRect.bottom);
 
     if (colision) {
-      item.style.display = 'none'; // ✅ Desaparece al colisionar
+      item.style.display = 'none';
 
       if (item.dataset.tipo === 'pajaro') {
         cuentaPajaros++;
         document.getElementById('contadorPajaros').textContent = ` x ${cuentaPajaros}`;
-        sonidoPajaro.cloneNode().play();  // 🔊 Reproducir sonido del pájaro
+        sonidoPajaro.cloneNode().play();
       } else if (item.dataset.tipo === 'corazon') {
         cuentaCorazones++;
         document.getElementById('contadorCorazones').textContent = ` x ${cuentaCorazones}`;
-        sonidoCorazon.cloneNode().play();  // 🔊 Reproducir sonido del corazón
+        sonidoCorazon.cloneNode().play();
       }
     }
   });
 }
 
-
-
-/* ------ teclado ------*/
-
+// ------ Teclado (con bloqueo) ------ //
+// Evita scroll con flechas SIEMPRE
 document.addEventListener("keydown", (e) => {
   if (["ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-    e.preventDefault(); // Evita el desplazamiento de la página
+    e.preventDefault();
   }
 });
 
-document.addEventListener('keydown', (e) => {   //e.key es que tecla esta presionada
+// Movimiento por flechas
+document.addEventListener('keydown', (e) => {
+  if (!gameStarted) return; // <<< bloqueo
   keys[e.key] = true;
 });
-
 document.addEventListener('keyup', (e) => {
+  if (!gameStarted) return; // <<< bloqueo
   keys[e.key] = false;
   if (!enElAire) lua.src = '/img/lua_idle.png';
 });
 
-
+// Ataque/Defensa por teclado
 document.addEventListener('keydown', (e) => {
+  if (!gameStarted) return; // <<< bloqueo
   if (e.key === 'w' || e.key === 'W') setDefensa(true);
   if (e.key === 'a' || e.key === 'A') atacar(true);
 });
-
 document.addEventListener('keyup', (e) => {
+  if (!gameStarted) return; // <<< bloqueo
   if (e.key === 'w' || e.key === 'W') setDefensa(false);
 });
-
-
-
-
-
-/* -------touch botones (creo)------ */
-
-
-
-document.getElementById('btnIzquierda').addEventListener('touchstart', () => keys['ArrowLeft'] = true);
-document.getElementById('btnDerecha').addEventListener('touchstart', () => keys['ArrowRight'] = true);
-document.getElementById('btnSalto').addEventListener('touchstart', () => saltar());
-
-document.getElementById('btnSalto_left').addEventListener('touchstart',() => {keys['ArrowLeft']=true; saltar();} );
-document.getElementById('btnSalto_right').addEventListener('touchstart',()=>{keys['ArrowRight']=true;saltar();});
-
-document.getElementById('btn_a').addEventListener('touchstart',() => atacar(true)); 
-document.getElementById('btn_a').addEventListener('touchend', () => atacar(false));
-
-document.getElementById('btn_w').addEventListener('touchstart', () => setDefensa(true));
-document.getElementById('btn_w').addEventListener('touchend', () => setDefensa(false));
-
-document.getElementById('btnIzquierda').addEventListener('touchend', () => keys['ArrowLeft'] = false);
-document.getElementById('btnDerecha').addEventListener('touchend', () => keys['ArrowRight'] = false);
-
-document.getElementById('btnSalto_left').addEventListener('touchend', () => keys['ArrowLeft'] = false);
-document.getElementById('btnSalto_right').addEventListener('touchend', () => keys['ArrowRight'] = false);
-
 document.addEventListener('keydown', (e) => {
+  if (!gameStarted) return; // <<< bloqueo
   if (e.key === "ArrowUp") saltar();
 });
 
-moverLua();
-/*aplicarGravedad(); */
+// ------ Touch (con bloqueo) ------ //
+const $ = (id) => document.getElementById(id);
 
+$('btnIzquierda').addEventListener('touchstart', (e) => { if (!gameStarted) return; keys['ArrowLeft'] = true; });
+$('btnDerecha').addEventListener('touchstart',   (e) => { if (!gameStarted) return; keys['ArrowRight'] = true; });
+$('btnSalto').addEventListener('touchstart',     (e) => { if (!gameStarted) return; saltar(); });
 
-/* ------------ SONIDO ----------- */
+$('btnSalto_left').addEventListener('touchstart',  (e) => { if (!gameStarted) return; keys['ArrowLeft']=true; saltar(); });
+$('btnSalto_right').addEventListener('touchstart', (e) => { if (!gameStarted) return; keys['ArrowRight']=true; saltar(); });
 
+$('btn_a').addEventListener('touchstart', (e) => { if (!gameStarted) return; atacar(true); });
+$('btn_a').addEventListener('touchend',   (e) => { if (!gameStarted) return; /* ataque simple: nada al soltar */ });
 
-/* --- background -----*/
+$('btn_w').addEventListener('touchstart', (e) => { if (!gameStarted) return; setDefensa(true); });
+$('btn_w').addEventListener('touchend',   (e) => { if (!gameStarted) return; setDefensa(false); });
 
+$('btnIzquierda').addEventListener('touchend', (e) => { if (!gameStarted) return; keys['ArrowLeft'] = false; });
+$('btnDerecha').addEventListener('touchend',   (e) => { if (!gameStarted) return; keys['ArrowRight'] = false; });
+$('btnSalto_left').addEventListener('touchend',(e) => { if (!gameStarted) return; keys['ArrowLeft'] = false; });
+$('btnSalto_right').addEventListener('touchend',(e)=> { if (!gameStarted) return; keys['ArrowRight'] = false; });
+
+// ------------ SONIDO ----------- //
 let musicaIniciada = false;
-
 window.addEventListener('keydown', (e) => {
+  if (!gameStarted) return; // <<< no arranca música antes
   if (!musicaIniciada && ['ArrowLeft', 'ArrowRight', 'ArrowUp', ' '].includes(e.key)) {
     const music = document.getElementById('bg-music');
-    music.play().then(() => {
-      console.log("🎵 Música iniciada con una tecla");
-    }).catch((err) => {
-      console.warn("🚫 Bloqueo de sonido:", err);
-    });
+    music.play().catch(() => {});
     musicaIniciada = true;
   }
 });
 
-/* ---- salto y caminata ---- */
-
-// === SONIDOS DE LUA === //
+// === Efectos pasos/salto === //
 const sonidoPaso = new Audio("/img/audios/paso_lua2.mp3");
 const sonidoSalto = new Audio("/img/audios/salto_lua.mp3");
 
 function reproducirPaso() {
-  // Clonamos el audio para que pueda sonar aunque el anterior no haya terminado
   const paso = sonidoPaso.cloneNode();
   paso.play();
 }
-
 function reproducirSalto() {
   const salto = sonidoSalto.cloneNode();
   salto.play();
 }
 
-// Escuchar teclas
 document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-    reproducirPaso();
-  }
-  if (e.key === "ArrowUp") {
-    reproducirSalto();
-  }
+  if (!gameStarted) return; // <<< bloqueo
+  if (e.key === "ArrowLeft" || e.key === "ArrowRight") reproducirPaso();
+  if (e.key === "ArrowUp") reproducirSalto();
 });
 
-
-/* ---- hacer zoom pantalla automatico en celular ---- */
-
-
+// ---- auto-zoom móvil ---- //
 function fitGameMobile() {
-  // ¿estamos en pantalla chica?
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const root = document.getElementById('contenedor-principal');
   if (!root) return;
 
-  // tamaño base de TU juego (tu marco es 1000x1000)
   const BASE = 1000;
-
-  // reserva opcional para botones (ajústalo o pon 0 si no quieres reservar)
   const CONTROLS_H = 140;
-
-  // espacio disponible en pantalla (CSS px)
   const availW = window.innerWidth;
   const availH = Math.max(0, window.innerHeight - CONTROLS_H);
 
-  // factor de escala (mantiene proporción)
-  //const s = isMobile ? Math.min(availW / BASE, availH / BASE) : 1;
   const s = isMobile ? 0.62 : 1;
-
   root.style.transform = `scale(${s})`;
   root.style.transformOrigin = 'top left';
 }
-
-// correr al cargar y cuando cambie tamaño/orientación
 window.addEventListener('load', fitGameMobile);
 window.addEventListener('resize', fitGameMobile);
 window.addEventListener('orientationchange', fitGameMobile);
 
+// --------- BLOQUEO INICIAL --------- //
+// al cargar: bloquear (clase en body) y NO iniciar moverLua()
+window.addEventListener('load', () => {
+  document.body.classList.add('modal-open'); // CSS bloqueará clicks y gestos al juego
+});
+
+// al pulsar OK: desbloquea, oculta modal y arranca el loop
+const okBtn = document.getElementById('btnOK');
+okBtn?.addEventListener('click', () => {
+  document.body.classList.remove('modal-open');
+  document.getElementById('modal-inicio').style.display = 'none';
+  gameStarted = true;     // <<< ahora sí aceptamos entradas
+  moverLua();             // <<< arrancamos el loop
+
+});
 
 
 
+//------- Show Screen information player (VER) ------ //
+
+let playerName="";
+let playerAvatar="";
+
+
+const avatars = document.querySelectorAll('.avatar');
+
+avatars.forEach(avatar => {
+  avatar.addEventListener('click', () => {
+    avatars.forEach(a => a.classList.remove('seleccionado')); // quita de todos
+    avatar.classList.add('seleccionado'); // pone en el que clickeaste
+  });
+});
 
 
 
+okBtn.addEventListener('click',()=>{
+  playerName=document.getElementById('playerName').value; 
+  playerAvatar=document.querySelector('.avatar.seleccionado img')?.src;
+
+  mostrarJugadorEnPantalla();
+
+});
+
+//------ function mostrar en pantalla ------//
+
+function mostrarJugadorEnPantalla() {
+  document.getElementById('playerDisplayName').textContent = playerName;
+  document.getElementById('playerIcon').src = playerAvatar;
+}

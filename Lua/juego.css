@@ -584,12 +584,139 @@ html, body {
 
   }
 
+  .modal{
+    top:0px;
+    left:0px;
+  }
+
   
 
 }
 
 
- 
+ /* ----- window inicio ------ */
+
+ .modal{
+  position: absolute;
+  z-index: 3000;
+  height: 800px;
+  width: 600px;
+ }
+
+ #playerName {
+  position: absolute;
+  top: 250px;
+  left: 200px;
+  font-family: PixelCony;
+  font-size:25px;
+  z-index:3001;
+  color: white;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+ }
+
+ /*----icons inicio----*/
+
+ .avatar-grid{
+  position: absolute;
+  top:400px;
+  left:130px;
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  z-index: 3002;
+  background-color: transparent;
+  gap: 10px;
+ }
+
+ .avatar{
+  background: transparent;
+  border:none;
+ }
+
+ .avatar img{
+  height: 80px;
+  width: 80px;
+ }
+
+ .avatar button img{
+  background-color: transparent;
+ }
+
+ .avatar:hover {
+  background-color: rgb(198, 82, 169);
+  transform: translateY(-3px);
+}
+
+.avatar.seleccionado{
+  box-shadow: rgb(198, 82, 169);
+  transform: scale(1.4);
+}
+
+.OK-btn{
+  position: absolute;
+  top:600px;
+  left: 220px;
+  background: transparent;
+  border: none;
+}
+
+.OK-btn img{
+  height: 120px;
+  width: 120px;
+  background: transparent;
+}
+
+.OK-btn:hover {
+  transform: scale(1.3);
+} 
+
+/*----- modal star ----*/
+
+/* cuando el body tenga la clase .modal-open, el juego no recibe clics/toques */
+body.modal-open .marco-juego {
+  pointer-events: none;      /* bloquea interacciones */
+  filter: blur(2px);         /* opcional: efecto visual */
+}
+
+/* la modal siempre por encima */
+#modal-inicio { 
+  z-index: 3000;
+  pointer-events: auto;
+ }
+
+/* evita scroll raro detrás mientras está la modal */
+body.modal-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+
+/*------ Display information player -------*/ 
+
+#playerInfo{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2000;
+}
+
+#playerIcon {
+  width: 80px;
+  height: 80px;
+}
+
+#playerDisplayName {
+  font-family: PixelCony;
+  color: white;
+  font-size: 20px;
+}
+
+
 
 
    

@@ -17,6 +17,8 @@
 
 <body>
 
+
+
   <audio id="bg-music" autoplay loop>
     <source src="/img/audios/cancion1_version3-2.mp3" type="audio/mpeg">
     Tu navegador no soporta audio.
@@ -32,28 +34,74 @@
 
   <div id="contenedor-principal">
 
+    <div id="modal-inicio" class="modal">
+      <div class="pixel-window">
+        <img class="pixel-window-bg" src="/img/window_initial.png" alt="window-initial">
+
+        <div class="window-inner">
+          
+
+          <input id="playerName"
+                 class="name-input"
+                 type="text"
+                 maxlength="15"
+                 placeholder="write here">
+
+          <div id="avatarGrid" class="avatar-grid">           
+              <button class="avatar" data-id="ava1" aria-label="Avatar 1">
+                <img src="/img/icons/icon_owl.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava2" aria-label="Avatar 2">
+                <img src="/img/icons/icon_cosmos.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava3" aria-label="Avatar 3">
+                <img src="/img/icons/icon_canelita.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava4" aria-label="Avatar 4">
+                <img src="/img/icons/icon_bird.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava5" aria-label="Avatar 5">
+                <img src="/img/icons/icon_kaori.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava6" aria-label="Avatar 6">
+                <img src="/img/icons/icon_haru.png" alt="">
+              </button>          
+          </div>    
+          
+          <button id="btnOK" class="OK-btn">
+            <img src="/img/botton_ok.png">
+          </button>
+
+        </div>
+      </div>
+  
+  
+    </div>
+
+
     <div class="marco-juego">
       <img src="/img/marco2.png" alt="Game Frame" class="marco-img">
-  
       <div id="viewport">
+
+        <div id="playerInfo">
+          <img id="playerIcon" src="" alt="icon">
+          <span id="playerDisplayName"></span>
+        </div>
+
+
         <div id="contadores">
           <div style="height: 100px;"></div>
           <div id="contadorPajaros"></div>
           <div id="contadorCorazones"></div>
           <img src="/img/gifs/corazon.png" id="corazon-contador" alt="Heart Icon">
           <img src="/img/gifs/pajaro.gif" id="pajaro-contador" alt="Bird Icon">
-        </div>
-  
-     
-    
-        <div id="escenario">
-      
+        </div> 
+        <div id="escenario">    
           <img id="luaSprite" src="/img/lua_idle.png" alt="Lua">
+
           <img src="/img/gifs/pajaro.gif" class="item" data-tipo="pajaro" style="left: 400px; top: 190px;">
           <img src="/img/gifs/pajaro.gif" class="item" data-tipo="pajaro" style="left: 350px; top: 190px;">
-    
-    
-    
+       
           <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 5px; top:430px;">
           <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 180px; top:430px;">
           <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 500px; top:600px;">
@@ -63,10 +111,7 @@
     
     
           <!--  <img src="/img/pilar.png" class="item_estatico" data-tipo="pilar" style="left: 800px; top:400px;">-->
-    
-    
-    
-      
+
           <div class="plataforma" style="left: 300px; top: 660px; width: 300px; height: 10px;"></div>
           <div class="plataforma" style="left: 190px; top: 495px; width: 50px; height: 10px;"></div>
           <div class="plataforma" style="left: 10px; top: 495px; width: 50px; height: 10px;"></div>
@@ -84,22 +129,15 @@
     
       <!-- Controles táctiles -->
       <div id="controles">
-        <div class="fila-arriba">
-        
+        <div class="fila-arriba">        
           <button id="btnSalto_left"><img src="/img/diag_left.png" alt="diag_left"></button>
           <button id="btnSalto"><img src="/img/up.png" alt="arriba"></button>
           <button id="btnSalto_right"><img src="/img/diag_right.png" alt="diag_right"></button>
-        </div>  
-        
-  
+        </div>   
         <div class="fila-abajo">
-  
           <button id="btnIzquierda"><img src="/img/left.png" alt="izquierda" ></button>
           <button id="btnDerecha"><img src="/img/right.png" alt="derecha"></button>
-  
-   
-        </div>
-         
+        </div>         
       </div>
 
 
@@ -112,8 +150,6 @@
           <button id="btn_s"><img src="/img/S_key.png" alt="S_key"></button>
           <button id="btn_d"><img src="/img/D_key.png" alt="D_key"></button>
         </div>
-
-
       </div>
 
     </div>

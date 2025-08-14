@@ -1,0 +1,634 @@
+/* ====== FONT PIXEL ====== */
+
+
+
+@font-face {
+    font-family: 'PixelCony';
+    src: url('/fonts/PixelCony-Regular.ttf') format('truetype');
+  }
+  
+  
+  /* ==== Fondo y cuerpo principal ==== */
+  body {
+      background-image: url('/img/fondopantalla.png');
+      overflow-y: auto; /* Permite scroll vertical */
+      overflow-x: hidden; /* Evita el desplazamiento lateral */
+      height: auto; /* Ajusta la altura según el contenido */
+      min-height: 100vh; /* Asegura que ocupe al menos la pantalla completa */
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 0px;
+      color: #333;
+      touch-action: manipulation; /* Evita zoom con gestos */
+    }
+  
+   /* ======== TITULO ======= */
+  
+  
+   .titulo-pixel {
+    font-family: 'PixelCony', cursive;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 50px;  /* ajusta según tu fuente */
+  }
+  
+  .instrucciones {
+    color: white;
+    font-family: 'PixelCony';
+    font-size: 20px;
+  }
+  
+  .mision-title{
+    color:#ff6496;
+    font-family:'PixelCony'
+  
+  }
+  
+  
+  
+  /*== contenedor principal === */
+  
+  #contenedor-principal {
+    display: flex; /* opcional, para centrar */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* uno encima del otro */
+    margin-top: 20px;
+    transform: scale(0.9);
+    transform-origin: top center;
+  
+  }
+  
+  
+  
+  /* ==== marco ==== */
+  
+  .marco-juego {
+    position: relative;
+    width: 1000px;
+    height: 1000px;
+    margin: 0 auto;
+    inset: 0px;
+  }
+  
+  
+  .marco-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  
+  
+    
+    /* ==== Escenario ==== */
+    
+    /* 🎮 Contenedor del juego */
+  
+    #escenario {
+      position: absolute;
+      inset: none;
+      width: 2000px;
+      height: 800px;
+      background-image: url('/img/escenario_lou.png');
+      background-size: contain;
+      background-position: center;
+      border: none;
+      overflow: hidden;
+    }
+  
+  
+  
+  
+  
+    /* ======== lugar reducido ====== */ 
+  
+    #viewport {
+      
+      max-width: 100%;
+      position: absolute;
+      width:600px;
+      height:1000px;
+      overflow: hidden;
+      left: 200px;
+  
+    }
+    
+    
+    
+    
+    /* ==== Imagen de Lua (animada) ==== */
+    #luaSprite {
+      position: absolute;
+      bottom: 10px; /* Ajustado para que no quede muy pegado abajo */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 91px;
+      height: 80px;
+      image-rendering: pixelated;
+      transition: all 0.1s linear;
+      opacity: 1;
+    }
+    
+   
+    
+    /* ==== Texto principal (h1) ==== */
+    h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      animation: fadeIn 2s ease-in-out;
+    }
+    
+    /* ==== Contenedor general ==== */
+    .contenedor {
+      margin-top: 50px;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      display: inline-block;
+    }
+    
+    /* ==== Efecto de aparición (fade-in) ==== */
+    @keyframes fadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    
+    
+  
+    /* === Plataforma ==== */
+    
+    .plataforma {
+      position: absolute;
+      width: 100px; /* Ancho de la plataforma */
+      height: 20px; /* Altura de la plataforma */
+      background-color: transparent; /* Temporalmente roja y transparente */
+      border-radius: none; 
+    }
+    
+  
+  
+  
+    .item {
+      width: 64px;
+      height: 64px;
+      position: absolute;
+      image-rendering: pixelated;
+    }
+    
+  
+  
+  
+    /* barra conteo */
+  
+  
+    #contadores {
+      position: relative;
+      top: 0px;    /* ajusta este valor hacia arriba/abajo */
+      left: 0px;
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+    }
+    
+  
+  
+  
+    #corazon-contador, #pajaro-contador {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      image-rendering: pixelated;
+      z-index: 3;
+  
+    }
+  
+    #corazon-contador {
+      top:100px;
+      right: 500px;
+    }
+  
+    #pajaro-contador {
+      top:100px;
+      right:370px;
+    }
+    
+   
+    
+    #contadorPajaros {
+      position: absolute;
+      top: 100px;    /* ajusta según necesites */
+      left: 235px;   /* ajusta para ponerlo sobre el pájaro en la barra */
+      font-family: 'PixelCony';  /* usa tu fuente */
+      font-size: 40px;
+      color: rgb(255, 255, 255);
+      z-index: 3;
+    }
+   
+    #contadorCorazones {
+      position: absolute;
+      top: 100px;
+      right: 445px;  /* ajusta para ponerlo sobre el corazón en la barra */
+      font-family: 'PixelCony';
+      font-size: 40px;
+      color: rgb(255, 255, 255);
+      z-index: 3;
+    }
+     
+  
+  
+  
+  
+  
+  
+  
+  
+  /* ==== Controles táctiles (alineados) ==== */
+    
+    /* 🎮 Controles táctiles (alineados) */
+  
+  
+    #controles {
+      position: absolute;               /* siempre visible */
+      bottom: -100px;
+      left: 70%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;        /* arriba y luego fila inferior */
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+    }
+    
+    #controles .fila-arriba {
+      display: flex;
+      gap: 5px;
+      flex-direction: row;
+  
+    }
+  
+  
+    /* Fila inferior con ← ↓ → */
+    #controles .fila-abajo {
+      display: flex;
+      gap: 80px;
+    }
+  
+  
+      /* Botones: sin estilos del sistema */
+    #controles button {
+      background: none;
+      border: none;
+      padding: 0;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      /* importante para touch: que no intente hacer zoom/gestos */
+      touch-action: none;
+    }
+  
+  
+      /* Imágenes: que ocupen el botón entero */
+    #controles button img {
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+      display: block;
+      /* clave para que el dedo “pegue” al botón y no a la imagen */
+      pointer-events: none;
+    }
+  
+    /* controles izquierda */
+  
+    #controles-2 {
+      position: absolute;               /* siempre visible */
+      bottom: -100px;
+      
+      
+      display: flex;
+      flex-direction: column;        /* arriba y luego fila inferior */
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+    }
+  
+    #controles-2 .fila-arriba-2 {
+      display: flex;
+      gap: 5px;
+      flex-direction: row;
+  
+    }
+  
+  
+    /* Fila inferior con ← ↓ → */
+    #controles-2 .fila-abajo-2 {
+      display: flex;
+      gap: 5px;
+    }
+  
+    #controles-2 button {
+      background: none;
+      border: none;
+      padding: 0;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      /* importante para touch: que no intente hacer zoom/gestos */
+      touch-action: none;
+    }
+  
+    #controles-2 button img {
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+      display: block;
+      /* clave para que el dedo “pegue” al botón y no a la imagen */
+      pointer-events: none;
+    }
+  
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    /* Evitar seleccionar/long-press/menú en todo el juego */
+  #contenedor-principal {
+    user-select: none;
+    -webkit-user-select: none;      /* Safari/iOS */
+    -moz-user-select: none;         /* Firefox */
+    -ms-user-select: none;          /* IE/Edge antiguo */
+    -webkit-touch-callout: none;    /* Quita menú "copiar/guardar" en iOS */
+  }
+  
+  /* Evitar arrastrar imágenes */
+  img {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+  
+  /* En los botones, que el toque caiga en el <button>, no en la <img> */
+  #controles img {
+    pointer-events: none;
+  }
+  
+  /* Ayuda a reducir zooms/taps raros en móvil */
+  html, body {
+    -webkit-tap-highlight-color: transparent;  /* sin flash azul en iOS */
+    touch-action: manipulation;                /* menos gestos no deseados */
+  }
+  
+    
+  
+  
+    
+    /* 🌟 Efecto al tocar los botones */
+    #controles button:active {
+      transform: scale(0.95); /* Pequeño efecto de presión */
+      background-color: #ff6496; /* Color más oscuro al tocar */
+    }
+    
+    /* 🎨 Efecto al pasar el mouse en PC */
+    #controles button:hover {
+      background-color: #e57fa3;
+      transform: translateY(-3px);
+    }
+    
+    #controles-2 button:active {
+      transform: scale(0.95); /* Pequeño efecto de presión */
+      background-color: #ff6496; /* Color más oscuro al tocar */
+    }
+    
+    /* 🎨 Efecto al pasar el mouse en PC */
+    #controles-2 button:hover {
+      background-color: #e57fa3;
+      transform: translateY(-3px);
+    }
+    
+  
+    
+    
+  
+  /* ---------- CELLPHONE (<=768px) ---------- */
+  @media (max-width: 768px) {
+    /* Ocultar cabecera/textos en móvil */
+    .titulo-pixel,
+    .instrucciones,
+    .mision-title { display: none; }
+  
+    /* Página sin scroll y pegada arriba-izquierda */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    body { display: block; }
+  
+    /* El juego (marco+viewport) se pega a top-left y se escala */
+    #contenedor-principal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: top left;
+      transform: scale(1.5); /* ⇦ ajusta 1.2/1.4 según te guste */
+    }
+  
+    /* -----CONTROLES------ */
+  
+    /*------- flechas-----*/
+  
+    #controles {
+      position: fixed;  /* fuera del scale del juego */
+      right: 400px;
+      bottom: -70px; /* respeta barra iPhone */
+      left: auto;                      /* por si quedó algo de antes */
+      transform: none;                 /* quita translateX(-50%) si existía */
+      display: flex;
+      flex-direction: column;          /* fila-arriba y fila-abajo en columna */
+      gap: 12px;
+      z-index: 1000;
+    }
+    #controles .fila-arriba {
+      display: flex;
+      gap: 5px;                       /* separa botones entre sí */
+      justify-content: center;
+  
+  
+    }
+  
+    #controles .fila-abajo {
+      display: flex;
+      gap: 50px;                       /* separa botones entre sí */
+      justify-content: center;
+    }
+    #controles button {
+      width: 80px;                     /* tamaño dedo; prueba 88–104 */
+      height: 80px;
+      padding: 0;
+      border: 0;
+      background: none;
+      touch-action: none;
+    }
+    #controles button img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      image-rendering: pixelated;
+      pointer-events: none;            /* toque al botón, no a la img */
+    }
+  
+    /*--- ataques ---*/
+  
+    #controles-2 {
+      position: fixed;  /* fuera del scale del juego */
+      left: 300px;
+      bottom: -70px; /* respeta barra iPhone */
+      left: auto;                      /* por si quedó algo de antes */
+      transform: none;                 /* quita translateX(-50%) si existía */
+      display: flex;
+      flex-direction: column;          /* fila-arriba y fila-abajo en columna */
+      gap: 12px;
+      z-index: 1000;
+    }
+    #controles .fila-arriba-2 {
+      display: flex;
+      gap: 5px;                       /* separa botones entre sí */
+      justify-content: center;
+  
+  
+    }
+  
+    #controles .fila-abajo-2 {
+      display: flex;
+      gap: 5px;                       /* separa botones entre sí */
+      justify-content: center;
+    }
+    #controles-2 button {
+      width: 80px;                     /* tamaño dedo; prueba 88–104 */
+      height: 80px;
+      padding: 0;
+      border: 0;
+      background: none;
+      touch-action: none;
+    }
+    #controles-2 button img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      image-rendering: pixelated;
+      pointer-events: none;            /* toque al botón, no a la img */
+    }
+    
+  
+  
+  
+    /*---- marco ----*/
+    
+  
+    .marco-img{
+      display:none;
+    }
+  
+    .marco-juego{
+      width: 1000px;
+      height: 900px;
+    }
+  
+    #viewport {
+        
+      max-width: 100%;
+      position: relative;
+      top: 0px;
+      width:600px;
+      height:800px;
+      overflow: hidden;
+      left: 10px;
+  
+    }
+  
+    #escenario {
+      position: absolute;
+      inset: 0px;
+  
+    }
+  
+    #contadores {
+      position: absolute;
+      top:0;
+  
+    }
+  
+    .modal{
+      top:0px;
+      left:0px;
+    }
+  
+    
+  
+  }
+  
+  
+
+  
+  /*----- modal star ----*/
+  
+
+  
+  
+  /*------ Display information player 
+  
+  #playerInfo{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 2000;
+  }
+  
+  #playerIcon {
+    width: 80px;
+    height: 80px;
+  }
+  
+  #playerDisplayName {
+    font-family: PixelCony;
+    color: white;
+    font-size: 20px;
+  } */
+  
+  
+  
+  
+     
+  
+  
+      
+    

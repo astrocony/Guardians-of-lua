@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+  <title>Guardianes de Lua</title>
+  <link rel="stylesheet" href="juego2.css">
+  <script src="juego2.js" defer></script>
+</head>
+
+
+
+
+
+
+<body>
+
+
+
+  <audio id="bg-music" autoplay loop>
+    <source src="/img/audios/cancion1_version3-2.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+   <h1 class="titulo-pixel">En la Oscuridad de Plutón Game</h1> 
+   <h2 class="mision-title"> #2 Mision</h2>
+   <p class="instrucciones"> Habla con Lou! </p>
+
+
+  <!-- Contenedor del escenario y Lua animada -->
+
+
+  <div id="contenedor-principal">
+
+  
+    <div class="marco-juego">
+      <img src="/img/marco2.png" alt="Game Frame" class="marco-img">
+      <div id="viewport">
+
+        <!-- <div id="playerInfo">
+          <img id="playerIcon" src="" alt="icon">
+          <span id="playerDisplayName"></span>
+        </div> -->
+
+
+        <div id="contadores">
+          <div style="height: 100px;"></div>
+          <div id="contadorPajaros"></div>
+          <div id="contadorCorazones"></div>
+          <img src="/img/gifs/corazon.png" id="corazon-contador" alt="Heart Icon">
+          <img src="/img/gifs/pajaro.gif" id="pajaro-contador" alt="Bird Icon">
+        </div> 
+        <div id="escenario">    
+          <img id="luaSprite" src="/img/lua_idle.png" alt="Lua">
+
+          <img src="/img/gifs/pajaro.gif" class="item" data-tipo="pajaro" style="left: 400px; top: 190px;">
+          <img src="/img/gifs/pajaro.gif" class="item" data-tipo="pajaro" style="left: 350px; top: 190px;">
+       
+          <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 5px; top:430px;">
+          <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 180px; top:430px;">
+          <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 500px; top:600px;">
+          <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 400px; top:600px;">
+          <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 650px; top:480px;">
+          <img src="/img/gifs/corazon.png" class="item" data-tipo="corazon" style="left: 650px; top:220px;">
+    
+    
+          <!--  <img src="/img/pilar.png" class="item_estatico" data-tipo="pilar" style="left: 800px; top:400px;">-->
+
+          <div class="plataforma" style="left: 380px; top: 660px; width: 2000px; height: 10px;"></div>
+          <div class="plataforma" style="left: 320px; top: 720px; width: 500px; height: 10px;"></div>
+          <div class="plataforma" style="left: 340px; top: 560px; width: 75px; height: 10px;"></div>
+          <div class="plataforma" style="left: 280px; top: 490px; width: 50px; height: 10px;"></div>
+          <div class="plataforma" style="left: 130px; top: 435px; width: 75px; height: 10px;"></div>
+          <div class="plataforma" style="left: 443px; top: 400px; width: 50px; height: 10px;"></div>
+          <div class="plataforma" style="left: 570px; top: 400px; width: 50px; height: 10px;"></div>
+          <div class="plataforma" style="left: 690px; top: 400px; width: 50px; height: 10px;"></div>
+          <div class="plataforma" style="left: 360px; top: 435px; width: 50px; height: 10px;"></div>
+          <div class="plataforma" style="left: 1860px; top: 280px; width: 500px; height: 10px;"></div>
+
+          <div class="plataforma" style="left: 1830px; top: 320px; width: 500px; height: 10px;"></div>
+
+
+
+          <div class="plataforma" style="left: 810px; top: 360px; width: 1500px; height: 10px;"></div>
+
+
+       
+          <div class="plataforma" style="left: 0px; top: 780px; width: 2000px; height: 10px;"></div>
+      
+        </div>
+      </div>
+      
+    
+      <!-- Controles táctiles -->
+      <div id="controles">
+        <div class="fila-arriba">        
+          <button id="btnSalto_left"><img src="/img/diag_left.png" alt="diag_left"></button>
+          <button id="btnSalto"><img src="/img/up.png" alt="arriba"></button>
+          <button id="btnSalto_right"><img src="/img/diag_right.png" alt="diag_right"></button>
+        </div>   
+        <div class="fila-abajo">
+          <button id="btnIzquierda"><img src="/img/left.png" alt="izquierda" ></button>
+          <button id="btnDerecha"><img src="/img/right.png" alt="derecha"></button>
+        </div>         
+      </div>
+
+
+      <div id="controles-2">
+        <div class="fila-arriba-2">
+          <button id="btn_w"><img src="/img/W_key.png" alt="W_key"></button>
+        </div>
+        <div class="fila-abajo-2">
+          <button id="btn_a"><img src="/img/A_key.png" alt="A_key"></button>
+          <button id="btn_s"><img src="/img/S_key.png" alt="S_key"></button>
+          <button id="btn_d"><img src="/img/D_key.png" alt="D_key"></button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

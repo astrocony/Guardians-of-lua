@@ -37,44 +37,31 @@ body {
 
 }
 
-/*
-img:hover {
-  opacity: 0.8;
-  transform: scale(1.02);
-  transition: all 0.3s ease;
-} 
-*/
-
-
-/* ------ title ----- */ 
-
-.title-complete {
-  position: absolute;
-  top: 40px;
-  left:10%;
-  flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-  font-size: clamp(1.5rem,3vw,3rem);
-  font-family: 'PixelCony';
-  color: white;
-  z-index: 2;
+.main-painting-cellphone {
+  display: none;
 }
 
 
-
-
-.main-painting:hover .title-page, .main-painting:hover .subtitle-page {
-  transform: scale(1.05);
-  transition: all 0.3s ease;
-}
 
 
 
 /* ----- CELLPHONE -----*/
 
 @media (max-width: 600px) {
-  .title-complete {
+
+  .main-painting {
     display: none;
+  }
+
+
+  .main-painting-cellphone{
+    display: block;
+    position:relative
+
+  }
+  .main-painting-cellphone img {
+    width: 100%;
+    height: auto; 
+    display: block;
   }
 }

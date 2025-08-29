@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+  <title>Lua Guardians</title>
+  <link rel="stylesheet" href="game0.css">
+  <script src="game0.js" defer></script>
+</head>
+
+
+
+
+
+
+<body>
+
+
+
+  <audio id="bg-music" autoplay loop>
+    <source src="/img/audios/cancion1_version3-2.mp3" type="audio/mpeg">
+    Your browser does not play the audio.
+  </audio>
+
+   <h1 class="title-pixel">Into to the Darkness of Pluto Game</h1> 
+   <h2 class="mision-title"> #1 Mision</h2>
+   <p class="instruction">  Hi Guardian ! Collect the birds and hearts</p>
+
+
+  <!-- Contenedor del stage y Lua animada -->
+
+
+  <div id="main-container">
+
+    <div id="modal-start" class="modal">
+      <div class="pixel-window">
+        <img class="pixel-window-bg" src="/img/window_initial.png" alt="window-initial">
+
+        <div class="window-inner">
+          
+
+          <input id="playerName"
+                 class="name-input"
+                 type="text"
+                 maxlength="15"
+                 placeholder="write here">
+
+          <div id="avatarGrid" class="avatar-grid">           
+              <button class="avatar" data-id="ava1" aria-label="Avatar 1">
+                <img src="/img/icons/icon_owl.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava2" aria-label="Avatar 2">
+                <img src="/img/icons/icon_cosmos.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava3" aria-label="Avatar 3">
+                <img src="/img/icons/icon_canelita.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava4" aria-label="Avatar 4">
+                <img src="/img/icons/icon_bird.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava5" aria-label="Avatar 5">
+                <img src="/img/icons/icon_kaori.png" alt="">
+              </button>
+              <button class="avatar" data-id="ava6" aria-label="Avatar 6">
+                <img src="/img/icons/icon_haru.png" alt="">
+              </button>          
+          </div>    
+          
+          <button id="btnOK" class="OK-btn">
+            <img src="/img/botton_ok.png">
+          </button>
+
+        </div>
+      </div>
+  
+  
+    </div>
+
+
+    <div class="game-framework">
+      <img src="/img/marco2.png" alt="Game Frame" class="marco-img">
+      <div id="viewport">
+
+        <div id="playerInfo">
+          <img id="playerIcon" src="" alt="icon">
+          <span id="playerDisplayName"></span>
+        </div>
+
+
+        <div id="counters">
+          <div style="height: 100px;"></div>
+          <div id="BirdCounter"></div>
+          <div id="HeartCounter"></div>
+          <img src="/img/gifs/heart.png" id="heart-counter" alt="Heart Icon">
+          <img src="/img/gifs/bird.gif" id="bird-counter" alt="Bird Icon">
+        </div> 
+        <div id="stage">    
+          <img id="Portal0" src="/img/portal.png" class="portal">
+          <img id="luaSprite" src="/img/lua_idle.png" alt="Lua">
+
+          <img src="/img/gifs/bird.gif" class="item" data-tipo="bird" style="left: 400px; top: 190px;">
+          <img src="/img/gifs/bird.gif" class="item" data-tipo="bird" style="left: 350px; top: 190px;">
+       
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 5px; top:430px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 180px; top:430px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 500px; top:600px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 400px; top:600px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 650px; top:480px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 650px; top:220px;">
+    
+    
+          <!--  <img src="/img/pilar.png" class="item_estatico" data-tipo="pilar" style="left: 800px; top:400px;">-->
+
+          <div class="platform" style="left: 300px; top: 660px; width: 300px; height: 10px;"></div>
+          <div class="platform" style="left: 190px; top: 495px; width: 50px; height: 10px;"></div>
+          <div class="platform" style="left: 10px; top: 495px; width: 50px; height: 10px;"></div>
+          <div class="platform" style="left: 275px; top: 450px; width: 360px; height: 10px;"></div>
+          <div class="platform" style="left: 300px; top: 400px; width: 300px; height: 10px;"></div>
+          <div class="platform" style="left: 630px; top: 535px; width: 95px; height: 10px;"></div>
+          <div class="platform" style="left: 630px; top: 280px; width: 95px; height: 10px;"></div>
+          <div class="platform" style="left: 295px; top: 240px; width: 250px; height: 10px;"></div>
+          <div class="platform" style="left: 270px; top: 720px; width: 5550px; height: 10px;"></div>
+          <div class="platform" style="left: 0px; top: 780px; width: 800px; height: 10px;"></div>
+      
+        </div>
+      </div>
+      
+    
+      <!-- controls táctiles -->
+      <div id="controls">
+        <div class="row-up">        
+          <button id="btnSalto_left"><img src="/img/diag_left.png" alt="diag_left"></button>
+          <button id="btnSalto"><img src="/img/up.png" alt="arriba"></button>
+          <button id="btnSalto_right"><img src="/img/diag_right.png" alt="diag_right"></button>
+        </div>   
+        <div class="row-down">
+          <button id="btnIzquierda"><img src="/img/left.png" alt="izquierda" ></button>
+          <button id="btnDerecha"><img src="/img/right.png" alt="derecha"></button>
+        </div>         
+      </div>
+
+
+      <div id="controls-2">
+        <div class="row-up-2">
+          <button id="btn_w"><img src="/img/W_key.png" alt="W_key"></button>
+        </div>
+        <div class="row-down-2">
+          <button id="btn_a"><img src="/img/A_key.png" alt="A_key"></button>
+          <button id="btn_s"><img src="/img/S_key.png" alt="S_key"></button>
+          <button id="btn_d"><img src="/img/D_key.png" alt="D_key"></button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

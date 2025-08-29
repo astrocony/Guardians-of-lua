@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+  <title>Guardianes de Lua</title>
+  <link rel="stylesheet" href="game1.css">
+  <script src="game1.js" defer></script>
+</head>
+
+
+
+
+
+
+<body>
+
+
+
+  <audio id="bg-music" autoplay loop>
+    <source src="/img/audios/cancion1_version3-2.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+   <h1 class="title-pixel">En la Oscuridad de Plutón Game</h1> 
+   <h2 class="mision-title"> #2 Mision</h2>
+   <p class="instruction"> Habla con Lou! </p>
+
+
+  <!-- Contenedor del stage y Lua animada -->
+
+
+  <div id="main-container">
+
+  
+    <div class="game-framework">
+      <img src="/img/marco2.png" alt="Game Frame" class="marco-img">
+      <div id="viewport">
+
+        <!-- <div id="playerInfo">
+          <img id="playerIcon" src="" alt="icon">
+          <span id="playerDisplayName"></span>
+        </div> -->
+
+
+        <div id="counters">
+          <div style="height: 100px;"></div>
+          <div id="BirdCounter"></div>
+          <div id="HeartCounter"></div>
+          <img src="/img/gifs/heart.png" id="heart-counter" alt="Heart Icon">
+          <img src="/img/gifs/bird.gif" id="bird-counter" alt="Bird Icon">
+        </div> 
+        <div id="stage">    
+          <img id="luaSprite" src="/img/lua_idle.png" alt="Lua">
+          <img id="LouSprite" src="/img/lou.png" alt="Lou">
+
+          <img src="/img/gifs/bird.gif" class="item" data-tipo="bird" style="left: 400px; top: 190px;">
+          <img src="/img/gifs/bird.gif" class="item" data-tipo="bird" style="left: 350px; top: 190px;">
+       
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 5px; top:430px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 180px; top:430px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 500px; top:600px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 400px; top:600px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 650px; top:480px;">
+          <img src="/img/gifs/heart.png" class="item" data-tipo="heart" style="left: 650px; top:220px;">
+    
+    
+          <!--  <img src="/img/pilar.png" class="item_estatico" data-tipo="pilar" style="left: 800px; top:400px;">-->
+
+          
+
+          <div class="platform" style="left: 380px; top: 680px; width: 2000px; height: 10px;"></div>
+          <div class="platform" style="left: 320px; top: 720px; width: 500px; height: 10px;"></div>
+          <div class="platform" style="left: 340px; top: 560px; width: 75px; height: 10px;"></div>
+          <div class="platform" style="left: 270px; top: 490px; width: 75px; height: 10px;"></div>
+          <div class="platform" style="left: 130px; top: 435px; width: 75px; height: 10px;"></div>
+          <div class="platform" style="left: 443px; top: 400px; width: 50px; height: 10px;"></div>
+          <div class="platform" style="left: 570px; top: 400px; width: 50px; height: 10px;"></div>
+          <div class="platform" style="left: 690px; top: 400px; width: 50px; height: 10px;"></div>
+          <div class="platform" style="left: 360px; top: 435px; width: 50px; height: 10px;"></div>
+          <div class="platform" style="left: 1860px; top: 280px; width: 500px; height: 10px;"></div>
+
+          <div class="platform" style="left: 1830px; top: 320px; width: 500px; height: 10px;"></div>
+
+
+
+          <div class="platform" style="left: 810px; top: 360px; width: 1500px; height: 10px;"></div>
+
+
+       
+          <div class="platform" style="left: 0px; top: 780px; width: 2000px; height: 10px;"></div>
+      
+        </div>
+      </div>
+      
+    
+      <!-- controls táctiles -->
+      <div id="controls">
+        <div class="row-up">        
+          <button id="btnSalto_left"><img src="/img/diag_left.png" alt="diag_left"></button>
+          <button id="btnSalto"><img src="/img/up.png" alt="arriba"></button>
+          <button id="btnSalto_right"><img src="/img/diag_right.png" alt="diag_right"></button>
+        </div>   
+        <div class="row-down">
+          <button id="btnIzquierda"><img src="/img/left.png" alt="izquierda" ></button>
+          <button id="btnDerecha"><img src="/img/right.png" alt="derecha"></button>
+        </div>         
+      </div>
+
+
+      <div id="controls-2">
+        <div class="row-up-2">
+          <button id="btn_w"><img src="/img/W_key.png" alt="W_key"></button>
+        </div>
+        <div class="row-down-2">
+          <button id="btn_a"><img src="/img/A_key.png" alt="A_key"></button>
+          <button id="btn_s"><img src="/img/S_key.png" alt="S_key"></button>
+          <button id="btn_d"><img src="/img/D_key.png" alt="D_key"></button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

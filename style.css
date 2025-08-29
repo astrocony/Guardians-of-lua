@@ -9,7 +9,23 @@ body {
   background-color: rgb(215, 94, 163);
 }
 
+
+/* ====== FONT PIXEL ====== */
+
+
+
+@font-face {
+  font-family: 'PixelCony';
+  src: url('/fonts/PixelCony-Regular.ttf') format('truetype');
+}
+
+
+
+/* ------- images ------*/ 
+
+
 .main-painting {
+  position: relative;
   max-width: 1800px;
   margin: 0 auto;
 }
@@ -20,3 +36,35 @@ body {
   display:block;
 
 }
+
+/*
+img:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+} 
+*/
+
+
+/* ------ title ----- */ 
+
+.title-complete {
+  position: absolute;
+  top: 40px;
+  left:10%;
+  flex-direction: column;
+  gap: 30px;
+  font-size: clamp(1.5rem,3vw,3rem);
+  font-family: 'PixelCony';
+  color: white;
+  z-index: 2;
+}
+
+
+
+
+.main-painting:hover .title-page, .main-painting:hover .subtitle-page {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+

@@ -53,6 +53,7 @@ img:hover {
   top: 40px;
   left:10%;
   flex-direction: column;
+  justify-content: center;
   gap: 30px;
   font-size: clamp(1.5rem,3vw,3rem);
   font-family: 'PixelCony';
@@ -68,3 +69,12 @@ img:hover {
   transition: all 0.3s ease;
 }
 
+
+
+/* ----- CELLPHONE -----*/
+
+@media (max-width: 600px) {
+  .title-complete {
+    display: none;
+  }
+}

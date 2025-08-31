@@ -37,8 +37,50 @@ body {
 
 }
 
+
+
+.fade-transition {
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(215, 94, 163, 1), rgba(215, 94, 163, 0));
+}
+
+
+
+
 .main-painting-cellphone {
   display: none;
+}
+
+
+/* ------ Buttons PC ------- */
+
+.buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 3;
+  transform: translate(-50%,-50%);
+}
+
+.button-pixel {
+  font-family: 'PixelCony';
+  font-size: clamp(1rem,2vw,4.5rem);
+  background-color: transparent;
+  border: 5px solid white;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+
+}
+
+.button-pixel:hover {
+  transform: scale(1.05);
+  background-color:rgba(226, 85, 186, 0.345); 
 }
 
 
@@ -64,4 +106,35 @@ body {
     height: auto; 
     display: block;
   }
+
+
+  .buttons-cell {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 3;
+    transform: translate(-50%,-50%);
+  }
+  
+  .button-pixel-cell {
+    font-family: 'PixelCony';
+    font-size: 30px;
+    background-color: transparent;
+    border: 5px solid white;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+  
+  }
+  
+  .button-pixel-cell:hover {
+    transform: scale(1.05);
+    background-color:rgba(226, 85, 186, 0.345); 
+  }
 }
+

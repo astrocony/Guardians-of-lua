@@ -1,0 +1,80 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  body {
+    background-color: rgb(215, 94, 163);
+  }
+  
+  
+  /* ====== FONT PIXEL ====== */
+  
+  
+  
+  @font-face {
+    font-family: 'PixelCony';
+    src: url('/fonts/PixelCony-Regular.ttf') format('truetype');
+  }
+  
+  
+  
+  /* ------- images ------*/ 
+  
+  
+  .main-painting {
+    position: relative;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+  
+  .main-painting img {
+    width: 100%;
+    height: auto;
+    display:block;
+  
+  }
+  
+  
+  
+  .fade-transition {
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(215, 94, 163, 1), rgba(215, 94, 163, 0));
+  }
+  
+  
+  
+  
+  .main-painting-cellphone {
+    display: none;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  /* ----- CELLPHONE -----*/
+  
+  @media (max-width: 600px) {
+  
+    .main-painting {
+      display: none;
+    }
+  
+  
+    .main-painting-cellphone{
+      display: block;
+      position:relative
+  
+    }
+    .main-painting-cellphone img {
+      width: 100%;
+      height: auto; 
+      display: block;
+    }
+  }

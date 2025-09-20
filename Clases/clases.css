@@ -1,0 +1,237 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  body {
+    background-color: rgb(183, 147, 255);
+  }
+  
+  
+  /* ====== FONT PIXEL ====== */
+  
+  
+  
+  @font-face {
+    font-family: 'PixelCony';
+    src: url('/fonts/PixelCony-Regular.ttf') format('truetype');
+  }
+  
+  
+  
+  /* ------- images ------*/ 
+  
+  
+  .main-painting {
+    position: relative;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+  
+  .main-painting img {
+    width: 100%;
+    height: auto;
+    display:block;
+  
+  }
+  
+  
+  
+  .fade-transition {
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(215, 94, 163, 1), rgba(215, 94, 163, 0));
+  }
+  
+  
+  
+  
+  .main-painting-cellphone {
+    display: none;
+  }
+  
+  
+  /* ------ Buttons PC ------- */
+  
+  .buttons {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 3;
+    transform: translate(-50%,-50%);
+  }
+  
+  .button-pixel {
+    font-family: 'PixelCony';
+    font-size: clamp(1rem,3vw,4.5rem);
+    background-color: transparent;
+    border: 5px solid white;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+  
+  }
+  
+  .button-pixel:hover {
+    transform: scale(1.05);
+    background-color:rgba(226, 85, 186, 0.345); 
+  }
+  
+
+  /* ------ Button 2 ------*/
+
+    
+  .buttons2 {
+    position: absolute;
+    top: 40%;
+    left: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 3;
+    transform: translate(-50%,-50%);
+  }
+  
+  .button2-pixel {
+    font-family: 'PixelCony';
+    font-size: clamp(1rem,3vw,4.5rem);
+    background-color: transparent;
+    border: 5px solid white;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+  
+  }
+  
+  .button2-pixel:hover {
+    transform: scale(1.05);
+    background-color:rgba(226, 85, 186, 0.345); 
+  }
+  
+
+  /*------ button 3 -------*/
+
+      
+  .buttons3 {
+    position: absolute;
+    top: 55%;
+    left: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 3;
+    transform: translate(-50%,-50%);
+  }
+  
+  .button3-pixel {
+    font-family: 'PixelCony';
+    font-size: clamp(1rem,3vw,4.5rem);
+    background-color: transparent;
+    border: 5px solid white;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+  
+  }
+  
+  .button3-pixel:hover {
+    transform: scale(1.05);
+    background-color:rgba(226, 85, 186, 0.345); 
+  }
+
+  /* ------ botton 4 ------*/
+
+      
+  .buttons4 {
+    position: absolute;
+    top: 97%;
+    left: 58%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 3;
+    transform: translate(-50%,-50%);
+  }
+  
+  .button4-pixel {
+    font-family: 'PixelCony';
+    font-size: clamp(1rem,3vw,4.5rem);
+    background-color: transparent;
+    border: 5px solid white;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+  
+  }
+  
+  .button4-pixel:hover {
+    transform: scale(1.05);
+    background-color:rgba(226, 85, 186, 0.345); 
+  }
+  
+  
+  
+  /* ----- CELLPHONE -----*/
+  
+  @media (max-width: 600px) {
+  
+    .main-painting {
+      display: none;
+    }
+  
+  
+    .main-painting-cellphone{
+      display: block;
+      position:relative
+  
+    }
+    .main-painting-cellphone img {
+      width: 100%;
+      height: auto; 
+      display: block;
+    }
+  
+  
+    .buttons-cell {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 3;
+      transform: translate(-50%,-50%);
+    }
+    
+    .button-pixel-cell {
+      font-family: 'PixelCony';
+      font-size: 30px;
+      background-color: transparent;
+      border: 5px solid white;
+      color: white;
+      border-radius: 6px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+    
+    }
+    
+    .button-pixel-cell:hover {
+      transform: scale(1.05);
+      background-color:rgba(226, 85, 186, 0.345); 
+    }
+  }
+  
+  

@@ -56,7 +56,7 @@ body, html {
   
   .buttons {
     position: absolute;
-    top: 15%;
+    top: 12%;
     left: 50%;
     display: flex;
     flex-direction: column;
@@ -89,7 +89,7 @@ body, html {
     
   .buttons2 {
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 75%;
     display: flex;
     flex-direction: column;
@@ -122,7 +122,7 @@ body, html {
       
   .buttons3 {
     position: absolute;
-    top: 55%;
+    top: 45%;
     left: 80%;
     display: flex;
     flex-direction: column;
@@ -154,8 +154,8 @@ body, html {
       
   .buttons4 {
     position: absolute;
-    top: 97%;
-    left: 58%;
+    top: 78%;
+    left: 68%;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -181,6 +181,39 @@ body, html {
     background-color:rgba(226, 85, 186, 0.345); 
   }
   
+
+    /* ------ botton 4 ------*/
+
+      
+    .buttons5 {
+      position: absolute;
+      top: 78%;
+      left: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 3;
+      transform: translate(-50%,-50%);
+    }
+    
+    .buttons5-pixel {
+      font-family: 'PixelCony';
+      font-size: clamp(1rem,3vw,4.5rem);
+      background-color: transparent;
+      border: 5px solid white;
+      color: white;
+      border-radius: 6px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+    
+    }
+    
+    .buttons5-pixel:hover {
+      transform: scale(1.05);
+      background-color:rgba(226, 85, 186, 0.345); 
+    }
+    
   
   
   /* ----- CELLPHONE -----*/

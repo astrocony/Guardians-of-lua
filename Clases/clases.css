@@ -244,7 +244,7 @@ body, html {
       font-family: 'PixelCony';
       position: absolute;
       top: 6%;
-      left: 28%;
+      left: 22%;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -266,7 +266,134 @@ body, html {
       transform: scale(1.05);
       background-color:rgba(226, 85, 186, 0.345); 
     }
+
+    .buttons-cell2 {
+      font-family: 'PixelCony';
+      position: absolute;
+      top: 35%;
+      left: 20%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 3;
+     
+      font-family: 'PixelCony';
+      font-size: 30px;
+      background-color: transparent;
+      border: 5px solid white;
+      color: white;
+      border-radius: 6px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+      
+    }
+
+    .buttons-cell2:hover {
+      transform: scale(1.05);
+      background-color:rgba(226, 85, 186, 0.345); 
+    }
+
+
+
+
+    .buttons-cell3 {
+      font-family: 'PixelCony';
+      position: absolute;
+      top: 53%;
+      left: 20%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 3;
+     
+      font-family: 'PixelCony';
+      font-size: 30px;
+      background-color: transparent;
+      border: 5px solid white;
+      color: white;
+      border-radius: 6px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+      
+    }
+
+    .buttons-cell3:hover {
+      transform: scale(1.05);
+      background-color:rgba(226, 85, 186, 0.345); 
+    }
+
+
+    .buttons-cell4 {
+      font-family: 'PixelCony';
+      position: absolute;
+      top: 77.5%;
+      left: 20%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 3;
+     
+      font-family: 'PixelCony';
+      font-size: 30px;
+      background-color: transparent;
+      border: 5px solid white;
+      color: white;
+      border-radius: 6px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+      
+    }
+
+    .buttons-cell4:hover {
+      transform: scale(1.05);
+      background-color:rgba(226, 85, 186, 0.345); 
+    }
+
+
+
+
+    .buttons-cell5 {
+      font-family: 'PixelCony';
+      position: absolute;
+      top: 77.5%;
+      left: 55%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 3;
+     
+      font-family: 'PixelCony';
+      font-size: 30px;
+      background-color: transparent;
+      border: 5px solid white;
+      color: white;
+      border-radius: 6px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+      
+    }
+
+    .buttons-cell5:hover {
+      transform: scale(1.05);
+      background-color:rgba(226, 85, 186, 0.345); 
+    }
+
+
+
+
+
+
+
+
+
   }
+
+
+  
 
 
 

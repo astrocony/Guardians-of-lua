@@ -5,7 +5,7 @@ body, html {
   
   
   body {
-    background-color: rgb(183, 147, 255);
+    background-color: rgb(251, 98, 197);
   }
   
   
@@ -43,3 +43,28 @@ body, html {
     text-align: center;
 
   }
+
+  #reserva-picture-cell {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+
+    #reserva-picture{
+        display: none;
+    }
+
+    #reserva-picture-cell {
+        width: 100%;
+        height: auto; 
+        display: block;
+      }
+        
+
+    
+
+
+
+
+  }
+

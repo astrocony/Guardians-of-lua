@@ -2,104 +2,217 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astrocony Photography| Maria Constanza Lepe</title>
+
+    <title>Astrocony Photography | By Maria Constanza Lepe</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
+
 <body>
+
+
+    <!-- HERO -->
 
     <header class="hero">
 
         <video autoplay muted loop playsinline>
+
             <source src="videofotografa.mp4" type="video/mp4">
+
         </video>
 
+
         <div class="hero-text">
+
             <h1>Astrocony Photography</h1>
-            <p>Maria Constanza Lepe</p>
+
+            <p>By Maria Constanza Lepe</p>
+
         </div>
 
     </header>
 
+
+
+    <!-- GALERÍA -->
+
     <section class="gallery">
 
-        <img src="images/photo1.jpg" alt="photo 1">
-        <img src="images/photo2.jpg" alt="photo 2">
-        <img src="images/photo3.jpg" alt="photo 3">
-        <img src="images/photo15.JPG" alt="photo 15">
-        <img src="images/photo16.JPG" alt="photo 16">
-        <img src="images/photo17.JPG" alt="photo 17">
-        <img src="images/photo18.JPG" alt="photo 18">
-        <img src="images/photo19.JPG" alt="photo 19">
-        <img src="images/photo20.JPG" alt="photo 20">
-        <img src="images/photo4.jpg" alt="photo 4">
-        <img src="images/photo5.jpg" alt="photo 5">
-        <img src="images/photo6.jpg" alt="photo 6">
-        <img src="images/photo7.jpg" alt="photo 7">
-        <img src="images/photo8.jpg" alt="photo 8">
-        <img src="images/photo9.jpg" alt="photo 9">
-        <img src="images/photo10.jpg" alt="photo 10">
-        <img src="images/photo11.jpg" alt="photo 11">
-        <img src="images/photo12.jpg" alt="photo 12">
-        <img src="images/photo13.JPG" alt="photo 13">
-        <img src="images/photo14.JPG" alt="photo 14">
-        <img src="images/photo24.jpg" alt="photo 24">
-        <img src="images/photo21.JPG" alt="photo 21">
-        <img src="images/photo22.JPG" alt="photo 22">
-        <img src="images/photo23.JPG" alt="photo 23">
-        
-        <img src="images/photo25.JPG" alt="photo 25">
-        <img src="images/photo26.JPG" alt="photo 26">
-        <img src="images/photo27.JPG" alt="photo 27">
-        <img src="images/photo31.JPG" alt="photo 31">
-        <img src="images/photo32.JPG" alt="photo 32">
-        <img src="images/photo28.JPG" alt="photo 28">
-        <img src="images/photo29.JPG" alt="photo 29">
-        
-     
-        <img src="images/photo33.JPG" alt="photo 33">
 
-        
-       
+        <img
+            src="images/photo1.jpg"
+            alt="Hummingbird"
+            data-title="Hummingbird"
+            data-location="Viña del Mar, Chile"
+            data-date="September 2026"
+        >
+
+
+        <img src="images/photo2.jpg" alt="photo 2">
+
+        <img src="images/photo3.jpg" alt="photo 3">
+
+        <img src="images/photo15.JPG" alt="photo 15">
+
+        <img src="images/photo16.JPG" alt="photo 16">
+
+        <img src="images/photo17.JPG" alt="photo 17">
+
+        <img src="images/photo18.JPG" alt="photo 18">
+
+        <img src="images/photo19.JPG" alt="photo 19">
+
+        <img src="images/photo20.JPG" alt="photo 20">
+
+        <img src="images/photo4.jpg" alt="photo 4">
+
+        <img src="images/photo5.jpg" alt="photo 5">
+
+        <img src="images/photo6.jpg" alt="photo 6">
+
+        <img src="images/photo7.jpg" alt="photo 7">
+
+        <img src="images/photo8.jpg" alt="photo 8">
+
+        <img src="images/photo9.jpg" alt="photo 9">
+
+        <img src="images/photo10.jpg" alt="photo 10">
+
+        <img src="images/photo11.jpg" alt="photo 11">
+
+        <img src="images/photo12.jpg" alt="photo 12">
+
+        <img src="images/photo13.JPG" alt="photo 13">
+
+        <img src="images/photo14.JPG" alt="photo 14">
+
+        <img src="images/photo24.jpg" alt="photo 24">
+
+        <img src="images/photo21.JPG" alt="photo 21">
+
+        <img src="images/photo22.JPG" alt="photo 22">
+
+        <img src="images/photo23.JPG" alt="photo 23">
+
+        <img src="images/photo25.JPG" alt="photo 25">
+
+        <img src="images/photo26.JPG" alt="photo 26">
+
+        <img src="images/photo27.JPG" alt="photo 27">
+
+        <img src="images/photo31.JPG" alt="photo 31">
+
+        <img src="images/photo32.JPG" alt="photo 32">
+
+        <img src="images/photo28.JPG" alt="photo 28">
+
+        <img src="images/photo29.JPG" alt="photo 29">
+
+        <img src="images/photo33.JPG" alt="photo 33">
 
 
     </section>
 
-    <!-- Visor de imágenes -->
+
+
+    <!-- VISOR DE IMÁGENES -->
 
     <div id="lightbox" class="lightbox">
 
+
         <span class="close">&times;</span>
-    
+
+
         <div class="lightbox-content">
-    
-            <img id="lightbox-img" src="" alt="">
-    
-            <div class="signature">Astrocony</div>
-    
+
+
+            <div class="image-wrapper">
+
+                <img id="lightbox-img" src="" alt="">
+
+                <div class="signature">ASTROCONY</div>
+
+            </div>
+
+
+            <div class="lightbox-info">
+
+                <div id="lightbox-title"></div>
+
+                <div id="lightbox-location"></div>
+
+                <div id="lightbox-date"></div>
+
+            </div>
+
+
         </div>
-    
+
+
     </div>
+
+
+
+    <!-- JAVASCRIPT -->
 
     <script>
 
+
         const images = document.querySelectorAll(".gallery img");
+
         const lightbox = document.getElementById("lightbox");
+
         const lightboxImg = document.getElementById("lightbox-img");
+
+        const lightboxTitle = document.getElementById("lightbox-title");
+
+        const lightboxLocation = document.getElementById("lightbox-location");
+
+        const lightboxDate = document.getElementById("lightbox-date");
+
         const close = document.querySelector(".close");
+
+
+
+        /* ABRIR FOTO */
 
         images.forEach(image => {
 
+
             image.addEventListener("click", () => {
 
+
                 lightbox.classList.add("active");
+
+
                 lightboxImg.src = image.src;
+
+                lightboxImg.alt = image.alt;
+
+
+                /* INFORMACIÓN */
+
+                lightboxTitle.textContent = image.dataset.title || "";
+
+                lightboxLocation.textContent = image.dataset.location || "";
+
+                lightboxDate.textContent = image.dataset.date || "";
+
 
             });
 
+
         });
+
+
+
+        /* CERRAR CON X */
 
         close.addEventListener("click", () => {
 
@@ -107,7 +220,12 @@
 
         });
 
+
+
+        /* CERRAR HACIENDO CLICK FUERA */
+
         lightbox.addEventListener("click", (e) => {
+
 
             if (e.target === lightbox) {
 
@@ -115,9 +233,56 @@
 
             }
 
+
         });
 
+
+
+        /* CREAR INFORMACIÓN PARA HOVER */
+
+        images.forEach(image => {
+
+
+            if (!image.dataset.title) return;
+
+
+            const wrapper = document.createElement("div");
+
+            wrapper.classList.add("gallery-item");
+
+
+            image.parentNode.insertBefore(wrapper, image);
+
+            wrapper.appendChild(image);
+
+
+
+            const info = document.createElement("div");
+
+            info.classList.add("photo-hover-info");
+
+
+            info.innerHTML = `
+
+                <div class="photo-hover-title">
+                    ${image.dataset.title}
+                </div>
+
+                <div class="photo-hover-location">
+                    ${image.dataset.location || ""}
+                </div>
+
+            `;
+
+
+            wrapper.appendChild(info);
+
+
+        });
+
+
     </script>
+
 
 </body>
 

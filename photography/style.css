@@ -1,212 +1,514 @@
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
 }
+
 
 body {
+
     font-family: Arial, sans-serif;
+
     background: white;
+
     color: #111;
+
 }
 
 
-/* VIDEO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
+
     position: relative;
+
     width: 100%;
+
     height: 420px;
+
     overflow: hidden;
+
     margin-bottom: 50px;
+
 }
+
 
 .hero video {
+
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
+
 }
+
 
 .hero::after {
+
     content: "";
+
     position: absolute;
+
     inset: 0;
+
     background: rgba(0, 0, 0, 0.25);
+
 }
+
 
 .hero-text {
+
     position: absolute;
+
     z-index: 2;
+
     top: 50%;
+
     left: 50%;
+
     transform: translate(-50%, -50%);
+
     text-align: center;
+
     color: white;
+
 }
+
 
 .hero-text h1 {
+
     font-size: 4rem;
+
     font-weight: 700;
+
     margin-bottom: 10px;
+
 }
+
 
 .hero-text p {
+
     font-size: 1rem;
+
     letter-spacing: 2px;
+
 }
 
 
-/* GALERÍA */
+
+/* =========================
+   GALERÍA
+========================= */
 
 .gallery {
+
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
+
     gap: 20px;
+
     max-width: 1100px;
+
     margin: 0 auto;
+
     padding: 0 40px 50px;
+
 }
+
+
+
+/* CONTENEDOR DE CADA FOTO */
+
+.gallery-item {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+}
+
+
+
+/* FOTOS */
 
 .gallery img {
+
     width: 100%;
+
     aspect-ratio: 1 / 1;
+
     object-fit: cover;
+
     border-radius: 12px;
+
     cursor: pointer;
+
     transition: transform 0.3s ease;
-}
 
-.gallery img:hover {
-    transform: scale(1.03);
-}
-
-
-/* LIGHTBOX */
-
-.lightbox {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 10px;
-}
-
-.close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: white;
-    font-size: 45px;
-    font-weight: 300;
-    cursor: pointer;
-}
-
-
-.signature {
-    position: absolute;
-    bottom: 25px;
-    left: 30px;
-
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 1px;
-
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-
-.lightbox-content {
-    position: relative;
-    display: inline-block;
-}
-
-.lightbox-content img {
     display: block;
-    max-width: 90vw;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 10px;
+
 }
 
-.signature {
+
+.gallery-item:hover img {
+
+    transform: scale(1.03);
+
+}
+
+
+
+/* =========================
+   INFORMACIÓN HOVER
+========================= */
+
+.photo-hover-info {
+
     position: absolute;
-    bottom: 15px;
-    left: 20px;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    padding: 45px 15px 15px;
 
     color: white;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.75)
+    );
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease;
+
+    pointer-events: none;
+
+}
+
+
+.gallery-item:hover .photo-hover-info {
+
+    opacity: 1;
+
+}
+
+
+.photo-hover-title {
+
+    font-size: 15px;
+
     font-weight: 700;
+
     letter-spacing: 1px;
 
     text-transform: uppercase;
 
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+
+.photo-hover-location {
+
+    font-size: 13px;
+
+    margin-top: 3px;
+
+    opacity: 0.85;
+
 }
 
 
 
+/* =========================
+   LIGHTBOX
+========================= */
 
-/* MÓVIL */
+.lightbox {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 1000;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.85);
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px;
+
+}
+
+
+.lightbox.active {
+
+    display: flex;
+
+}
+
+
+
+/* CONTENIDO DEL LIGHTBOX */
+
+.lightbox-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    max-width: 90vw;
+
+    max-height: 90vh;
+
+}
+
+
+
+/* FOTO GRANDE */
+
+.image-wrapper {
+
+    position: relative;
+
+    display: inline-block;
+
+}
+
+
+.image-wrapper img {
+
+    display: block;
+
+    max-width: 90vw;
+
+    max-height: 82vh;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+}
+
+
+
+/* =========================
+   FIRMA ASTROCONY
+========================= */
+
+.signature {
+
+    position: absolute;
+
+    bottom: 15px;
+
+    left: 20px;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+
+}
+
+
+
+/* =========================
+   INFORMACIÓN DEBAJO
+========================= */
+
+.lightbox-info {
+
+    margin-top: 12px;
+
+    color: white;
+
+    line-height: 1.4;
+
+}
+
+
+#lightbox-title {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+#lightbox-location {
+
+    font-size: 14px;
+
+    opacity: 0.8;
+
+}
+
+
+#lightbox-date {
+
+    font-size: 12px;
+
+    opacity: 0.55;
+
+    margin-top: 3px;
+
+}
+
+
+
+/* =========================
+   BOTÓN CERRAR
+========================= */
+
+.close {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 35px;
+
+    color: white;
+
+    font-size: 45px;
+
+    font-weight: 300;
+
+    cursor: pointer;
+
+}
+
+
+
+/* =========================
+   MÓVIL
+========================= */
 
 @media (max-width: 600px) {
 
+
     .hero {
+
         height: 300px;
+
         margin-bottom: 30px;
+
     }
+
 
     .hero-text h1 {
+
         font-size: 2.5rem;
+
     }
+
 
     .gallery {
+
         grid-template-columns: repeat(2, 1fr);
+
         gap: 10px;
+
         width: 100%;
+
         padding: 0 15px 30px;
+
     }
+
 
     .gallery img {
+
         aspect-ratio: 1 / 1;
+
         border-radius: 8px;
+
     }
+
+
+    /* EN MÓVIL NO MOSTRAMOS HOVER */
+
+    .photo-hover-info {
+
+        display: none;
+
+    }
+
 
     .lightbox {
+
         padding: 15px;
+
     }
 
-    .lightbox img {
-        max-width: 95%;
-        max-height: 85vh;
+
+    .image-wrapper img {
+
+        max-width: 95vw;
+
+        max-height: 80vh;
+
     }
+
+
+    .lightbox-info {
+
+        margin-top: 10px;
+
+    }
+
 
     .close {
+
         top: 10px;
+
         right: 20px;
+
         font-size: 40px;
+
     }
 
+
     .signature {
+
         bottom: 20px;
+
         left: 20px;
+
         font-size: 14px;
+
     }
 
 

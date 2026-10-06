@@ -10,9 +10,17 @@
 
 <body>
 
-    <header>
-        <h1>Latte Art</h1>
-        <p>Maria Constanza Lepe</p>
+    <header class="hero">
+
+        <video autoplay muted loop playsinline>
+            <source src="latteart-video.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-text">
+            <h1>Latte Art</h1>
+            <p>Maria Constanza Lepe</p>
+        </div>
+
     </header>
 
     <section class="gallery">
@@ -27,7 +35,6 @@
 
     </section>
 
-
     <!-- Visor de imágenes -->
 
     <div id="lightbox" class="lightbox">
@@ -38,37 +45,29 @@
 
     </div>
 
-
     <script>
 
         const images = document.querySelectorAll(".gallery img");
-
         const lightbox = document.getElementById("lightbox");
-
         const lightboxImg = document.getElementById("lightbox-img");
-
         const close = document.querySelector(".close");
-
 
         images.forEach(image => {
 
             image.addEventListener("click", () => {
 
                 lightbox.classList.add("active");
-
                 lightboxImg.src = image.src;
 
             });
 
         });
 
-
         close.addEventListener("click", () => {
 
             lightbox.classList.remove("active");
 
         });
-
 
         lightbox.addEventListener("click", (e) => {
 

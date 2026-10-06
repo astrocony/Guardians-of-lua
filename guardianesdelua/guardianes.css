@@ -1,0 +1,46 @@
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  body {
+    background-color: rgb(215, 94, 163);
+  }
+  
+  
+  /* ====== FONT PIXEL ====== */
+  
+  
+  
+  @font-face {
+    font-family: 'PixelCony';
+    src: url('/fonts/PixelCony-Regular.ttf') format('truetype');
+  }
+
+  /* ==== images ===== */
+
+
+  .main-painting {
+    position: relative;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+  
+  .background-img {
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  
+  .overlay-img {
+    position:absolute;
+    width:500px;
+    top:200px;
+    left:100px;
+    transition: transform 0.3s ease;
+  }
+  
+  .overlay-img:hover{
+    transform: scale(1.2);
+  }

@@ -84,7 +84,93 @@
             
         >
 
-        <img src="images/photo16.JPG" alt="photo 16">
+        <img 
+        src="images/photo16.JPG" 
+        alt="photo 16"
+        data-title="Squirrel"
+        data-location="Wroclaw, Poland"
+        data-date="October 2026"
+
+        
+      >
+
+
+        <img 
+        src="images/photo34.JPG" 
+        alt="photo 34"
+        data-title="Ducks"
+        data-location="Wroclaw, Poland"
+        data-date="October 2026"
+
+        
+
+        
+        >
+
+
+        <img 
+            src="images/photo35.JPG" 
+            alt="photo 35"
+            data-title="Ducks"
+            data-location="Wroclaw, Poland"
+            data-date="October 2026"
+
+            
+        >
+
+        <img 
+        src="images/photo36.JPG" 
+        alt="photo 15"
+        data-title="Duck"
+        data-location="Wroclaw, Poland"
+        data-date="October 2026"
+
+
+        >
+
+        <img 
+        src="images/photo37.JPG" 
+        alt="photo 37"
+        data-title="Duck"
+        data-location="Wroclaw, Poland"
+        data-date="October 2026"
+
+        
+         >
+
+
+        <img 
+            src="images/photo38.JPG" 
+            alt="photo 38"
+            data-title="Duck"
+            data-location="Wroclaw, Poland"
+            data-date="October 2026"
+
+            
+        >
+
+        <img 
+        src="images/photo39.JPG" 
+        alt="photo 39"
+        data-title="Duck"
+        data-location="Wroclaw, Poland"
+        data-date="October 2026"
+
+        
+        >
+
+
+        <img 
+        src="images/photo40.JPG" 
+        alt="photo 40"
+        data-title="Duck"
+        data-location="Wroclaw, Poland"
+        data-date="October 2026"
+
+        
+       >
+
+    
 
         <img src="images/photo17.JPG" alt="photo 17">
 
@@ -174,6 +260,15 @@
                 <div id="lightbox-date"></div>
 
             </div>
+
+
+            <button class="lightbox-arrow prev" id="prev-photo" aria-label="Previous photo">
+                &#10094;
+            </button>
+            
+            <button class="lightbox-arrow next" id="next-photo" aria-label="Next photo">
+                &#10095;
+            </button>
 
 
         </div>
@@ -303,6 +398,62 @@
 
 
         });
+
+
+        /* NAVEGACIÓN ENTRE FOTOS */
+
+let currentIndex = 0;
+
+const prevButton = document.getElementById("prev-photo");
+const nextButton = document.getElementById("next-photo");
+
+function showPhoto(index) {
+    currentIndex = (index + images.length) % images.length;
+
+    const image = images[currentIndex];
+
+    lightboxImg.src = image.src;
+    lightboxImg.alt = image.alt;
+
+    lightboxTitle.textContent = image.dataset.title || "";
+    lightboxLocation.textContent = image.dataset.location || "";
+    lightboxDate.textContent = image.dataset.date || "";
+}
+
+images.forEach((image, index) => {
+    image.addEventListener("click", () => {
+        currentIndex = index;
+        showPhoto(currentIndex);
+    });
+});
+
+prevButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    showPhoto(currentIndex - 1);
+});
+
+nextButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    showPhoto(currentIndex + 1);
+});
+
+    /* FLECHAS DEL TECLADO */
+
+    document.addEventListener("keydown", (event) => {
+        if (!lightbox.classList.contains("active")) return;
+
+        if (event.key === "ArrowRight") {
+            showPhoto(currentIndex + 1);
+        }
+
+        if (event.key === "ArrowLeft") {
+            showPhoto(currentIndex - 1);
+        }
+
+        if (event.key === "Escape") {
+            lightbox.classList.remove("active");
+        }
+    });
 
 
     </script>
